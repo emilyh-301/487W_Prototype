@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.Set;
 
 @Service
 public class MenuItemService implements MenuItemServiceInterface {
@@ -37,7 +38,7 @@ public class MenuItemService implements MenuItemServiceInterface {
     }
 
     @Override
-    public void edit(@NotNull int id, String new_name, String new_allergens, double new_price, String new_description) {
+    public void edit(@NotNull int id, String new_name, Set<String> new_allergens, double new_price, String new_description) {
         database.edit(id, new_name, new_allergens, new_price, new_description);
     }
 

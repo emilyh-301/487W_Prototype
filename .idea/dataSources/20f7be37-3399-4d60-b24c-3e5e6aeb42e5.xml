@@ -172,75 +172,117 @@
     <collation id="160" parent="2" name="UKRAINIAN_UKRAINE"/>
     <collation id="161" parent="2" name="VIETNAMESE"/>
     <collation id="162" parent="2" name="VIETNAMESE_VIETNAM"/>
-    <table id="163" parent="4" name="GENERAL_REQUESTS">
-      <ObjectId>28</ObjectId>
-    </table>
-    <table id="164" parent="4" name="MAINTENANCE_REQUESTS">
-      <ObjectId>20</ObjectId>
-    </table>
-    <table id="165" parent="4" name="MENUITEMS">
-      <ObjectId>3</ObjectId>
-    </table>
-    <table id="166" parent="4" name="REQUEST">
-      <ObjectId>9</ObjectId>
-    </table>
-    <table id="167" parent="4" name="STAFFIDS">
+    <table id="163" parent="4" name="ALLERGENS">
       <ObjectId>6</ObjectId>
     </table>
-    <table id="168" parent="4" name="WAKEUPCALLREQUESTS">
-      <ObjectId>12</ObjectId>
+    <table id="164" parent="4" name="GENERAL_REQUESTS">
+      <ObjectId>33</ObjectId>
     </table>
-    <column id="169" parent="163" name="REQUESTID">
+    <table id="165" parent="4" name="MAINTENANCE_REQUESTS">
+      <ObjectId>25</ObjectId>
+    </table>
+    <table id="166" parent="4" name="MENUITEMS">
+      <ObjectId>3</ObjectId>
+    </table>
+    <table id="167" parent="4" name="REQUEST">
+      <ObjectId>14</ObjectId>
+    </table>
+    <table id="168" parent="4" name="STAFFIDS">
+      <ObjectId>11</ObjectId>
+    </table>
+    <table id="169" parent="4" name="WAKEUPCALLREQUESTS">
+      <ObjectId>17</ObjectId>
+    </table>
+    <column id="170" parent="163" name="ALLERGEN">
       <Position>1</Position>
-      <DataType>INT|0s</DataType>
+      <DataType>VARCHAR(25)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="170" parent="163" name="ROOMNUMBER">
+    <column id="171" parent="163" name="ITEM_ID">
       <Position>2</Position>
       <DataType>INT|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="171" parent="163" name="TIMEOFREQUEST">
+    <index id="172" parent="163" name="PRIMARY_KEY_A">
+      <ObjectId>7</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <SourceTextLength>79</SourceTextLength>
+      <ColNames>ALLERGEN</ColNames>
+      <Unique>1</Unique>
+      <AutoCreated>1</AutoCreated>
+    </index>
+    <index id="173" parent="163" name="CONSTRAINT_INDEX_A">
+      <ObjectId>9</ObjectId>
+      <NameSurrogate>1</NameSurrogate>
+      <SourceTextLength>77</SourceTextLength>
+      <ColNames>ITEM_ID</ColNames>
+      <AutoCreated>1</AutoCreated>
+    </index>
+    <key id="174" parent="163" name="CONSTRAINT_A">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ALLERGEN</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="175" parent="163" name="CONSTRAINT_AA">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>ITEM_ID</ColNames>
+      <RefTableName>MENUITEMS</RefTableName>
+      <RefKeyName>PRIMARY_KEY_4</RefKeyName>
+      <RefColNames>ITEM_ID</RefColNames>
+      <OnDelete>restrict</OnDelete>
+      <OnUpdate>restrict</OnUpdate>
+    </foreign-key>
+    <column id="176" parent="164" name="REQUESTID">
+      <Position>1</Position>
+      <DataType>INT|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="177" parent="164" name="ROOMNUMBER">
+      <Position>2</Position>
+      <DataType>INT|0s</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="178" parent="164" name="TIMEOFREQUEST">
       <Position>3</Position>
       <DataType>DATETIME|0s</DataType>
     </column>
-    <column id="172" parent="163" name="NOTES">
+    <column id="179" parent="164" name="NOTES">
       <Position>4</Position>
       <DataType>VARCHAR(500)|0s</DataType>
     </column>
-    <column id="173" parent="163" name="COMMONREQUESTTYPE">
+    <column id="180" parent="164" name="COMMONREQUESTTYPE">
       <Position>5</Position>
       <DataType>VARCHAR(50)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="174" parent="163" name="PRIMARY_KEY_C">
-      <ObjectId>29</ObjectId>
+    <index id="181" parent="164" name="PRIMARY_KEY_C">
+      <ObjectId>34</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <SourceTextLength>87</SourceTextLength>
       <ColNames>REQUESTID</ColNames>
       <Unique>1</Unique>
       <AutoCreated>1</AutoCreated>
     </index>
-    <index id="175" parent="163" name="CONSTRAINT_INDEX_C">
-      <ObjectId>32</ObjectId>
+    <index id="182" parent="164" name="CONSTRAINT_INDEX_C">
+      <ObjectId>37</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <SourceTextLength>87</SourceTextLength>
       <ColNames>ROOMNUMBER</ColNames>
       <AutoCreated>1</AutoCreated>
     </index>
-    <index id="176" parent="163" name="CONSTRAINT_INDEX_C9">
-      <ObjectId>34</ObjectId>
+    <index id="183" parent="164" name="CONSTRAINT_INDEX_C9">
+      <ObjectId>39</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <SourceTextLength>91</SourceTextLength>
       <ColNames>TIMEOFREQUEST</ColNames>
       <AutoCreated>1</AutoCreated>
     </index>
-    <key id="177" parent="163" name="CONSTRAINT_C">
+    <key id="184" parent="164" name="CONSTRAINT_C">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>REQUESTID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="178" parent="163" name="CONSTRAINT_C9">
+    <foreign-key id="185" parent="164" name="CONSTRAINT_C9">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>REQUESTID</ColNames>
       <RefTableName>REQUEST</RefTableName>
@@ -249,7 +291,7 @@
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
     </foreign-key>
-    <foreign-key id="179" parent="163" name="CONSTRAINT_C9D">
+    <foreign-key id="186" parent="164" name="CONSTRAINT_C9D">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ROOMNUMBER</ColNames>
       <RefTableName>REQUEST</RefTableName>
@@ -258,7 +300,7 @@
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
     </foreign-key>
-    <foreign-key id="180" parent="163" name="CONSTRAINT_C9DC">
+    <foreign-key id="187" parent="164" name="CONSTRAINT_C9DC">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>TIMEOFREQUEST</ColNames>
       <RefTableName>REQUEST</RefTableName>
@@ -267,57 +309,57 @@
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
     </foreign-key>
-    <column id="181" parent="164" name="REQUESTID">
+    <column id="188" parent="165" name="REQUESTID">
       <Position>1</Position>
       <DataType>INT|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="182" parent="164" name="ROOMNUMBER">
+    <column id="189" parent="165" name="ROOMNUMBER">
       <Position>2</Position>
       <DataType>INT|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="183" parent="164" name="TIMEOFREQUEST">
+    <column id="190" parent="165" name="TIMEOFREQUEST">
       <Position>3</Position>
       <DataType>DATETIME|0s</DataType>
     </column>
-    <column id="184" parent="164" name="NOTES">
+    <column id="191" parent="165" name="NOTES">
       <Position>4</Position>
       <DataType>VARCHAR(500)|0s</DataType>
     </column>
-    <column id="185" parent="164" name="COMMONREQUESTTYPE">
+    <column id="192" parent="165" name="COMMONREQUESTTYPE">
       <Position>5</Position>
       <DataType>VARCHAR(50)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="186" parent="164" name="PRIMARY_KEY_66">
-      <ObjectId>21</ObjectId>
+    <index id="193" parent="165" name="PRIMARY_KEY_66">
+      <ObjectId>26</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <SourceTextLength>92</SourceTextLength>
       <ColNames>REQUESTID</ColNames>
       <Unique>1</Unique>
       <AutoCreated>1</AutoCreated>
     </index>
-    <index id="187" parent="164" name="CONSTRAINT_INDEX_6">
-      <ObjectId>24</ObjectId>
+    <index id="194" parent="165" name="CONSTRAINT_INDEX_6">
+      <ObjectId>29</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <SourceTextLength>91</SourceTextLength>
       <ColNames>ROOMNUMBER</ColNames>
       <AutoCreated>1</AutoCreated>
     </index>
-    <index id="188" parent="164" name="CONSTRAINT_INDEX_66">
-      <ObjectId>26</ObjectId>
+    <index id="195" parent="165" name="CONSTRAINT_INDEX_66">
+      <ObjectId>31</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <SourceTextLength>95</SourceTextLength>
       <ColNames>TIMEOFREQUEST</ColNames>
       <AutoCreated>1</AutoCreated>
     </index>
-    <key id="189" parent="164" name="CONSTRAINT_66">
+    <key id="196" parent="165" name="CONSTRAINT_66">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>REQUESTID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="190" parent="164" name="CONSTRAINT_668">
+    <foreign-key id="197" parent="165" name="CONSTRAINT_668">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>REQUESTID</ColNames>
       <RefTableName>REQUEST</RefTableName>
@@ -326,7 +368,7 @@
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
     </foreign-key>
-    <foreign-key id="191" parent="164" name="CONSTRAINT_6685">
+    <foreign-key id="198" parent="165" name="CONSTRAINT_6685">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ROOMNUMBER</ColNames>
       <RefTableName>REQUEST</RefTableName>
@@ -335,7 +377,7 @@
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
     </foreign-key>
-    <foreign-key id="192" parent="164" name="CONSTRAINT_66851">
+    <foreign-key id="199" parent="165" name="CONSTRAINT_66851">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>TIMEOFREQUEST</ColNames>
       <RefTableName>REQUEST</RefTableName>
@@ -344,34 +386,30 @@
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
     </foreign-key>
-    <column id="193" parent="165" name="ITEM_ID">
+    <column id="200" parent="166" name="ITEM_ID">
       <Position>1</Position>
       <DataType>INT|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="194" parent="165" name="NAME">
+    <column id="201" parent="166" name="NAME">
       <Position>2</Position>
       <DataType>VARCHAR(50)|0s</DataType>
     </column>
-    <column id="195" parent="165" name="PRICE">
+    <column id="202" parent="166" name="PRICE">
       <Position>3</Position>
       <DataType>DECIMAL(4,2)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="196" parent="165" name="DESCRIPTION">
+    <column id="203" parent="166" name="DESCRIPTION">
       <Position>4</Position>
       <DataType>VARCHAR(300)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="197" parent="165" name="ALLERGENS">
+    <column id="204" parent="166" name="IMAGE">
       <Position>5</Position>
-      <DataType>VARCHAR(100)|0s</DataType>
-    </column>
-    <column id="198" parent="165" name="IMAGE">
-      <Position>6</Position>
       <DataType>BLOB|0s</DataType>
     </column>
-    <index id="199" parent="165" name="PRIMARY_KEY_4">
+    <index id="205" parent="166" name="PRIMARY_KEY_4">
       <ObjectId>4</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <SourceTextLength>78</SourceTextLength>
@@ -379,119 +417,119 @@
       <Unique>1</Unique>
       <AutoCreated>1</AutoCreated>
     </index>
-    <key id="200" parent="165" name="CONSTRAINT_4">
+    <key id="206" parent="166" name="CONSTRAINT_4">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ITEM_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="201" parent="166" name="REQUESTID">
+    <column id="207" parent="167" name="REQUESTID">
       <Position>1</Position>
       <DataType>INT|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="202" parent="166" name="ROOMNUMBER">
+    <column id="208" parent="167" name="ROOMNUMBER">
       <Position>2</Position>
       <DataType>INT|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="203" parent="166" name="TIMEOFREQUEST">
+    <column id="209" parent="167" name="TIMEOFREQUEST">
       <Position>3</Position>
       <DataType>DATETIME|0s</DataType>
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
     </column>
-    <column id="204" parent="166" name="REQUESTTYPE">
+    <column id="210" parent="167" name="REQUESTTYPE">
       <Position>4</Position>
       <DataType>VARCHAR(50)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="205" parent="166" name="PRIMARY_KEY_6">
-      <ObjectId>10</ObjectId>
+    <index id="211" parent="167" name="PRIMARY_KEY_6">
+      <ObjectId>15</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <SourceTextLength>78</SourceTextLength>
       <ColNames>REQUESTID</ColNames>
       <Unique>1</Unique>
       <AutoCreated>1</AutoCreated>
     </index>
-    <key id="206" parent="166" name="CONSTRAINT_6">
+    <key id="212" parent="167" name="CONSTRAINT_6">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>REQUESTID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="207" parent="167" name="ID">
+    <column id="213" parent="168" name="ID">
       <Position>1</Position>
       <DataType>INT|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="208" parent="167" name="USERNAME">
+    <column id="214" parent="168" name="USERNAME">
       <Position>2</Position>
       <DataType>VARCHAR(25)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="209" parent="167" name="PASSWORD">
+    <column id="215" parent="168" name="PASSWORD">
       <Position>3</Position>
       <DataType>VARCHAR(25)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="210" parent="167" name="PRIMARY_KEY_7">
-      <ObjectId>7</ObjectId>
+    <index id="216" parent="168" name="PRIMARY_KEY_7">
+      <ObjectId>12</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <SourceTextLength>72</SourceTextLength>
       <ColNames>ID</ColNames>
       <Unique>1</Unique>
       <AutoCreated>1</AutoCreated>
     </index>
-    <key id="211" parent="167" name="CONSTRAINT_7">
+    <key id="217" parent="168" name="CONSTRAINT_7">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="212" parent="168" name="REQUESTID">
+    <column id="218" parent="169" name="REQUESTID">
       <Position>1</Position>
       <DataType>INT|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="213" parent="168" name="ROOMNUMBER">
+    <column id="219" parent="169" name="ROOMNUMBER">
       <Position>2</Position>
       <DataType>INT|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="214" parent="168" name="TIMEOFREQUEST">
+    <column id="220" parent="169" name="TIMEOFREQUEST">
       <Position>3</Position>
       <DataType>DATETIME|0s</DataType>
     </column>
-    <column id="215" parent="168" name="TIMEFORCALL">
+    <column id="221" parent="169" name="TIMEFORCALL">
       <Position>4</Position>
       <DataType>DATETIME|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="216" parent="168" name="PRIMARY_KEY_9">
-      <ObjectId>13</ObjectId>
+    <index id="222" parent="169" name="PRIMARY_KEY_9">
+      <ObjectId>18</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <SourceTextLength>89</SourceTextLength>
       <ColNames>REQUESTID</ColNames>
       <Unique>1</Unique>
       <AutoCreated>1</AutoCreated>
     </index>
-    <index id="217" parent="168" name="CONSTRAINT_INDEX_9">
-      <ObjectId>16</ObjectId>
+    <index id="223" parent="169" name="CONSTRAINT_INDEX_9">
+      <ObjectId>21</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <SourceTextLength>89</SourceTextLength>
       <ColNames>ROOMNUMBER</ColNames>
       <AutoCreated>1</AutoCreated>
     </index>
-    <index id="218" parent="168" name="CONSTRAINT_INDEX_91">
-      <ObjectId>18</ObjectId>
+    <index id="224" parent="169" name="CONSTRAINT_INDEX_91">
+      <ObjectId>23</ObjectId>
       <NameSurrogate>1</NameSurrogate>
       <SourceTextLength>93</SourceTextLength>
       <ColNames>TIMEOFREQUEST</ColNames>
       <AutoCreated>1</AutoCreated>
     </index>
-    <key id="219" parent="168" name="CONSTRAINT_9">
+    <key id="225" parent="169" name="CONSTRAINT_9">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>REQUESTID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="220" parent="168" name="CONSTRAINT_91">
+    <foreign-key id="226" parent="169" name="CONSTRAINT_91">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>REQUESTID</ColNames>
       <RefTableName>REQUEST</RefTableName>
@@ -500,7 +538,7 @@
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
     </foreign-key>
-    <foreign-key id="221" parent="168" name="CONSTRAINT_910">
+    <foreign-key id="227" parent="169" name="CONSTRAINT_910">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>ROOMNUMBER</ColNames>
       <RefTableName>REQUEST</RefTableName>
@@ -509,7 +547,7 @@
       <OnDelete>restrict</OnDelete>
       <OnUpdate>restrict</OnUpdate>
     </foreign-key>
-    <foreign-key id="222" parent="168" name="CONSTRAINT_910E">
+    <foreign-key id="228" parent="169" name="CONSTRAINT_910E">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>TIMEOFREQUEST</ColNames>
       <RefTableName>REQUEST</RefTableName>

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent> {
 
     private final MemberDatabase database;
+
     private final StaffDatabase staffRepo;
 
     @Qualifier("Request")

@@ -2,6 +2,7 @@ package com.hotel.model;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Set;
 
 @Entity
 @Table(name = "menuItems")
@@ -25,8 +26,8 @@ public class MenuItem {
     /**
      * The item's allergens
      */
-    @Column(name = "allergens")
-    private String allergens;
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
+    private Set<Allergen> allergens;
 
     /**
      * The item's price
@@ -54,7 +55,7 @@ public class MenuItem {
     public MenuItem() {
     }
 
-    public MenuItem(int id, String name, String allergens, BigDecimal price, String description, byte[] image) {
+    public MenuItem(int id, String name, Set<Allergen> allergens, BigDecimal price, String description, byte[] image) {
         this.id = id;
         this.name = name;
         this.allergens = allergens;
@@ -80,11 +81,11 @@ public class MenuItem {
         this.name = name;
     }
 
-    public String getAllergens() {
+    public Set<Allergen> getAllergens() {
         return allergens;
     }
 
-    public void setAllergens(String allergens) {
+    public void setAllergens(Set<Allergen> allergens) {
         this.allergens = allergens;
     }
 

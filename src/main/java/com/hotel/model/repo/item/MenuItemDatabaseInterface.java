@@ -4,6 +4,7 @@ import com.hotel.model.MenuItem;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.Set;
 
 public interface MenuItemDatabaseInterface {
 
@@ -15,7 +16,7 @@ public interface MenuItemDatabaseInterface {
 
     void remove(int id);
 
-    void edit(@NotNull int id, String new_name, String new_allergens, double new_price, String new_description);
+    void edit(@NotNull int id, String new_name, Set<String> new_allergens, double new_price, String new_description);
 
     MenuItem find(int id);
 
