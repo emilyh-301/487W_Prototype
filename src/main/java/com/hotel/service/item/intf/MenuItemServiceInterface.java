@@ -1,14 +1,16 @@
 package com.hotel.service.item.intf;
 
 import com.hotel.model.item.MenuItem;
+import org.springframework.data.domain.Sort;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Set;
 
 public interface MenuItemServiceInterface {
 
-    ArrayList<MenuItem> getItems();
+    Collection<MenuItem> getItems(Sort s);
 
     void add(MenuItem item);
 

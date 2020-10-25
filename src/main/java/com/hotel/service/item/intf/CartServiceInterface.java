@@ -1,14 +1,16 @@
 package com.hotel.service.item.intf;
 
 import com.hotel.model.item.Cart;
+import org.springframework.data.domain.Sort;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Set;
 
 public interface CartServiceInterface {
 
-    ArrayList<Cart> getCarts();
+    Collection<Cart> getCarts(Sort s);
 
     void add(Cart cart);
 

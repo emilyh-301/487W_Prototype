@@ -1,13 +1,15 @@
 package com.hotel.model.repo.item.intf;
 
 import com.hotel.model.item.CartItem;
+import org.springframework.data.domain.Sort;
 
 import javax.validation.constraints.NotNull;
+import java.util.Collection;
 import java.util.Set;
 
 public interface CartItemDatabaseInterface {
 
-    Set<CartItem> getDatabase();
+    Collection<CartItem> getDatabase(Sort s);
 
     void add(CartItem item);
 

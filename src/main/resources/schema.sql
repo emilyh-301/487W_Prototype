@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS cartItems;
 DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS cart;
 DROP TABLE IF EXISTS menuItems;
+DROP TABLE IF EXISTS itemAllergens;
 DROP TABLE IF EXISTS staffIDs;
 DROP TABLE IF EXISTS wakeUpCallRequests;
 DROP TABLE IF EXISTS maintenance_requests;
@@ -43,9 +44,15 @@ create table cartItems (
 );
 
 create table Allergens (
-    allergen varchar(25) primary key,
-    item_id int not null,
-    foreign key (item_id) references menuItems
+    allergen varchar(25) primary key
+);
+
+create table itemAllergens (
+    item_id int,
+    foreign key (item_id) references menuItems,
+    allergen varchar(25),
+    foreign key (allergen) references Allergens,
+    primary key (item_id, allergen)
 );
 
 create table staffIDs (

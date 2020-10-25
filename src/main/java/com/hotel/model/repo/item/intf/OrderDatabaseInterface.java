@@ -1,13 +1,15 @@
 package com.hotel.model.repo.item.intf;
 
 import com.hotel.model.item.Order;
+import org.springframework.data.domain.Sort;
 
 import javax.validation.constraints.NotNull;
+import java.util.Collection;
 import java.util.Set;
 
 public interface OrderDatabaseInterface {
 
-    Set<Order> getDatabase();
+    Collection<Order> getDatabase(Sort s);
 
     void add(Order order);
 

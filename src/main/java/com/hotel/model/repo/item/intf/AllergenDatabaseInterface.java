@@ -1,12 +1,13 @@
 package com.hotel.model.repo.item.intf;
 
 import com.hotel.model.item.Allergen;
+import org.springframework.data.domain.Sort;
 
-import java.util.Set;
+import java.util.Collection;
 
 public interface AllergenDatabaseInterface {
 
-    Set<Allergen> getDatabase();
+    Collection<Allergen> getDatabase(Sort sort);
 
     void add(Allergen allergen);
 

@@ -1,13 +1,15 @@
 package com.hotel.service.item.intf;
 
 import com.hotel.model.item.Order;
+import org.springframework.data.domain.Sort;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.Collection;
 
 public interface OrderServiceInterface {
 
-    ArrayList<Order> getOrders();
+    Collection<Order> getOrders(Sort s);
 
     void add(Order order);
 

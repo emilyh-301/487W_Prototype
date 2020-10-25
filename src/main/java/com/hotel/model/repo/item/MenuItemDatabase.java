@@ -4,14 +4,12 @@ import com.hotel.jpa.JpaMenuItemRepository;
 import com.hotel.model.item.Allergen;
 import com.hotel.model.item.MenuItem;
 import com.hotel.model.repo.item.intf.MenuItemDatabaseInterface;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Repository
 public class MenuItemDatabase implements MenuItemDatabaseInterface {
@@ -30,8 +28,8 @@ public class MenuItemDatabase implements MenuItemDatabaseInterface {
      * @return A list of all items in the database
      */
     @Override
-    public ArrayList<MenuItem> getDatabase() {
-        return (ArrayList<MenuItem>) repo.findAll();
+    public Collection<MenuItem> getDatabase(Sort s) {
+        return repo.getAll(s);
     }
 
     /**
@@ -79,7 +77,7 @@ public class MenuItemDatabase implements MenuItemDatabaseInterface {
         item.setName((new_name == null || new_name.isEmpty())? MenuItem.DEFAULT_NAME : new_name);
 
         item.setAllergens(new HashSet<>());
-        for(String s : new_allergens) item.getAllergens().add(new Allergen(s, item));
+        for(String s : new_allergens) item.getAllergens().add(new Allergen(s));
 
         item.setPrice(new_price < MenuItem.MINIMUM_PRICE? new BigDecimal(MenuItem.MINIMUM_PRICE) : new BigDecimal(new_price));
         item.setDescription((new_description == null || new_description.isEmpty())? MenuItem.DEFAULT_DESCRIPTION : new_description);

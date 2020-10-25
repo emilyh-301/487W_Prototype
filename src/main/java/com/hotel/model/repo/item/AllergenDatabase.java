@@ -3,9 +3,11 @@ package com.hotel.model.repo.item;
 import com.hotel.jpa.JpaAllergenRepository;
 import com.hotel.model.item.Allergen;
 import com.hotel.model.repo.item.intf.AllergenDatabaseInterface;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.Query;
 
+import java.util.Collection;
 import java.util.Optional;
-import java.util.Set;
 
 public class AllergenDatabase implements AllergenDatabaseInterface {
 
@@ -15,8 +17,8 @@ public class AllergenDatabase implements AllergenDatabaseInterface {
     private JpaAllergenRepository repo;
 
     @Override
-    public Set<Allergen> getDatabase() {
-        return (Set<Allergen>) repo.findAll();
+    public Collection<Allergen> getDatabase(Sort sort) {
+        return repo.getAll(sort);
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.hotel.model.item;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.Set;
 
 @Entity
@@ -26,8 +27,12 @@ public class MenuItem {
     /**
      * The item's allergens
      */
-    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
-    private Set<Allergen> allergens;
+    //@OneToMany(mappedBy = "item", cascade = CascadeType.ALL)
+    @ManyToMany
+    @JoinTable(name = "itemAllergens", joinColumns =
+        @JoinColumn(name = "item_id", referencedColumnName = "item_id"), inverseJoinColumns =
+        @JoinColumn(name = "allergen", referencedColumnName = "allergen"))
+    private Collection<Allergen> allergens;
 
     /**
      * The item's price
@@ -54,7 +59,7 @@ public class MenuItem {
     public MenuItem() {
     }
 
-    public MenuItem(int id, String name, Set<Allergen> allergens, BigDecimal price, String description, String image) {
+    public MenuItem(int id, String name, Collection<Allergen> allergens, BigDecimal price, String description, String image) {
         this.id = id;
         this.name = name;
         this.allergens = allergens;
@@ -80,11 +85,11 @@ public class MenuItem {
         this.name = name;
     }
 
-    public Set<Allergen> getAllergens() {
+    public Collection<Allergen> getAllergens() {
         return allergens;
     }
 
-    public void setAllergens(Set<Allergen> allergens) {
+    public void setAllergens(Collection<Allergen> allergens) {
         this.allergens = allergens;
     }
 

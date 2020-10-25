@@ -1,12 +1,15 @@
 package com.hotel.service.item;
 
+import com.hotel.model.item.CartItem;
 import com.hotel.model.item.Order;
 import com.hotel.model.repo.item.OrderDatabase;
 import com.hotel.service.item.intf.OrderServiceInterface;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.Collection;
 
 @Service
 public class OrderService implements OrderServiceInterface {
@@ -18,8 +21,8 @@ public class OrderService implements OrderServiceInterface {
     }
 
     @Override
-    public ArrayList<Order> getOrders() {
-        return new ArrayList<>(database.getDatabase());
+    public Collection<Order> getOrders(Sort s) {
+        return database.getDatabase(s);
     }
 
     @Override

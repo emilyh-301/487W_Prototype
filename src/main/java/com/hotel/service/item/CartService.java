@@ -1,12 +1,15 @@
 package com.hotel.service.item;
 
 import com.hotel.model.item.Cart;
+import com.hotel.model.item.CartItem;
 import com.hotel.model.repo.item.CartDatabase;
 import com.hotel.service.item.intf.CartServiceInterface;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Set;
 
 @Service
@@ -19,8 +22,8 @@ public class CartService implements CartServiceInterface {
     }
 
     @Override
-    public ArrayList<Cart> getCarts() {
-        return new ArrayList<>(database.getDatabase());
+    public Collection<Cart> getCarts(Sort s) {
+        return database.getDatabase(s);
     }
 
     @Override

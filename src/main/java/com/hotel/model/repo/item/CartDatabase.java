@@ -5,9 +5,11 @@ import com.hotel.jpa.JpaCartRepository;
 import com.hotel.model.item.Cart;
 import com.hotel.model.item.CartItem;
 import com.hotel.model.repo.item.intf.CartDatabaseInterface;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import javax.validation.constraints.NotNull;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -25,8 +27,8 @@ public class CartDatabase implements CartDatabaseInterface {
     }
 
     @Override
-    public Set<Cart> getDatabase() {
-        return (Set<Cart>) repo.findAll();
+    public Collection<Cart> getDatabase(Sort sort) {
+        return repo.getAll(sort);
     }
 
     @Override

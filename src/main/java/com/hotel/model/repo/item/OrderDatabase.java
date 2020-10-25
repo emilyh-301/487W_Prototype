@@ -6,9 +6,11 @@ import com.hotel.model.item.Cart;
 import com.hotel.model.item.Order;
 import com.hotel.model.repo.item.intf.OrderDatabaseInterface;
 import com.hotel.model.request.AbstractRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
 import javax.validation.constraints.NotNull;
+import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
 
@@ -25,8 +27,8 @@ public class OrderDatabase implements OrderDatabaseInterface {
     }
 
     @Override
-    public Set<Order> getDatabase() {
-        return (Set<Order>) repo.findAll();
+    public Collection<Order> getDatabase(Sort s) {
+        return repo.getAll(s);
     }
 
     @Override
@@ -36,7 +38,7 @@ public class OrderDatabase implements OrderDatabaseInterface {
 
     @Override
     public void edit(@NotNull int id, int new_cart_id, String new_status, long new_time) throws Exception {
-
+        
         Order order = find(id);
 
         if(order == null) return;

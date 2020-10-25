@@ -1,14 +1,16 @@
 package com.hotel.model.repo.item.intf;
 
 import com.hotel.model.item.MenuItem;
+import org.springframework.data.domain.Sort;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Set;
 
 public interface MenuItemDatabaseInterface {
 
-    ArrayList<MenuItem> getDatabase();
+    Collection<MenuItem> getDatabase(Sort s);
 
     void add(MenuItem item);
 
