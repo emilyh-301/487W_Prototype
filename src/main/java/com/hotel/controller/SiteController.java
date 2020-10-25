@@ -28,8 +28,8 @@ public class SiteController {
         /*
          * Add the members from the db to the model so we can pass it along to the view.
          */
-        ArrayList<GroupMember> members = service.getMembers();
-        model.addAttribute("members", members);
+//        ArrayList<GroupMember> members = service.getMembers();
+//        model.addAttribute("members", members);
         return "home";
     }
 }

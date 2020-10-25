@@ -12,66 +12,48 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/styles.css"/>
+    <link rel="stylesheet" href="css/font-awesome/all.css"/>
 
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <a class="navbar-brand" href="/">
+        <img src="/images/logo.svg"/>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-<section id="content">
-
-    <table th:unless="${members.size() eq 0}" class="table table-hover table-borderless table-striped">
-        <thead class="thead-dark">
-        <tr>
-            <th scope="col">Email</th>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Favorite Programming Language</th>
-            <th scope="col">Avatar</th>
-            <th scope="col">&nbsp;</th>
-            <th scope="col">&nbsp;</th>
-        </tr>
-        </thead>
-        <tbody>
-
-        <tr th:each="member : ${members}">
-
-            <th scope="row" th:text="${member.email}"></th>
-            <td th:text="${member.firstName}"></td>
-            <td th:text="${member.lastName}"></td>
-            <td th:text="${member.language}"></td>
-
-            <!-- Convert the url for the member's avatar to an image, of max height 150px -->
-            <td>
-                <img th:src = "${member.avatar}" th:alt = "${member.avatar}" height = 150px/>
-            </td>
-
-            <!-- A button to edit the entry in this row -->
-            <td>
-                <a th:href="@{'/database/edit/' + ${member.email}}" class="btn btn-info btn-warning">
-                    Edit Member
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Room Service Menu<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Request Assistance</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#" aria-disabled="true">
+                    Staff
                 </a>
-            </td>
-
-            <!-- A button to remove the entry in this row -->
-            <td>
-                <a th:href="@{'/database/remove/' + ${member.email}}" class="btn btn-info btn-danger">
-                    Remove Member
+            </li>
+        </ul>
+        <ul class=" navbar-nav">
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-shopping-cart"></i>
                 </a>
-            </td>
-        </tr>
-
-        <!-- A button to add a new entry to the table -->
-        <tr>
-            <th scope="row">
-                <a th:href="@{'/database/add'}" class="btn btn-info btn-block">
-                    Add Member
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-user"></i>
                 </a>
-            </th>
-        </tr>
-        </tbody>
-    </table>
-
-
-</section>
+            </li>
+        </ul>
+    </div>
+</nav>
 
 </body>
 </html>
