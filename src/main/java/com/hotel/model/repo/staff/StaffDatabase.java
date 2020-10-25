@@ -1,7 +1,7 @@
 package com.hotel.model.repo.staff;
 
 import com.hotel.jpa.JpaStaffRepository;
-import com.hotel.model.Staff;
+import com.hotel.model.staff.Staff;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;

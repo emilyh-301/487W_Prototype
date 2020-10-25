@@ -3,6 +3,7 @@ package com.hotel.model.repo.item;
 import com.hotel.jpa.JpaMenuItemRepository;
 import com.hotel.model.item.Allergen;
 import com.hotel.model.item.MenuItem;
+import com.hotel.model.repo.item.intf.MenuItemDatabaseInterface;
 import org.springframework.stereotype.Repository;
 
 import javax.validation.constraints.NotNull;

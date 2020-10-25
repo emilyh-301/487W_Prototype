@@ -1,6 +1,6 @@
 package com.hotel.model.repo.staff;
 
-import com.hotel.model.Staff;
+import com.hotel.model.staff.Staff;
 
 public interface StaffDatabaseInterface {
 

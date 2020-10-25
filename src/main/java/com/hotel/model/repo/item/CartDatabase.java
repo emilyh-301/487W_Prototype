@@ -1,0 +1,79 @@
+package com.hotel.model.repo.item;
+
+import com.hotel.jpa.JpaCartItemRepository;
+import com.hotel.jpa.JpaCartRepository;
+import com.hotel.model.item.Cart;
+import com.hotel.model.item.CartItem;
+import com.hotel.model.repo.item.intf.CartDatabaseInterface;
+import org.springframework.stereotype.Repository;
+
+import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
+
+@Repository
+public class CartDatabase implements CartDatabaseInterface {
+
+    private final JpaCartRepository repo;
+
+    private final JpaCartItemRepository cart_item_repo;
+
+    public CartDatabase(JpaCartRepository repo, JpaCartItemRepository cart_item_repo) {
+        this.repo = repo;
+        this.cart_item_repo = cart_item_repo;
+    }
+
+    @Override
+    public Set<Cart> getDatabase() {
+        return (Set<Cart>) repo.findAll();
+    }
+
+    @Override
+    public void add(Cart cart) {
+        if(cart != null && !contains(cart.getId())) repo.save(cart);
+    }
+
+    @Override
+    public void edit(@NotNull int id, boolean new_completed, int new_room, Set<Integer> new_item_ids) {
+
+        Cart cart = find(id);
+
+        if(cart == null) return;
+
+        cart.setCompleted(new_completed);
+
+        cart.setRoom(new_room);
+
+        cart.setItems(new HashSet<>());
+
+        for(Integer i : new_item_ids) {
+            Optional<CartItem> cartItem = cart_item_repo.findById(i);
+            if(cartItem.isPresent()) cart.getItems().add(cartItem.get());
+        }
+
+        repo.save(cart);
+    }
+
+    @Override
+    public void remove(Cart cart) {
+        repo.delete(cart);
+    }
+
+    @Override
+    public void remove(int id) {
+        repo.deleteById(id);
+    }
+
+    @Override
+    public Cart find(int id) {
+        Optional<Cart> a = repo.findById(id);
+
+        return a.isPresent()? a.get() : null;
+    }
+
+    @Override
+    public boolean contains(int id) {
+        return repo.existsById(id);
+    }
+}

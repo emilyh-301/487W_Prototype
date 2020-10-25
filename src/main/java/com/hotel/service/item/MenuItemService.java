@@ -2,6 +2,7 @@ package com.hotel.service.item;
 
 import com.hotel.model.item.MenuItem;
 import com.hotel.model.repo.item.MenuItemDatabase;
+import com.hotel.service.item.intf.MenuItemServiceInterface;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotNull;

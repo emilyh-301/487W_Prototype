@@ -2,6 +2,7 @@ package com.hotel.model.repo.item;
 
 import com.hotel.jpa.JpaAllergenRepository;
 import com.hotel.model.item.Allergen;
+import com.hotel.model.repo.item.intf.AllergenDatabaseInterface;
 
 import java.util.Optional;
 import java.util.Set;

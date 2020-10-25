@@ -33,7 +33,8 @@ create table menuItems (
 );
 
 create table cartItems (
-    item_id int primary key,
+    id int primary key,
+    item_id int,
     foreign key (item_id) references menuItems,
     quantity int DEFAULT 1,
     notes varchar(100),
