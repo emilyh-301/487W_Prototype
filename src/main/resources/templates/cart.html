@@ -30,11 +30,11 @@
 
     <tr th:each="cart : ${Cart}">
 
-        <th scope="row" th:text="${cart.name}"></th>
-        <td th:text="${cart.quantity}"></td>
-        <td th:text="${cart.price}"></td>
-        <td th:text="${cart.notes}"></td>
-        <td th:text="${cart.description}"></td>
+        <th scope="row" th:text="${cart.getItem().getName()}"></th>
+        <td th:text="${cart.getQuantity()}"></td>
+        <td th:text="${cart.getItem().getPrice()}"></td>
+        <td th:text="${cart.getNotes()}"></td>
+        <td th:text="${cart.getItem().getDescription()}"></td>
 
         <!-- A button to remove this item -->
         <td>
