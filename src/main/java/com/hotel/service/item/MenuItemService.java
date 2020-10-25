@@ -1,11 +1,14 @@
 package com.hotel.service.item;
 
-import com.hotel.model.MenuItem;
-import com.hotel.model.repo.item.MenuItemDatabase;
+import com.hotel.model.item.MenuItem;
+import com.hotel.database.item.MenuItemDatabase;
+import com.hotel.service.item.intf.MenuItemServiceInterface;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Set;
 
 @Service
@@ -18,8 +21,8 @@ public class MenuItemService implements MenuItemServiceInterface {
     }
 
     @Override
-    public ArrayList<MenuItem> getItems() {
-        return database.getDatabase();
+    public Collection<MenuItem> getItems(Sort s) {
+        return database.getDatabase(s);
     }
 
     @Override

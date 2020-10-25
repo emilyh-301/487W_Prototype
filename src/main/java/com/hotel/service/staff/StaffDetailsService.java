@@ -1,6 +1,6 @@
 package com.hotel.service.staff;
 
-import com.hotel.model.Staff;
+import com.hotel.model.staff.Staff;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

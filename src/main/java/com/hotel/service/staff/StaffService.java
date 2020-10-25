@@ -1,7 +1,7 @@
 package com.hotel.service.staff;
 
-import com.hotel.model.Staff;
-import com.hotel.model.repo.staff.StaffDatabase;
+import com.hotel.model.staff.Staff;
+import com.hotel.database.staff.StaffDatabase;
 import org.springframework.stereotype.Service;
 
 @Service
