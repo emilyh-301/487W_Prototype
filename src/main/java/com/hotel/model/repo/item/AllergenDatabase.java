@@ -1,7 +1,7 @@
 package com.hotel.model.repo.item;
 
 import com.hotel.jpa.JpaAllergenRepository;
-import com.hotel.model.Allergen;
+import com.hotel.model.item.Allergen;
 
 import java.util.Optional;
 import java.util.Set;

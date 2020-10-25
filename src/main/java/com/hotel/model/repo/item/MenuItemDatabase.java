@@ -1,8 +1,8 @@
 package com.hotel.model.repo.item;
 
 import com.hotel.jpa.JpaMenuItemRepository;
-import com.hotel.model.Allergen;
-import com.hotel.model.MenuItem;
+import com.hotel.model.item.Allergen;
+import com.hotel.model.item.MenuItem;
 import org.springframework.stereotype.Repository;
 
 import javax.validation.constraints.NotNull;

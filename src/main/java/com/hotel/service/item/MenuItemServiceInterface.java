@@ -1,6 +1,6 @@
 package com.hotel.service.item;
 
-import com.hotel.model.MenuItem;
+import com.hotel.model.item.MenuItem;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;

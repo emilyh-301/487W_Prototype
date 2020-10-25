@@ -1,9 +1,7 @@
 package com.hotel.model.repo.item;
 
-import com.hotel.model.Allergen;
-import com.hotel.model.MenuItem;
+import com.hotel.model.item.Allergen;
 
-import java.util.ArrayList;
 import java.util.Set;
 
 public interface AllergenDatabaseInterface {

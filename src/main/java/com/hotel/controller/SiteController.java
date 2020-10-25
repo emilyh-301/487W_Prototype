@@ -32,4 +32,6 @@ public class SiteController {
         model.addAttribute("members", members);
         return "home";
     }
+
+
 }

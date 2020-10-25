@@ -1,6 +1,6 @@
 package com.hotel.service.item;
 
-import com.hotel.model.MenuItem;
+import com.hotel.model.item.MenuItem;
 import com.hotel.model.repo.item.MenuItemDatabase;
 import org.springframework.stereotype.Service;
 

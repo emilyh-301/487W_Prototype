@@ -1,6 +1,6 @@
 package com.hotel.jpa;
 
-import com.hotel.model.MenuItem;
+import com.hotel.model.item.MenuItem;
 import org.springframework.data.repository.CrudRepository;
 
 /**
