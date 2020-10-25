@@ -1,10 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <!-- copied from home.html -->
+    <!-- Bootstrap stuff -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
 </head>
 <body>
+
+<table th:unless="${Cart.size() eq 0}" class="table table-hover table-borderless table-striped">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">name</th>
+        <th scope="col">quantity</th>
+        <th scope="col">price</th>
+        <th scope="col">notes</th>
+        <th scope="col">description</th>
+        <th scope="col">&nbsp;</th>
+        <th scope="col">&nbsp;</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <tr th:each="cart : ${Cart}">
+
+        <th scope="row" th:text="${cart.name}"></th>
+        <td th:text="${cart.quantity}"></td>
+        <td th:text="${cart.price}"></td>
+        <td th:text="${cart.notes}"></td>
+        <td th:text="${cart.description}"></td>
+
+        <!-- A button to remove this item -->
+        <td>
+            <a th:href="@{'/database/edit/' + ${Cart}}" class="btn btn-info btn-warning">
+                Remove Item
+            </a>
+        </td>
+
+    </tr>
+
+    </tbody>
+</table>
 
 </body>
 </html>
