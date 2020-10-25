@@ -1,7 +1,6 @@
 package com.hotel.service.request;
 
-import com.hotel.model.repo.request.GeneralRequestDatabase;
-import com.hotel.model.repo.request.RequestWithNotesDatabase;
+import com.hotel.database.request.GeneralRequestDatabase;
 import com.hotel.model.request.AbstractRequest;
 import com.hotel.model.request.RequestWithNotes;
 import com.hotel.service.request.intf.RequestWithNotesServiceInterface;

@@ -1,7 +1,7 @@
 package com.hotel.service;
 
 import com.hotel.model.GroupMember;
-import com.hotel.model.repo.MemberDatabase;
+import com.hotel.database.MemberDatabase;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotNull;

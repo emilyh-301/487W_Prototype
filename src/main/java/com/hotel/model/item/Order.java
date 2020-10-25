@@ -4,6 +4,7 @@ import org.hibernate.engine.internal.Cascade;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 
 @Entity
 @Table(name = "orders")
@@ -48,6 +49,19 @@ public class Order {
         this.cart = cart;
         this.status = status;
         this.time = new Date(time);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Order)) return false;
+        Order order = (Order) o;
+        return id == order.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     //<editor-fold desc="Getters and Setters">

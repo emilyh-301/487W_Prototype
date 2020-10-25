@@ -1,8 +1,7 @@
 package com.hotel.service.request;
 
-import com.hotel.model.repo.request.AbstractRequestDatabase;
-import com.hotel.model.repo.request.MaintenanceRequestDatabase;
-import com.hotel.model.repo.request.RequestWithNotesDatabase;
+import com.hotel.database.request.MaintenanceRequestDatabase;
+import com.hotel.database.request.RequestWithNotesDatabase;
 import com.hotel.model.request.AbstractRequest;
 import com.hotel.model.request.RequestWithNotes;
 import com.hotel.service.request.intf.RequestWithNotesServiceInterface;

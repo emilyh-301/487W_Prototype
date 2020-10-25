@@ -1,7 +1,6 @@
 package com.hotel.service.request;
 
-import com.hotel.model.repo.request.AbstractRequestDatabase;
-import com.hotel.model.repo.request.WakeUpRequestDatabase;
+import com.hotel.database.request.WakeUpRequestDatabase;
 import com.hotel.model.request.AbstractRequest;
 import com.hotel.model.request.WakeUpRequest;
 import com.hotel.service.request.intf.WakeUpRequestServiceInterface;

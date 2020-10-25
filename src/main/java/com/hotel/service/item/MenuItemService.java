@@ -1,8 +1,7 @@
 package com.hotel.service.item;
 
-import com.hotel.model.item.CartItem;
 import com.hotel.model.item.MenuItem;
-import com.hotel.model.repo.item.MenuItemDatabase;
+import com.hotel.database.item.MenuItemDatabase;
 import com.hotel.service.item.intf.MenuItemServiceInterface;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;

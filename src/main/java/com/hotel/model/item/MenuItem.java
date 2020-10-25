@@ -3,6 +3,8 @@ package com.hotel.model.item;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -32,7 +34,7 @@ public class MenuItem {
     @JoinTable(name = "itemAllergens", joinColumns =
         @JoinColumn(name = "item_id", referencedColumnName = "item_id"), inverseJoinColumns =
         @JoinColumn(name = "allergen", referencedColumnName = "allergen"))
-    private Collection<Allergen> allergens;
+    private Set<Allergen> allergens;
 
     /**
      * The item's price
@@ -59,13 +61,47 @@ public class MenuItem {
     public MenuItem() {
     }
 
-    public MenuItem(int id, String name, Collection<Allergen> allergens, BigDecimal price, String description, String image) {
+    public MenuItem(int id, String name, Set<Allergen> allergens, BigDecimal price, String description, String image) {
         this.id = id;
         this.name = name;
         this.allergens = allergens;
         this.price = price;
         this.description = description;
         this.image = image;
+    }
+
+    public MenuItem(int id, String name, Set<Allergen> allergens, double price, String description, String image) {
+        this.id = id;
+        this.name = name;
+        this.allergens = allergens;
+        this.price = new BigDecimal(price);
+        this.description = description;
+        this.image = image;
+    }
+
+    public void addAllergen(Allergen a) {
+        allergens.add(a);
+    }
+
+    public void removeAllergen(Allergen a) {
+        allergens.remove(a);
+    }
+
+    public void clearAllergens() {
+        allergens.clear();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof MenuItem)) return false;
+        MenuItem menuItem = (MenuItem) o;
+        return id == menuItem.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     //<editor-fold desc="Getters and Setters">
@@ -85,12 +121,16 @@ public class MenuItem {
         this.name = name;
     }
 
-    public Collection<Allergen> getAllergens() {
+    public Set<Allergen> getAllergens() {
         return allergens;
     }
 
-    public void setAllergens(Collection<Allergen> allergens) {
+    public void setAllergens(Set<Allergen> allergens) {
         this.allergens = allergens;
+    }
+
+    public void setAllergens(Collection<Allergen> allergens) {
+        this.allergens = new HashSet<>(allergens);
     }
 
     public BigDecimal getPrice() {
@@ -99,6 +139,10 @@ public class MenuItem {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public void setPrice(double price) {
+        this.price = new BigDecimal(price);
     }
 
     public String getDescription() {

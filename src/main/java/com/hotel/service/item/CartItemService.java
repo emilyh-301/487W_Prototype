@@ -1,14 +1,12 @@
 package com.hotel.service.item;
 
 import com.hotel.model.item.CartItem;
-import com.hotel.model.item.MenuItem;
-import com.hotel.model.repo.item.CartItemDatabase;
+import com.hotel.database.item.CartItemDatabase;
 import com.hotel.service.item.intf.CartItemServiceInterface;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
 import java.util.Collection;
 
 @Service

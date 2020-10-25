@@ -1,6 +1,7 @@
 package com.hotel.model.item;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table(name = "cartItems")
@@ -36,6 +37,35 @@ public class CartItem {
         this.quantity = quantity;
         this.notes = notes;
         this.cart = cart;
+    }
+
+    public void incrementQuantityBy(int i) {
+        quantity += i;
+    }
+
+    public void incrementQuantity() {
+        quantity++;
+    }
+
+    public void decrementQuantityBy(int i) {
+        quantity -= i;
+    }
+
+    public void decrementQuantity() {
+        quantity--;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof CartItem)) return false;
+        CartItem cartItem = (CartItem) o;
+        return id == cartItem.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 
     //<editor-fold desc="Getters and Setters">
