@@ -12,66 +12,17 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/styles.css"/>
+    <link rel="stylesheet" href="css/font-awesome/all.css"/>
+    <script rel="script" src="/js/bootstrap.bundle.js"></script>
+
 
 </head>
 <body>
 
-<section id="content">
+<header th:insert="navbar::header"></header>
 
-    <table th:unless="${members.size() eq 0}" class="table table-hover table-borderless table-striped">
-        <thead class="thead-dark">
-        <tr>
-            <th scope="col">Email</th>
-            <th scope="col">First Name</th>
-            <th scope="col">Last Name</th>
-            <th scope="col">Favorite Programming Language</th>
-            <th scope="col">Avatar</th>
-            <th scope="col">&nbsp;</th>
-            <th scope="col">&nbsp;</th>
-        </tr>
-        </thead>
-        <tbody>
-
-        <tr th:each="member : ${members}">
-
-            <th scope="row" th:text="${member.email}"></th>
-            <td th:text="${member.firstName}"></td>
-            <td th:text="${member.lastName}"></td>
-            <td th:text="${member.language}"></td>
-
-            <!-- Convert the url for the member's avatar to an image, of max height 150px -->
-            <td>
-                <img th:src = "${member.avatar}" th:alt = "${member.avatar}" height = 150px/>
-            </td>
-
-            <!-- A button to edit the entry in this row -->
-            <td>
-                <a th:href="@{'/database/edit/' + ${member.email}}" class="btn btn-info btn-warning">
-                    Edit Member
-                </a>
-            </td>
-
-            <!-- A button to remove the entry in this row -->
-            <td>
-                <a th:href="@{'/url'}" class="btn btn-info btn-danger">
-                    Submit Cart
-                </a>
-            </td>
-        </tr>
-
-        <!-- A button to add a new entry to the table -->
-        <tr>
-            <th scope="row">
-                <a th:href="@{'/database/add'}" class="btn btn-info btn-block">
-                    Add Member
-                </a>
-            </th>
-        </tr>
-        </tbody>
-    </table>
-
-
-</section>
 
 </body>
 </html>
