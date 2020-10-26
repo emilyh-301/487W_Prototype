@@ -1,0 +1,1 @@
+insert into MENUITEMS values (0, 'test', 12.50, 'test', 'test')

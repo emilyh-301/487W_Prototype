@@ -32,6 +32,10 @@ public class MenuItemDatabase implements MenuItemDatabaseInterface {
         return repo.getAll(s);
     }
 
+    public ArrayList<MenuItem> getAll() {
+        return (ArrayList<MenuItem>) repo.findAll();
+    }
+
     /**
      * Add the given item to the database, if it isn't already present
      * @param item The item to add to the database
