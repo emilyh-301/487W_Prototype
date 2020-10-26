@@ -14,7 +14,7 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ORDER_ID_SEQ")
     @SequenceGenerator(name = "ORDER_ID_SEQ", sequenceName = "ORDER_ID_SEQ", allocationSize = 250)
     @Column(name = "order_id")
-    private int id;
+    private Long id;
 
     /*
     @Column(name = "cart_id")
@@ -37,14 +37,14 @@ public class Order {
 
     }
 
-    public Order(int id, Cart cart, Status status, Date time) {
+    public Order(long id, Cart cart, Status status, Date time) {
         this.id = id;
         this.cart = cart;
         this.status = status;
         this.time = time;
     }
 
-    public Order(int id, Cart cart, Status status, long time) {
+    public Order(long id, Cart cart, Status status, long time) {
         this.id = id;
         this.cart = cart;
         this.status = status;
@@ -68,7 +68,7 @@ public class Order {
         if (this == o) return true;
         if (!(o instanceof Order)) return false;
         Order order = (Order) o;
-        return id == order.id;
+        return id.equals(order.id);
     }
 
     @Override
@@ -77,11 +77,11 @@ public class Order {
     }
 
     //<editor-fold desc="Getters and Setters">
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

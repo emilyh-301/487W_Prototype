@@ -17,7 +17,7 @@ public class WakeUpRequestDatabase extends AbstractRequestDatabase implements Wa
     }
 
     @Override
-    public void edit(int ID, int new_room, long new_time, long new_wakeup_time) {
+    public void edit(long ID, int new_room, long new_time, long new_wakeup_time) {
 
         WakeUpRequest request = (WakeUpRequest) find(ID);
 

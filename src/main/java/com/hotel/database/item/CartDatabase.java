@@ -37,7 +37,7 @@ public class CartDatabase implements CartDatabaseInterface {
     }
 
     @Override
-    public void edit(@NotNull int id, boolean new_completed, int new_room, Set<Integer> new_item_ids) {
+    public void edit(@NotNull long id, boolean new_completed, int new_room, Set<Long> new_item_ids) {
 
         Cart cart = find(id);
 
@@ -49,7 +49,7 @@ public class CartDatabase implements CartDatabaseInterface {
 
         cart.setItems(new HashSet<>());
 
-        for(Integer i : new_item_ids) {
+        for(Long i : new_item_ids) {
             Optional<CartItem> cartItem = cart_item_repo.findById(i);
             if(cartItem.isPresent()) cart.getItems().add(cartItem.get());
         }
@@ -63,19 +63,19 @@ public class CartDatabase implements CartDatabaseInterface {
     }
 
     @Override
-    public void remove(int id) {
+    public void remove(long id) {
         repo.deleteById(id);
     }
 
     @Override
-    public Cart find(int id) {
+    public Cart find(long id) {
         Optional<Cart> a = repo.findById(id);
 
         return a.isPresent()? a.get() : null;
     }
 
     @Override
-    public boolean contains(int id) {
+    public boolean contains(long id) {
         return repo.existsById(id);
     }
 }

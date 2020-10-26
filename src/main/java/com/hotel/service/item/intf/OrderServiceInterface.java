@@ -13,14 +13,14 @@ public interface OrderServiceInterface {
 
     void add(Order order);
 
-    Order find(int id);
+    Order find(long id);
 
-    void edit(@NotNull int id, int new_cart_id, String new_status, long new_time) throws Exception;
+    void edit(@NotNull long id, long new_cart_id, String new_status, long new_time) throws Exception;
 
     void remove(Order order);
 
-    void remove(int id);
+    void remove(long id);
 
-    boolean exists(int id);
+    boolean exists(long id);
 
 }

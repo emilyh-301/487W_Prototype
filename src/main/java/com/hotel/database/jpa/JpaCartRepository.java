@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.Collection;
 
-public interface JpaCartRepository extends CrudRepository<Cart, Integer> {
+public interface JpaCartRepository extends CrudRepository<Cart, Long> {
 
     @Query(value = "select c from Cart c")
     Collection<Cart> getAll(Sort s);
@@ -16,7 +16,7 @@ public interface JpaCartRepository extends CrudRepository<Cart, Integer> {
     @Query(value = "select c from Cart c where " +
             "(:room is null or c.room = :room) and " +
             "(:completed is null or c.completed = :completed)")
-    Collection<Cart> getAll(@Param("room") Integer room,
+    Collection<Cart> getAll(@Param("room") Long room,
                             @Param("completed") Boolean completed,
                             Sort s);
 

@@ -4,20 +4,18 @@ import com.hotel.database.MemberDatabase;
 import com.hotel.database.item.MenuItemDatabase;
 import com.hotel.database.request.*;
 import com.hotel.database.room.RoomDatabase;
+import com.hotel.database.user.PermissionsDatabase;
+import com.hotel.database.user.RolesDatabase;
 import com.hotel.database.user.staff.UserDatabase;
 import com.hotel.model.item.MenuItem;
-import com.hotel.model.user.ApplicationUser;
+import com.hotel.model.user.Permissions;
+import com.hotel.model.user.Roles;
 import com.hotel.model.user.staff.Staff;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 
 /**
  * Called when the application is initialized or refreshed.
@@ -47,10 +45,14 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
 
     private final RoomDatabase roomRepo;
 
+    private final PermissionsDatabase permRepo;
+
+    private final RolesDatabase rolesRepo;
+
 
     public DatabaseLoader(MemberDatabase database, UserDatabase userRepo, RequestDatabase requestRepo,
                           MaintenanceRequestDatabase maintenanceRepo, GeneralRequestDatabase generalRepo,
-                          WakeUpRequestDatabase wakeupRepo, MenuItemDatabase itemRepo, RoomDatabase roomRepo) {
+                          WakeUpRequestDatabase wakeupRepo, MenuItemDatabase itemRepo, RoomDatabase roomRepo, PermissionsDatabase permRepo, RolesDatabase rolesRepo) {
         this.database = database;
         this.userRepo = userRepo;
         this.requestRepo = requestRepo;
@@ -60,13 +62,30 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
         this.itemRepo = itemRepo;
         this.roomRepo = roomRepo;
 
+        this.permRepo = permRepo;
+        this.rolesRepo = rolesRepo;
     }
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
 
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        Staff staff = new Staff("test", encoder.encode("test"));
+        if(!privileges_already_setup) {
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+
+            rolesRepo.add(new Roles("STAFF", new Permissions("STAFF_PERMISSION")));
+
+            Roles staff = rolesRepo.find("STAFF");
+
+            Staff s = new Staff();
+            s.setUsername("staff");
+            s.setPassword(encoder.encode("password"));
+            s.setUser_roles(staff);
+            userRepo.addUser(s);
+            privileges_already_setup = true;
+
+        }
+
 
         MenuItem n = new MenuItem();
         n.setId(1);

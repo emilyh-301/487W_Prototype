@@ -35,7 +35,7 @@ public class CartItemDatabase implements CartItemDatabaseInterface {
     }
 
     @Override
-    public void edit(@NotNull int id, int new_item_id, int new_quantity, String new_notes) throws Exception {
+    public void edit(@NotNull long id, long new_item_id, int new_quantity, String new_notes) throws Exception {
 
         CartItem item = find(id);
 
@@ -61,19 +61,19 @@ public class CartItemDatabase implements CartItemDatabaseInterface {
     }
 
     @Override
-    public void remove(int id) {
+    public void remove(long id) {
         repo.deleteById(id);
     }
 
     @Override
-    public CartItem find(int id) {
+    public CartItem find(long id) {
         Optional<CartItem> a = repo.findById(id);
 
         return a.isPresent()? a.get() : null;
     }
 
     @Override
-    public boolean contains(int id) {
+    public boolean contains(long id) {
         return repo.existsById(id);
     }
 }

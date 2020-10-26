@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.Collection;
 import java.util.Date;
 
-public interface JpaOrderRepository extends CrudRepository<Order, Integer> {
+public interface JpaOrderRepository extends CrudRepository<Order, Long> {
 
     @Query("select o from Order o")
     Collection<Order> getAll(Sort s);
@@ -18,7 +18,7 @@ public interface JpaOrderRepository extends CrudRepository<Order, Integer> {
             "(:cart_id is null or o.cart.id = :cart_id) and " +
             "(:status is null or o.status = :status) and " +
             "(:time is null or o.time = :time)")
-    Collection<Order> getAll(@Param("cart_id") Integer cart_id, @Param("status") Order.Status status, @Param("time") Date date, Sort s);
+    Collection<Order> getAll(@Param("cart_id") Long cart_id, @Param("status") Order.Status status, @Param("time") Date date, Sort s);
 
     @Query("select o from Order o where o.time < :time")
     Collection<Order> getAllBeforeTime(@Param("time") Date date, Sort s);

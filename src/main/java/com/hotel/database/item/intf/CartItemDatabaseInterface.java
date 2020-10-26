@@ -12,14 +12,14 @@ public interface CartItemDatabaseInterface {
 
     void add(CartItem item);
 
-    void edit(@NotNull int id, int new_item_id, int new_quantity, String new_notes) throws Exception;
+    void edit(@NotNull long id, long new_item_id, int new_quantity, String new_notes) throws Exception;
 
     void remove(CartItem item);
 
-    void remove(int id);
+    void remove(long id);
 
-    CartItem find(int id);
+    CartItem find(long id);
 
-    boolean contains(int id);
+    boolean contains(long id);
 
 }

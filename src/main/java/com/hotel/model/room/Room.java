@@ -10,7 +10,7 @@ public class Room {
 
     @Id
     @Column(name = "room")
-    private int room;
+    private Integer room;
 
     @OneToOne
     @JoinColumn(name = "user_id")

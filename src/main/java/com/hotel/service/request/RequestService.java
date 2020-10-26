@@ -35,12 +35,12 @@ public class RequestService extends AbstractRequestService implements RequestSer
     }
 
     @Override
-    public void remove(int ID) {
+    public void remove(long ID) {
         database.remove(ID);
     }
 
     @Override
-    public AbstractRequest find(int ID) {
+    public AbstractRequest find(long ID) {
         return database.find(ID);
     }
 
@@ -50,12 +50,12 @@ public class RequestService extends AbstractRequestService implements RequestSer
     }
 
     @Override
-    public boolean exists(int ID) {
+    public boolean exists(long ID) {
         return database.containsID(ID);
     }
 
     @Override
-    public void edit(int ID, int new_room, long new_time, Request.RequestType new_type) {
+    public void edit(long ID, int new_room, long new_time, Request.RequestType new_type) {
 
     }
 }

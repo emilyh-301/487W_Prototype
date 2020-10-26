@@ -5,9 +5,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
+import java.util.*;
 
 @Entity
 @Table(name = "application_user")
@@ -24,19 +22,40 @@ public class ApplicationUser implements UserDetails {
     @Column(name = "password")
     protected String password;
 
-    public ApplicationUser() {
+    @ManyToMany
+    @JoinTable(name = "user_roles", joinColumns =
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id"), inverseJoinColumns =
+    @JoinColumn(name = "role_id", referencedColumnName = "role_id"))
+    protected Set<Roles> user_roles;
 
+    public ApplicationUser() {
+        this.user_roles = new HashSet<>();
     }
 
     public ApplicationUser(Long user_id, String username, String password) {
         this.user_id = user_id;
         this.username = username;
         this.password = password;
+        this.user_roles = new HashSet<>();
+    }
+
+    public ApplicationUser(Long user_id, String username, String password, Set<Roles> user_roles) {
+        this.user_id = user_id;
+        this.username = username;
+        this.password = password;
+        this.user_roles = user_roles;
     }
 
     public ApplicationUser(String username, String password) {
         this.username = username;
         this.password = password;
+        this.user_roles = new HashSet<>();
+    }
+
+    public ApplicationUser(String username, String password, Set<Roles> user_roles) {
+        this.username = username;
+        this.password = password;
+        this.user_roles = user_roles;
     }
 
     //<editor-fold desc="Getters and Setters">
@@ -46,6 +65,22 @@ public class ApplicationUser implements UserDetails {
 
     public void setUser_id(long userID) {
         this.user_id = userID;
+    }
+
+    public void setUser_id(Long user_id) {
+        this.user_id = user_id;
+    }
+
+    public Set<Roles> getUser_roles() {
+        return user_roles;
+    }
+
+    public void setUser_roles(Set<Roles> user_roles) {
+        this.user_roles = user_roles;
+    }
+
+    public void setUser_roles(Roles ... user_roles) {
+        this.user_roles.addAll(Arrays.asList(user_roles));
     }
 
     public String getUsername() {

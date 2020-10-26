@@ -13,14 +13,14 @@ public interface CartDatabaseInterface {
 
     void add(Cart cart);
 
-    void edit(@NotNull int id, boolean new_completed, int new_room, Set<Integer> new_item_ids);
+    void edit(@NotNull long id, boolean new_completed, int new_room, Set<Long> new_item_ids);
 
     void remove(Cart cart);
 
-    void remove(int id);
+    void remove(long id);
 
-    Cart find(int id);
+    Cart find(long id);
 
-    boolean contains(int id);
+    boolean contains(long id);
 
 }

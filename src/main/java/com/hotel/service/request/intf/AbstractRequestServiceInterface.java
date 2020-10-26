@@ -12,12 +12,12 @@ public interface AbstractRequestServiceInterface {
 
     void remove(AbstractRequest request);
 
-    void remove(int ID);
+    void remove(long ID);
 
-    AbstractRequest find(int ID);
+    AbstractRequest find(long ID);
 
     ArrayList<AbstractRequest> findRoom(int room);
 
-    boolean exists(int ID);
+    boolean exists(long ID);
 
 }

@@ -18,7 +18,7 @@ public class MenuItem {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ITEM_ID_SEQ")
     @SequenceGenerator(name = "ITEM_ID_SEQ", sequenceName = "ITEM_ID_SEQ", allocationSize = 250)
     @Column(name = "item_id")
-    private int id;
+    private Long id;
 
     /**
      * The item's name
@@ -61,7 +61,7 @@ public class MenuItem {
     public MenuItem() {
     }
 
-    public MenuItem(int id, String name, Set<Allergen> allergens, BigDecimal price, String description, String image) {
+    public MenuItem(long id, String name, Set<Allergen> allergens, BigDecimal price, String description, String image) {
         this.id = id;
         this.name = name;
         this.allergens = allergens;
@@ -70,7 +70,7 @@ public class MenuItem {
         this.image = image;
     }
 
-    public MenuItem(int id, String name, Set<Allergen> allergens, double price, String description, String image) {
+    public MenuItem(long id, String name, Set<Allergen> allergens, double price, String description, String image) {
         this.id = id;
         this.name = name;
         this.allergens = allergens;
@@ -112,7 +112,7 @@ public class MenuItem {
         if (this == o) return true;
         if (!(o instanceof MenuItem)) return false;
         MenuItem menuItem = (MenuItem) o;
-        return id == menuItem.id;
+        return id.equals(menuItem.id);
     }
 
     @Override
@@ -121,11 +121,11 @@ public class MenuItem {
     }
 
     //<editor-fold desc="Getters and Setters">
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
