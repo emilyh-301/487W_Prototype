@@ -101,9 +101,6 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
 
          */
 
-
-
-
         MenuItem n = new MenuItem();
         n.setId(1);
         n.setName("Good Food");
