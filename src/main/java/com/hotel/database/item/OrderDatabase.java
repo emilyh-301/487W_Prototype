@@ -32,7 +32,7 @@ public class OrderDatabase implements OrderDatabaseInterface {
 
     @Override
     public void add(Order order) {
-        if(order != null && !contains(order.getId())) repo.save(order);
+        if(order != null) repo.save(order);
     }
 
     @Override

@@ -7,8 +7,9 @@ import java.util.Collection;
 public class Role {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ROLE_ID_SEQ")
+    @SequenceGenerator(name = "ROLE_ID_SEQ", sequenceName = "ROLE_ID_SEQ", allocationSize = 250)
+    private Long role_id;
 
     private String name;
     @ManyToMany(mappedBy = "roles")
@@ -18,17 +19,17 @@ public class Role {
     @JoinTable(
             name = "roles_privileges",
             joinColumns = @JoinColumn(
-                    name = "role_id", referencedColumnName = "id"),
+                    name = "role_id", referencedColumnName = "role_id"),
             inverseJoinColumns = @JoinColumn(
-                    name = "privilege_id", referencedColumnName = "id"))
+                    name = "privilege_id", referencedColumnName = "privilege_id"))
     private Collection<Privilege> privileges;
 
     public Role() {
 
     }
 
-    public Role(Long id, String name, Collection<ApplicationUser> users, Collection<Privilege> privileges) {
-        this.id = id;
+    public Role(Long role_id, String name, Collection<ApplicationUser> users, Collection<Privilege> privileges) {
+        this.role_id = role_id;
         this.name = name;
         this.users = users;
         this.privileges = privileges;
@@ -45,12 +46,12 @@ public class Role {
     }
 
     //<editor-fold desc="Getters and Setters">
-    public Long getId() {
-        return id;
+    public Long getRole_id() {
+        return role_id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setRole_id(Long id) {
+        this.role_id = id;
     }
 
     public String getName() {

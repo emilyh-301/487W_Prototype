@@ -31,7 +31,7 @@ public class CartItemDatabase implements CartItemDatabaseInterface {
 
     @Override
     public void add(CartItem cartItem) {
-        if(cartItem != null && !contains(cartItem.getId())) repo.save(cartItem);
+        if(cartItem != null) repo.save(cartItem);
     }
 
     @Override

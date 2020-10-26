@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Optional;
 
@@ -67,7 +66,7 @@ public class RoleRepository implements RoleRepositoryInterface {
         for(Privilege pr : p) {
             if(!r.getPrivileges().contains(pr)) r.getPrivileges().add(pr);
         }
-        if(exists(r.getId())) repo.save(r);
+        if(exists(r.getRole_id())) repo.save(r);
     }
 
     @Override
@@ -75,7 +74,7 @@ public class RoleRepository implements RoleRepositoryInterface {
         for(Privilege pr : p) {
             r.getPrivileges().remove(pr);
         }
-        if(exists(r.getId())) repo.save(r);
+        if(exists(r.getRole_id())) repo.save(r);
     }
 
     @Override

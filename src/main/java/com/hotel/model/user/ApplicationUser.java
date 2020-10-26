@@ -4,14 +4,16 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.Arrays;
 import java.util.Collection;
 
 @Entity
 public class ApplicationUser implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    protected long user_id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_ID_SEQ")
+    @SequenceGenerator(name = "USER_ID_SEQ", sequenceName = "USER_ID_SEQ", allocationSize = 250)
+    protected Long user_id;
 
     @Column(name = "username")
     protected String username;
@@ -25,7 +27,7 @@ public class ApplicationUser implements UserDetails {
             joinColumns = @JoinColumn(
                     name = "user_id", referencedColumnName = "user_id"),
             inverseJoinColumns = @JoinColumn(
-                    name = "role_id", referencedColumnName = "id"))
+                    name = "role_id", referencedColumnName = "role_id"))
     private Collection<Role> roles;
 
     public ApplicationUser() {
@@ -132,6 +134,10 @@ public class ApplicationUser implements UserDetails {
 
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
+    }
+
+    public void setRoles(Role ... roles) {
+        this.roles = Arrays.asList(roles);
     }
     //</editor-fold>
 }

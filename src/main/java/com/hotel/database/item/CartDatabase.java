@@ -33,7 +33,7 @@ public class CartDatabase implements CartDatabaseInterface {
 
     @Override
     public void add(Cart cart) {
-        if(cart != null && !contains(cart.getId())) repo.save(cart);
+        if(cart != null) repo.save(cart);
     }
 
     @Override
