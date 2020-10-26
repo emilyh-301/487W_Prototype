@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 @Repository
-public class MemberDatabase implements MemberDatabaseInterface {
+public class MemberDatabase {
 
     private final JpaGroupMemberRepository repo;
 
@@ -17,39 +17,32 @@ public class MemberDatabase implements MemberDatabaseInterface {
         this.repo = repo;
     }
 
-    @Override
     public ArrayList<GroupMember> getDatabase() {
         return (ArrayList<GroupMember>) repo.findAll();
     }
 
-    @Override
     public boolean containsKey(String key) {
         return repo.existsById(key);
     }
 
-    @Override
     public void add(GroupMember member) {
         if(!containsKey(member.getEmail())) repo.save(member);
     }
 
-    @Override
     public void remove(GroupMember member) {
         if(containsKey(member.getEmail())) repo.delete(member);
     }
 
-    @Override
     public void remove(String email) {
         if(containsKey(email))
             remove(repo.findById(email).get());
     }
 
-    @Override
     public GroupMember findByEmail(String email) {
         Optional<GroupMember> m = repo.findById(email);
         return m.orElse(null);
     }
 
-    @Override
     public void edit(@NotNull String email, String first, String last, String avatar_url, String language) {
         GroupMember toEdit = findByEmail(email);
         if(toEdit == null) return;

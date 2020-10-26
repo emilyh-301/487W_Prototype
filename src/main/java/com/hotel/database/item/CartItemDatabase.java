@@ -4,7 +4,6 @@ import com.hotel.database.jpa.JpaCartItemRepository;
 import com.hotel.database.jpa.JpaMenuItemRepository;
 import com.hotel.model.item.CartItem;
 import com.hotel.model.item.MenuItem;
-import com.hotel.database.item.intf.CartItemDatabaseInterface;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
@@ -13,7 +12,7 @@ import java.util.Collection;
 import java.util.Optional;
 
 @Repository
-public class CartItemDatabase implements CartItemDatabaseInterface {
+public class CartItemDatabase {
 
     private final JpaCartItemRepository repo;
 
@@ -24,17 +23,14 @@ public class CartItemDatabase implements CartItemDatabaseInterface {
         this.menu_repo = menu_repo;
     }
 
-    @Override
     public Collection<CartItem> getDatabase(Sort s) {
         return repo.getAll(s);
     }
 
-    @Override
     public void add(CartItem cartItem) {
         if(cartItem != null) repo.save(cartItem);
     }
 
-    @Override
     public void edit(@NotNull long id, long new_item_id, int new_quantity, String new_notes) throws Exception {
 
         CartItem item = find(id);
@@ -55,24 +51,20 @@ public class CartItemDatabase implements CartItemDatabaseInterface {
 
     }
 
-    @Override
     public void remove(CartItem cartItem) {
         repo.delete(cartItem);
     }
 
-    @Override
     public void remove(long id) {
         repo.deleteById(id);
     }
 
-    @Override
     public CartItem find(long id) {
         Optional<CartItem> a = repo.findById(id);
 
         return a.isPresent()? a.get() : null;
     }
 
-    @Override
     public boolean contains(long id) {
         return repo.existsById(id);
     }

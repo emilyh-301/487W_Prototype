@@ -2,9 +2,9 @@ package com.hotel.database.item;
 
 import com.hotel.database.jpa.JpaCartItemRepository;
 import com.hotel.database.jpa.JpaCartRepository;
+import com.hotel.database.room.RoomDatabase;
 import com.hotel.model.item.Cart;
 import com.hotel.model.item.CartItem;
-import com.hotel.database.item.intf.CartDatabaseInterface;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
@@ -15,7 +15,7 @@ import java.util.Optional;
 import java.util.Set;
 
 @Repository
-public class CartDatabase implements CartDatabaseInterface {
+public class CartDatabase {
 
     private final JpaCartRepository repo;
 
@@ -26,26 +26,21 @@ public class CartDatabase implements CartDatabaseInterface {
         this.cart_item_repo = cart_item_repo;
     }
 
-    @Override
     public Collection<Cart> getDatabase(Sort sort) {
         return repo.getAll(sort);
     }
 
-    @Override
     public void add(Cart cart) {
         if(cart != null) repo.save(cart);
     }
 
-    @Override
-    public void edit(@NotNull long id, boolean new_completed, int new_room, Set<Long> new_item_ids) {
+    public void edit(@NotNull long id, boolean new_completed, Set<Long> new_item_ids) {
 
         Cart cart = find(id);
 
         if(cart == null) return;
 
         cart.setCompleted(new_completed);
-
-        cart.setRoom(new_room);
 
         cart.setItems(new HashSet<>());
 
@@ -57,24 +52,20 @@ public class CartDatabase implements CartDatabaseInterface {
         repo.save(cart);
     }
 
-    @Override
     public void remove(Cart cart) {
         repo.delete(cart);
     }
 
-    @Override
     public void remove(long id) {
         repo.deleteById(id);
     }
 
-    @Override
     public Cart find(long id) {
         Optional<Cart> a = repo.findById(id);
 
         return a.isPresent()? a.get() : null;
     }
 
-    @Override
     public boolean contains(long id) {
         return repo.existsById(id);
     }

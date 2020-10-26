@@ -1,18 +1,16 @@
 package com.hotel.database.request;
 
 import com.hotel.database.jpa.JpaRequestRepository;
-import com.hotel.database.request.intf.RequestWithNotesDatabaseInterface;
 import com.hotel.model.request.RequestWithNotes;
 
 import java.util.ArrayList;
 
-public class RequestWithNotesDatabase extends AbstractRequestDatabase implements RequestWithNotesDatabaseInterface {
+public class RequestWithNotesDatabase extends AbstractRequestDatabase {
 
     public RequestWithNotesDatabase(JpaRequestRepository repo) {
         super(repo);
     }
 
-    @Override
     public void edit(long ID, int new_room, long new_time, String new_notes, String new_commonRequestType) {
 
         RequestWithNotes request = (RequestWithNotes) find(ID);
@@ -23,7 +21,6 @@ public class RequestWithNotesDatabase extends AbstractRequestDatabase implements
 
     }
 
-    @Override
     public ArrayList<RequestWithNotes> findByCommonRequestType(String commonRequestType) {
 
         ArrayList<RequestWithNotes> requests = new ArrayList<>();

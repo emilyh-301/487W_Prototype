@@ -3,7 +3,6 @@ package com.hotel.database.item;
 import com.hotel.database.jpa.JpaMenuItemRepository;
 import com.hotel.model.item.Allergen;
 import com.hotel.model.item.MenuItem;
-import com.hotel.database.item.intf.MenuItemDatabaseInterface;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
@@ -12,7 +11,7 @@ import java.math.BigDecimal;
 import java.util.*;
 
 @Repository
-public class MenuItemDatabase implements MenuItemDatabaseInterface {
+public class MenuItemDatabase {
 
     /**
      * CRUD repository for menu items
@@ -27,7 +26,6 @@ public class MenuItemDatabase implements MenuItemDatabaseInterface {
     /**
      * @return A list of all items in the database
      */
-    @Override
     public Collection<MenuItem> getDatabase(Sort s) {
         return repo.getAll(s);
     }
@@ -36,7 +34,6 @@ public class MenuItemDatabase implements MenuItemDatabaseInterface {
      * Add the given item to the database, if it isn't already present
      * @param item The item to add to the database
      */
-    @Override
     public void add(MenuItem item) {
         if(item != null) repo.save(item);
     }
@@ -45,7 +42,6 @@ public class MenuItemDatabase implements MenuItemDatabaseInterface {
      * Remove the given item from the database
      * @param item The item to remove from the database
      */
-    @Override
     public void remove(MenuItem item) {
         repo.delete(item);
     }
@@ -54,7 +50,6 @@ public class MenuItemDatabase implements MenuItemDatabaseInterface {
      * Remove the given item from the database
      * @param id The id of the item to remove from the database
      */
-    @Override
     public void remove(long id) {
         repo.deleteById(id);
     }
@@ -67,7 +62,6 @@ public class MenuItemDatabase implements MenuItemDatabaseInterface {
      * @param new_price The item's new price
      * @param new_description The item's new description
      */
-    @Override
     public void edit(@NotNull long id, String new_name, Set<String> new_allergens, double new_price, String new_description) {
 
         MenuItem item = find(id);
@@ -90,7 +84,6 @@ public class MenuItemDatabase implements MenuItemDatabaseInterface {
      * @param id The id of the item to retrieve
      * @return the item with the given id, or null if no such item exists
      */
-    @Override
     public MenuItem find(long id) {
 
         Optional<MenuItem> item = repo.findById(id);
@@ -103,7 +96,6 @@ public class MenuItemDatabase implements MenuItemDatabaseInterface {
      * @param name The name of the item(s) to retrieve
      * @return a list of items with the given name
      */
-    @Override
     public ArrayList<MenuItem> findName(String name) {
 
         ArrayList<MenuItem> items = new ArrayList<>();
@@ -120,7 +112,6 @@ public class MenuItemDatabase implements MenuItemDatabaseInterface {
      * @param id The id to check the existence of
      * @return true if the id exists in the database
      */
-    @Override
     public boolean containsId(long id) {
         return repo.existsById(id);
     }

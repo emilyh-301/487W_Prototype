@@ -1,5 +1,6 @@
 package com.hotel.model.user;
 
+import com.hotel.model.item.Cart;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,19 +15,22 @@ public class ApplicationUser implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_ID_SEQ")
     @SequenceGenerator(name = "USER_ID_SEQ", sequenceName = "USER_ID_SEQ", allocationSize = 250)
-    protected Long user_id;
+    private Long user_id;
 
     @Column(name = "username")
-    protected String username;
+    private String username;
 
     @Column(name = "password")
-    protected String password;
+    private String password;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles", joinColumns =
     @JoinColumn(name = "user_id", referencedColumnName = "user_id"), inverseJoinColumns =
     @JoinColumn(name = "role_id", referencedColumnName = "role_id"))
-    protected Set<Roles> user_roles;
+    private Set<Roles> user_roles;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Cart> user_carts;
 
     public ApplicationUser() {
         this.user_roles = new HashSet<>();
@@ -37,25 +41,43 @@ public class ApplicationUser implements UserDetails {
         this.username = username;
         this.password = password;
         this.user_roles = new HashSet<>();
+        this.user_carts = new HashSet<>();
     }
 
-    public ApplicationUser(Long user_id, String username, String password, Set<Roles> user_roles) {
+    public ApplicationUser(Long user_id, String username, String password, Set<Roles> user_roles, Set<Cart> user_carts) {
         this.user_id = user_id;
         this.username = username;
         this.password = password;
         this.user_roles = user_roles;
+        this.user_carts = user_carts;
     }
 
     public ApplicationUser(String username, String password) {
         this.username = username;
         this.password = password;
         this.user_roles = new HashSet<>();
+        this.user_carts = new HashSet<>();
     }
 
-    public ApplicationUser(String username, String password, Set<Roles> user_roles) {
+    public ApplicationUser(String username, String password, Set<Roles> user_roles, Set<Cart> user_carts) {
         this.username = username;
         this.password = password;
         this.user_roles = user_roles;
+        this.user_carts = user_carts;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ApplicationUser)) return false;
+        ApplicationUser that = (ApplicationUser) o;
+        return Objects.equals(user_id, that.user_id) &&
+                Objects.equals(username, that.username);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(user_id, username);
     }
 
     //<editor-fold desc="Getters and Setters">
@@ -142,19 +164,6 @@ public class ApplicationUser implements UserDetails {
      *
      * @return the authorities, sorted by natural key (never <code>null</code>)
      */
-
-    /*
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        Collection<GrantedAuthority> authorities = new ArrayList<>();
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_USER");
-
-        authorities.add(authority);
-        return authorities;
-    }
-
-     */
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return getGrantedAuthorities(getPrivileges(user_roles));
@@ -177,7 +186,7 @@ public class ApplicationUser implements UserDetails {
     private List<GrantedAuthority> getGrantedAuthorities(List<String> privileges) {
         List<GrantedAuthority> authorities = new ArrayList<>();
         for (String privilege : privileges) {
-            System.out.println(privilege);
+            //System.out.println(privilege);
             authorities.add(new SimpleGrantedAuthority(privilege));
         }
         return authorities;
@@ -190,5 +199,30 @@ public class ApplicationUser implements UserDetails {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public Set<Cart> getUser_carts() {
+        return user_carts;
+    }
+
+    public void setUser_carts(Set<Cart> user_carts) {
+        this.user_carts = user_carts;
+    }
+
     //</editor-fold>
+
+    public boolean hasActiveCart() {
+        for(Cart c : user_carts) {
+            if(!c.isCompleted()) return true;
+        }
+
+        return false;
+    }
+
+    public Cart getActiveCart() {
+        for(Cart c : user_carts) {
+            if(!c.isCompleted()) return c;
+        }
+
+        return null;
+    }
 }

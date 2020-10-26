@@ -1,5 +1,8 @@
 package com.hotel.model.item;
 
+import com.hotel.model.room.Room;
+import com.hotel.model.user.ApplicationUser;
+
 import javax.persistence.*;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -17,8 +20,9 @@ public class Cart {
     @Column(name = "completed")
     private boolean completed;
 
-    @Column(name = "room")
-    private int room;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private ApplicationUser user;
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<CartItem> items;
@@ -27,16 +31,16 @@ public class Cart {
 
     }
 
-    public Cart(long id, boolean completed, int room, Set<CartItem> items) {
+    public Cart(long id, boolean completed, ApplicationUser user, Set<CartItem> items) {
         this.id = id;
         this.completed = completed;
-        this.room = room;
+        this.user = user;
         this.items = items == null? new HashSet<>() : items;
     }
 
-    public Cart(boolean completed, int room, Set<CartItem> items) {
+    public Cart(boolean completed, ApplicationUser user, Set<CartItem> items) {
         this.completed = completed;
-        this.room = room;
+        this.user = user;
         this.items = items == null? new HashSet<>() : items;
     }
 
@@ -82,12 +86,12 @@ public class Cart {
         this.completed = completed;
     }
 
-    public int getRoom() {
-        return room;
+    public ApplicationUser getUser() {
+        return user;
     }
 
-    public void setRoom(int room) {
-        this.room = room;
+    public void setUser(ApplicationUser user) {
+        this.user = user;
     }
 
     public Set<CartItem> getItems() {

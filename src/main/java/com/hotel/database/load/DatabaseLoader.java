@@ -6,15 +6,11 @@ import com.hotel.database.request.*;
 import com.hotel.database.room.RoomDatabase;
 import com.hotel.database.user.PermissionsDatabase;
 import com.hotel.database.user.RolesDatabase;
-import com.hotel.database.user.staff.UserDatabase;
+import com.hotel.database.user.UserDatabase;
 import com.hotel.model.item.MenuItem;
-import com.hotel.model.user.ApplicationUser;
-import com.hotel.model.user.Permissions;
-import com.hotel.model.user.Roles;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 /**

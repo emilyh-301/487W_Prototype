@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 
 @Service
-public class MemberService implements MemberServiceInterface {
+public class MemberService {
 
     private final MemberDatabase database;
 
@@ -33,12 +33,10 @@ public class MemberService implements MemberServiceInterface {
         database.remove(email);
     }
 
-    @Override
     public void edit(@NotNull String email, String first, String last, String avatar_url, String language) {
         database.edit(email, first, last, avatar_url, language);
     }
 
-    @Override
     public GroupMember findByEmail(String email) {
         return database.findByEmail(email);
     }

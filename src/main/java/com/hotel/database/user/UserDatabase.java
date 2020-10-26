@@ -1,4 +1,4 @@
-package com.hotel.database.user.staff;
+package com.hotel.database.user;
 
 import com.hotel.database.jpa.JpaUserRepository;
 import com.hotel.model.user.ApplicationUser;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 @Repository
-public class UserDatabase implements UserDatabaseInterface {
+public class UserDatabase {
 
     private final JpaUserRepository repo;
 
@@ -16,19 +16,16 @@ public class UserDatabase implements UserDatabaseInterface {
         this.repo = repo;
     }
 
-    @Override
     public ApplicationUser addUser(ApplicationUser user) {
         return (user != null)? repo.save(user) : null;
     }
 
-    @Override
     public ApplicationUser find(long ID) {
         Optional<ApplicationUser> user = repo.findById(ID);
 
         return user.isPresent()? user.get() : null;
     }
 
-    @Override
     public ApplicationUser find(String username) {
         ArrayList<ApplicationUser> user = new ArrayList<>();
 
@@ -39,12 +36,10 @@ public class UserDatabase implements UserDatabaseInterface {
         return user.isEmpty()? null : user.get(0);
     }
 
-    @Override
     public boolean containsID(long ID) {
         return repo.existsById(ID);
     }
 
-    @Override
     public boolean containsUser(String username) {
         return find(username) != null;
     }

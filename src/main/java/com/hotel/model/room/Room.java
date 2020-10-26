@@ -1,8 +1,11 @@
 package com.hotel.model.room;
 
+import com.hotel.model.item.Cart;
 import com.hotel.model.user.ApplicationUser;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "rooms")
@@ -34,11 +37,11 @@ public class Room {
     }
 
     //<editor-fold desc="Getters and Setters">
-    public int getRoom() {
+    public Integer getRoom() {
         return room;
     }
 
-    public void setRoom(int room) {
+    public void setRoom(Integer room) {
         this.room = room;
     }
 
@@ -49,5 +52,7 @@ public class Room {
     public void setGuest(ApplicationUser guest) {
         this.guest = guest;
     }
+
     //</editor-fold>
+
 }
