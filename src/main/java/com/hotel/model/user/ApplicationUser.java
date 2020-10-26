@@ -22,7 +22,7 @@ public class ApplicationUser implements UserDetails {
     @Column(name = "password")
     protected String password;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles", joinColumns =
     @JoinColumn(name = "user_id", referencedColumnName = "user_id"), inverseJoinColumns =
     @JoinColumn(name = "role_id", referencedColumnName = "role_id"))
@@ -142,12 +142,44 @@ public class ApplicationUser implements UserDetails {
      *
      * @return the authorities, sorted by natural key (never <code>null</code>)
      */
+
+    /*
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> authorities = new ArrayList<>();
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority("USER");
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_USER");
 
         authorities.add(authority);
+        return authorities;
+    }
+
+     */
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return getGrantedAuthorities(getPrivileges(user_roles));
+    }
+
+    private List<String> getPrivileges(Collection<Roles> roles) {
+
+        List<String> privileges = new ArrayList<>();
+        List<Permissions> collection = new ArrayList<>();
+        for (Roles role : roles) {
+            privileges.add(role.getRole_name());
+            collection.addAll(role.getRole_permissions());
+        }
+        for (Permissions item : collection) {
+            privileges.add(item.getPermission_name());
+        }
+        return privileges;
+    }
+
+    private List<GrantedAuthority> getGrantedAuthorities(List<String> privileges) {
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        for (String privilege : privileges) {
+            System.out.println(privilege);
+            authorities.add(new SimpleGrantedAuthority(privilege));
+        }
         return authorities;
     }
 

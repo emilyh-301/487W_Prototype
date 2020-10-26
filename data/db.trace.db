@@ -1016,3 +1016,20 @@ select roles0_.role_id as role_id1_13_, roles0_.role_name as role_nam2_13_ from 
 2020-10-26 16:36:57 jdbc[3]: exception
 org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT ROLES0_.ROLE_ID AS ROLE_ID1_13_, ROLES0_.ROLE_NAME AS ROLE_NAM2_13_ FROM ROLES ROLES0_ CROSS JOIN ROLE_PERMISSIONS ROLE_PERMI1_, PERMISSIONS PERMISSION2_ WHERE ROLES0_.ROLE_ID=ROLE_PERMI1_.ROLE_ID AND ROLE_PERMI1_.PERMISSION_ID=PERMISSION2_.PERMISSION_ID AND (? IS NULL OR ROLES0_.ROLE_NAME=?) AND (? IS NULL OR ? IN (.[*])) "; expected "NOT, EXISTS, INTERSECTS, SELECT, FROM, WITH"; SQL statement:
 select roles0_.role_id as role_id1_13_, roles0_.role_name as role_nam2_13_ from roles roles0_ cross join role_permissions role_permi1_, permissions permission2_ where roles0_.role_id=role_permi1_.role_id and role_permi1_.permission_id=permission2_.permission_id and (? is null or roles0_.role_name=?) and (? is null or ? in (.)) [42001-193]
+2020-10-26 17:38:39 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "DROP FROM[*] TABLE ROLE_PERMISSIONS WHERE TRUE = TRUE "; expected "TABLE, INDEX, USER, SEQUENCE, CONSTANT, TRIGGER, VIEW, ROLE, ALIAS, SCHEMA, ALL, DOMAIN, TYPE, DATATYPE, AGGREGATE"; SQL statement:
+drop from table role_permissions where true = true [42001-193]
+2020-10-26 17:38:47 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Table "TABLE" not found; SQL statement:
+delete from table role_permissions where true = true [42102-193]
+2020-10-26 17:46:51 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "DELETE FROM ROLE_PERMISSIONS WHERE TRUE = TRUE
+DELETE[*] FROM USER_ROLES WHERE TRUE = TRUE
+DELETE FROM PERMISSIONS WHERE TRUE = TRUE
+DELETE FROM ROLES WHERE TRUE = TRUE
+DELETE FROM APPLICATION_USER WHERE TRUE = TRUE "; SQL statement:
+delete from role_permissions where true = true
+delete from user_roles where true = true
+delete from permissions where true = true
+delete from roles where true = true
+delete from application_user where true = true [42000-193]

@@ -6,6 +6,7 @@ import com.hotel.model.user.Permissions;
 import com.hotel.model.user.Roles;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -46,7 +47,8 @@ public class ApplicationUserDetailsService implements UserDetailsService {
 
         if(user == null) throw new UsernameNotFoundException("Username " + username + " not found.");
 
-        return user;
+        //return user;
+        return new User(user.getUsername(), user.getPassword(), user.isEnabled(), true, true, true, user.getAuthorities());
     }
 
     private Collection<? extends GrantedAuthority> getAuthorities(Collection<Roles> roles) {

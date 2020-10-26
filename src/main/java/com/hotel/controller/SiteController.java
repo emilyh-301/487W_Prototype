@@ -19,7 +19,6 @@ public class SiteController {
 
     @GetMapping("/login")
     public String login(Model model) {
-
         return "login";
 
     }
