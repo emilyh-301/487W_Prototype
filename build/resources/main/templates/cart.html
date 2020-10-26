@@ -22,7 +22,7 @@
         <th scope="col">price</th>
         <th scope="col">notes</th>
         <th scope="col">description</th>
-        <th scope="col">&nbsp;</th>
+        <th scope="col">image;</th>
         <th scope="col">&nbsp;</th>
     </tr>
     </thead>
@@ -35,15 +35,19 @@
         <td th:text="${cart.getItem().getPrice()}"></td>
         <td th:text="${cart.getNotes()}"></td>
         <td th:text="${cart.getItem().getDescription()}"></td>
+        <td th:text="${cart.getItem().getImage()}"></td>
 
         <!-- A button to remove this item -->
         <td>
-            <a th:href="@{'/database/edit/' + ${Cart}}" class="btn btn-info btn-warning">
+            <a th:href="@{'/database/edit/' + ${Cart}}" class="btn btn-info btn-danger">
                 Remove Item
             </a>
         </td>
-
     </tr>
+
+    <button type="button" class="btn btn-primary">Checkout</button>
+    <button type="button" class="btn btn-primary">Return to menu</button>
+    <button type="button" class="btn btn-secondary">Cancel Order</button>
 
     </tbody>
 </table>

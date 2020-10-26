@@ -5,13 +5,10 @@ import com.hotel.database.item.CartDatabase;
 import com.hotel.database.item.MenuItemDatabase;
 import com.hotel.database.request.*;
 import com.hotel.database.staff.StaffDatabase;
-import com.hotel.model.item.Cart;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
-
-import java.util.HashSet;
 
 /**
  * Called when the application is initialized or refreshed.
@@ -35,24 +32,24 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
     @Qualifier("Wakeup")
     private final WakeUpRequestDatabase wakeupRepo;
 
-    private final CartDatabase cartDatabase;
-
     private final MenuItemDatabase itemRepo;
+    private final CartDatabase cartRepo;
 
     public DatabaseLoader(MemberDatabase database, StaffDatabase staffRepo, RequestDatabase requestRepo,
                           MaintenanceRequestDatabase maintenanceRepo, GeneralRequestDatabase generalRepo,
-                          WakeUpRequestDatabase wakeupRepo, CartDatabase cartDatabase, MenuItemDatabase itemRepo) {
+                          WakeUpRequestDatabase wakeupRepo, MenuItemDatabase itemRepo, CartDatabase cartRepo) {
         this.database = database;
         this.staffRepo = staffRepo;
         this.requestRepo = requestRepo;
         this.maintenanceRepo = maintenanceRepo;
         this.generalRepo = generalRepo;
         this.wakeupRepo = wakeupRepo;
-        this.cartDatabase = cartDatabase;
         this.itemRepo = itemRepo;
+        this.cartRepo = cartRepo;
     }
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
+
     }
 }
