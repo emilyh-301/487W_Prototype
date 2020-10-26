@@ -1,6 +1,7 @@
 package com.hotel.database.load;
 
 import com.hotel.database.MemberDatabase;
+import com.hotel.database.item.CartDatabase;
 import com.hotel.database.item.MenuItemDatabase;
 import com.hotel.database.request.*;
 import com.hotel.database.staff.StaffDatabase;
@@ -32,10 +33,11 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
     private final WakeUpRequestDatabase wakeupRepo;
 
     private final MenuItemDatabase itemRepo;
+    private final CartDatabase cartRepo;
 
     public DatabaseLoader(MemberDatabase database, StaffDatabase staffRepo, RequestDatabase requestRepo,
                           MaintenanceRequestDatabase maintenanceRepo, GeneralRequestDatabase generalRepo,
-                          WakeUpRequestDatabase wakeupRepo, MenuItemDatabase itemRepo) {
+                          WakeUpRequestDatabase wakeupRepo, MenuItemDatabase itemRepo, CartDatabase cartRepo) {
         this.database = database;
         this.staffRepo = staffRepo;
         this.requestRepo = requestRepo;
@@ -43,6 +45,7 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
         this.generalRepo = generalRepo;
         this.wakeupRepo = wakeupRepo;
         this.itemRepo = itemRepo;
+        this.cartRepo = cartRepo;
     }
 
     @Override

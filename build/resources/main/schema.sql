@@ -43,6 +43,10 @@ create table cartItems (
     foreign key (cart_id) references cart
 );
 
+insert into menuItems values(1, 'Chicken', 4.00, 'some chicken stuff', "IMAGE");
+insert into cartItems values(10, 1, 33, 'notes', 0);
+insert into cart values(0, TRUE, 420);
+
 create table Allergens (
     allergen varchar(25) primary key
 );
