@@ -5,6 +5,7 @@ import com.hotel.database.item.CartDatabase;
 import com.hotel.database.item.MenuItemDatabase;
 import com.hotel.database.request.*;
 import com.hotel.database.staff.StaffDatabase;
+import com.hotel.model.item.Cart;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -50,6 +51,6 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-
+        Cart cart = new Cart();
     }
 }
