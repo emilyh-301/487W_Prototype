@@ -22,7 +22,7 @@ public abstract class AbstractRequestDatabase implements AbstractRequestDatabase
 
     @Override
     public void add(AbstractRequest request) {
-        if(request != null && !containsID(request.getId())) repo.save(request);
+        if(request != null) repo.save(request);
     }
 
     @Override

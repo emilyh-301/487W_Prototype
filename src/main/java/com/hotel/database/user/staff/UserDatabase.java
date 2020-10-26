@@ -18,7 +18,7 @@ public class UserDatabase implements UserDatabaseInterface {
 
     @Override
     public ApplicationUser addUser(ApplicationUser user) {
-        return (user != null && !containsID(user.getUser_id()))? repo.save(user) : null;
+        return (user != null)? repo.save(user) : null;
     }
 
     @Override

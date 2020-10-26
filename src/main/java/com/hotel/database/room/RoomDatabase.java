@@ -26,7 +26,7 @@ public class RoomDatabase implements RoomDatabaseInterface {
 
     @Override
     public Room addRoom(Room room) {
-        return (room != null && !repo.existsById(room.getRoom()))? repo.save(room) : null;
+        return (room != null)? repo.save(room) : null;
     }
 
     @Override

@@ -4,14 +4,17 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import java.util.Arrays;
 import java.util.Collection;
 
 @Entity
+@Table(name = "application_user")
 public class ApplicationUser implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    protected long user_id;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_ID_SEQ")
+    @SequenceGenerator(name = "USER_ID_SEQ", sequenceName = "USER_ID_SEQ", allocationSize = 250)
+    protected Long user_id;
 
     @Column(name = "username")
     protected String username;
@@ -19,30 +22,19 @@ public class ApplicationUser implements UserDetails {
     @Column(name = "password")
     protected String password;
 
-    @ManyToMany
-    @JoinTable(
-            name = "users_roles",
-            joinColumns = @JoinColumn(
-                    name = "user_id", referencedColumnName = "user_id"),
-            inverseJoinColumns = @JoinColumn(
-                    name = "role_id", referencedColumnName = "id"))
-    private Collection<Role> roles;
-
     public ApplicationUser() {
 
     }
 
-    public ApplicationUser(long user_id, String username, String password, Collection<Role> roles) {
+    public ApplicationUser(Long user_id, String username, String password) {
         this.user_id = user_id;
         this.username = username;
         this.password = password;
-        this.roles = roles;
     }
 
-    public ApplicationUser(String username, String password, Collection<Role> roles) {
+    public ApplicationUser(String username, String password) {
         this.username = username;
         this.password = password;
-        this.roles = roles;
     }
 
     //<editor-fold desc="Getters and Setters">
@@ -124,14 +116,6 @@ public class ApplicationUser implements UserDetails {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Collection<Role> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Collection<Role> roles) {
-        this.roles = roles;
     }
     //</editor-fold>
 }

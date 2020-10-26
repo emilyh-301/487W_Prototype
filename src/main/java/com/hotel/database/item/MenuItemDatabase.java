@@ -38,7 +38,7 @@ public class MenuItemDatabase implements MenuItemDatabaseInterface {
      */
     @Override
     public void add(MenuItem item) {
-        if(item != null && !containsId(item.getId())) repo.save(item);
+        if(item != null) repo.save(item);
     }
 
     /**

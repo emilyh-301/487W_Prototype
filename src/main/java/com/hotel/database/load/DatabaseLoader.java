@@ -4,12 +4,10 @@ import com.hotel.database.MemberDatabase;
 import com.hotel.database.item.MenuItemDatabase;
 import com.hotel.database.request.*;
 import com.hotel.database.room.RoomDatabase;
-import com.hotel.database.user.PrivilegeRepository;
-import com.hotel.database.user.RoleRepository;
 import com.hotel.database.user.staff.UserDatabase;
 import com.hotel.model.item.MenuItem;
-import com.hotel.model.user.Privilege;
-import com.hotel.model.user.Role;
+import com.hotel.model.user.ApplicationUser;
+import com.hotel.model.user.staff.Staff;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -30,7 +28,7 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
 
     private final MemberDatabase database;
 
-    private final UserDatabase staffRepo;
+    private final UserDatabase userRepo;
 
     @Qualifier("Request")
     private final RequestDatabase requestRepo;
@@ -48,41 +46,23 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
 
     private final RoomDatabase roomRepo;
 
-    private final PrivilegeRepository privRepo;
 
-    private final RoleRepository roleRepo;
-
-    public DatabaseLoader(MemberDatabase database, UserDatabase staffRepo, RequestDatabase requestRepo,
+    public DatabaseLoader(MemberDatabase database, UserDatabase userRepo, RequestDatabase requestRepo,
                           MaintenanceRequestDatabase maintenanceRepo, GeneralRequestDatabase generalRepo,
-                          WakeUpRequestDatabase wakeupRepo, MenuItemDatabase itemRepo, RoomDatabase roomRepo, PrivilegeRepository privRepo, RoleRepository roleRepo) {
+                          WakeUpRequestDatabase wakeupRepo, MenuItemDatabase itemRepo, RoomDatabase roomRepo) {
         this.database = database;
-        this.staffRepo = staffRepo;
+        this.userRepo = userRepo;
         this.requestRepo = requestRepo;
         this.maintenanceRepo = maintenanceRepo;
         this.generalRepo = generalRepo;
         this.wakeupRepo = wakeupRepo;
         this.itemRepo = itemRepo;
         this.roomRepo = roomRepo;
-        this.privRepo = privRepo;
-        this.roleRepo = roleRepo;
+
     }
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-
-        /*
-         * Set up privileges and roles
-         */
-        if(!privileges_already_setup) {
-            Privilege guestPriv = createPrivilegeIfNotFound("GUEST_PRIVILEGES");
-            Privilege staffPriv = createPrivilegeIfNotFound("STAFF_PRIVILEGES");
-
-            createRoleIfNotFound("ROLE_GUEST", Collections.singletonList(guestPriv));
-            createRoleIfNotFound("ROLE_STAFF", Arrays.asList(guestPriv, staffPriv));
-
-            privileges_already_setup = true;
-        }
-
 
         MenuItem n = new MenuItem();
         n.setId(1);
@@ -95,27 +75,4 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
         itemRepo.add(n);
     }
 
-    @Transactional
-    Privilege createPrivilegeIfNotFound(String name) {
-
-        Privilege privilege = privRepo.find(name);
-        if (privilege == null) {
-            privilege = new Privilege(name);
-            privRepo.add(privilege);
-        }
-        return privilege;
-    }
-
-    @Transactional
-    Role createRoleIfNotFound(
-            String name, Collection<Privilege> privileges) {
-
-        Role role = roleRepo.find(name);
-        if (role == null) {
-            role = new Role(name);
-            role.setPrivileges(privileges);
-            roleRepo.add(role);
-        }
-        return role;
-    }
 }
