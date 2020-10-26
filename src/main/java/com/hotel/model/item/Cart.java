@@ -12,7 +12,7 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CART_ID_SEQ")
     @SequenceGenerator(name = "CART_ID_SEQ", sequenceName = "CART_ID_SEQ", allocationSize = 250)
     @Column(name = "cart_id")
-    private int id;
+    private Long id;
 
     @Column(name = "completed")
     private boolean completed;
@@ -27,17 +27,17 @@ public class Cart {
 
     }
 
-    public Cart(int id, boolean completed, int room, Set<CartItem> items) {
+    public Cart(long id, boolean completed, int room, Set<CartItem> items) {
         this.id = id;
         this.completed = completed;
         this.room = room;
-        this.items = items;
+        this.items = items == null? new HashSet<>() : items;
     }
 
     public Cart(boolean completed, int room, Set<CartItem> items) {
         this.completed = completed;
         this.room = room;
-        this.items = items;
+        this.items = items == null? new HashSet<>() : items;
     }
 
     public void addItem(CartItem item) {
@@ -57,7 +57,7 @@ public class Cart {
         if (this == o) return true;
         if (!(o instanceof Cart)) return false;
         Cart cart = (Cart) o;
-        return id == cart.id;
+        return id.equals(cart.id);
     }
 
     @Override
@@ -66,11 +66,11 @@ public class Cart {
     }
 
     //<editor-fold desc="Getters and Setters">
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

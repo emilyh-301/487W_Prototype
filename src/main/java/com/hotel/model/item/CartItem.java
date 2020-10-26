@@ -11,7 +11,7 @@ public class CartItem {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CART_ITEM_ID_SEQ")
     @SequenceGenerator(name = "CART_ITEM_ID_SEQ", sequenceName = "CART_ITEM_ID_SEQ", allocationSize = 250)
     @Column(name = "id")
-    private int id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "item_id")
@@ -31,7 +31,7 @@ public class CartItem {
 
     }
 
-    public CartItem(int id, MenuItem item, int quantity, String notes, Cart cart) {
+    public CartItem(long id, MenuItem item, int quantity, String notes, Cart cart) {
         this.id = id;
         this.item = item;
         this.quantity = quantity;
@@ -67,7 +67,7 @@ public class CartItem {
         if (this == o) return true;
         if (!(o instanceof CartItem)) return false;
         CartItem cartItem = (CartItem) o;
-        return id == cartItem.id;
+        return id.equals(cartItem.id);
     }
 
     @Override
@@ -76,11 +76,11 @@ public class CartItem {
     }
 
     //<editor-fold desc="Getters and Setters">
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

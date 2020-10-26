@@ -1,7 +1,6 @@
 package com.hotel.database.jpa;
 
 import com.hotel.model.user.ApplicationUser;
-import com.hotel.model.user.staff.Staff;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;

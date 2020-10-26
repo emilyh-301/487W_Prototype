@@ -13,7 +13,7 @@ public class RequestWithNotesDatabase extends AbstractRequestDatabase implements
     }
 
     @Override
-    public void edit(int ID, int new_room, long new_time, String new_notes, String new_commonRequestType) {
+    public void edit(long ID, int new_room, long new_time, String new_notes, String new_commonRequestType) {
 
         RequestWithNotes request = (RequestWithNotes) find(ID);
 

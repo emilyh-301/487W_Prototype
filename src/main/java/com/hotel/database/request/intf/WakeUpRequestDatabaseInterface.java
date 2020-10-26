@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public interface WakeUpRequestDatabaseInterface extends AbstractRequestDatabaseInterface {
 
-    void edit(int ID, int new_room, long new_time, long new_wakeup_time);
+    void edit(long ID, int new_room, long new_time, long new_wakeup_time);
 
     ArrayList<WakeUpRequest> findByWakeupTime(long wakeup_time);
 

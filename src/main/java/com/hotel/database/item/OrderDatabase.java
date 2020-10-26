@@ -36,7 +36,7 @@ public class OrderDatabase implements OrderDatabaseInterface {
     }
 
     @Override
-    public void edit(@NotNull int id, int new_cart_id, String new_status, long new_time) throws Exception {
+    public void edit(@NotNull long id, long new_cart_id, String new_status, long new_time) throws Exception {
         
         Order order = find(id);
 
@@ -66,19 +66,19 @@ public class OrderDatabase implements OrderDatabaseInterface {
     }
 
     @Override
-    public void remove(int id) {
+    public void remove(long id) {
         repo.deleteById(id);
     }
 
     @Override
-    public Order find(int id) {
+    public Order find(long id) {
         Optional<Order> a = repo.findById(id);
 
         return a.isPresent()? a.get() : null;
     }
 
     @Override
-    public boolean contains(int id) {
+    public boolean contains(long id) {
         return repo.existsById(id);
     }
 }

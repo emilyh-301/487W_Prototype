@@ -20,7 +20,7 @@ public class WakeUpRequestService extends AbstractRequestService implements Wake
     }
 
     @Override
-    public void edit(int ID, int new_room, long new_time, long new_wakeup_time) {
+    public void edit(long ID, int new_room, long new_time, long new_wakeup_time) {
         ((WakeUpRequestDatabase)database).edit(ID, new_room, new_time, new_wakeup_time);
     }
 
@@ -45,12 +45,12 @@ public class WakeUpRequestService extends AbstractRequestService implements Wake
     }
 
     @Override
-    public void remove(int ID) {
+    public void remove(long ID) {
         database.remove(ID);
     }
 
     @Override
-    public AbstractRequest find(int ID) {
+    public AbstractRequest find(long ID) {
         return database.find(ID);
     }
 
@@ -60,7 +60,7 @@ public class WakeUpRequestService extends AbstractRequestService implements Wake
     }
 
     @Override
-    public boolean exists(int ID) {
+    public boolean exists(long ID) {
         return database.containsID(ID);
     }
 }

@@ -14,14 +14,14 @@ public interface CartItemServiceInterface {
 
     void add(CartItem item);
 
-    CartItem find(int id);
+    CartItem find(long id);
 
-    void edit(@NotNull int id, int new_item_id, int new_quantity, String new_notes) throws Exception;
+    void edit(@NotNull long id, long new_item_id, int new_quantity, String new_notes) throws Exception;
 
     void remove(CartItem item);
 
-    void remove(int id);
+    void remove(long id);
 
-    boolean exists(int id);
+    boolean exists(long id);
 
 }

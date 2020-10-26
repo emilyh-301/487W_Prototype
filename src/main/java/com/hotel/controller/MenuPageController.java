@@ -27,4 +27,20 @@ public class MenuPageController {
         model.addAttribute("items", items);
         return "menu";
     }
+
+    @GetMapping("/login_success")
+    public String loginSuccess(Model model) {
+        Collection<MenuItem> items  = service.getItems(new Sort(Sort.Direction.DESC, "id"));
+        model.addAttribute("items", items);
+        model.addAttribute("success", "You have been successfully logged in.");
+        return "menu";
+    }
+
+    @GetMapping("/logout_success")
+    public String logoutSuccess(Model model) {
+        Collection<MenuItem> items  = service.getItems(new Sort(Sort.Direction.DESC, "id"));
+        model.addAttribute("items", items);
+        model.addAttribute("success", "You have been successfully logged out.");
+        return "menu";
+    }
 }

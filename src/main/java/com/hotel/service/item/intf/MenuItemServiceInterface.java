@@ -14,15 +14,15 @@ public interface MenuItemServiceInterface {
 
     void add(MenuItem item);
 
-    MenuItem find(int id);
+    MenuItem find(long id);
 
     ArrayList<MenuItem> findName(String name);
 
-    void edit(@NotNull int id, String new_name, Set<String> new_allergens, double new_price, String new_description);
+    void edit(@NotNull long id, String new_name, Set<String> new_allergens, double new_price, String new_description);
 
     void remove(MenuItem item);
 
-    void remove(int id);
+    void remove(long id);
 
-    boolean exists(int id);
+    boolean exists(long id);
 }

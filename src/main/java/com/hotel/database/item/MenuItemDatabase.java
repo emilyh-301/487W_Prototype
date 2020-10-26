@@ -55,7 +55,7 @@ public class MenuItemDatabase implements MenuItemDatabaseInterface {
      * @param id The id of the item to remove from the database
      */
     @Override
-    public void remove(int id) {
+    public void remove(long id) {
         repo.deleteById(id);
     }
 
@@ -68,7 +68,7 @@ public class MenuItemDatabase implements MenuItemDatabaseInterface {
      * @param new_description The item's new description
      */
     @Override
-    public void edit(@NotNull int id, String new_name, Set<String> new_allergens, double new_price, String new_description) {
+    public void edit(@NotNull long id, String new_name, Set<String> new_allergens, double new_price, String new_description) {
 
         MenuItem item = find(id);
 
@@ -91,7 +91,7 @@ public class MenuItemDatabase implements MenuItemDatabaseInterface {
      * @return the item with the given id, or null if no such item exists
      */
     @Override
-    public MenuItem find(int id) {
+    public MenuItem find(long id) {
 
         Optional<MenuItem> item = repo.findById(id);
 
@@ -121,7 +121,7 @@ public class MenuItemDatabase implements MenuItemDatabaseInterface {
      * @return true if the id exists in the database
      */
     @Override
-    public boolean containsId(int id) {
+    public boolean containsId(long id) {
         return repo.existsById(id);
     }
 }

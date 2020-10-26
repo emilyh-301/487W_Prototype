@@ -16,14 +16,14 @@ public interface MenuItemDatabaseInterface {
 
     void remove(MenuItem item);
 
-    void remove(int id);
+    void remove(long id);
 
-    void edit(@NotNull int id, String new_name, Set<String> new_allergens, double new_price, String new_description);
+    void edit(@NotNull long id, String new_name, Set<String> new_allergens, double new_price, String new_description);
 
-    MenuItem find(int id);
+    MenuItem find(long id);
 
     ArrayList<MenuItem> findName(String name);
 
-    boolean containsId(int id);
+    boolean containsId(long id);
 
 }

@@ -1,11 +1,11 @@
 package com.hotel.model.user;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Arrays;
-import java.util.Collection;
+import java.util.*;
 
 @Entity
 @Table(name = "application_user")
@@ -22,19 +22,40 @@ public class ApplicationUser implements UserDetails {
     @Column(name = "password")
     protected String password;
 
-    public ApplicationUser() {
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_roles", joinColumns =
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id"), inverseJoinColumns =
+    @JoinColumn(name = "role_id", referencedColumnName = "role_id"))
+    protected Set<Roles> user_roles;
 
+    public ApplicationUser() {
+        this.user_roles = new HashSet<>();
     }
 
     public ApplicationUser(Long user_id, String username, String password) {
         this.user_id = user_id;
         this.username = username;
         this.password = password;
+        this.user_roles = new HashSet<>();
+    }
+
+    public ApplicationUser(Long user_id, String username, String password, Set<Roles> user_roles) {
+        this.user_id = user_id;
+        this.username = username;
+        this.password = password;
+        this.user_roles = user_roles;
     }
 
     public ApplicationUser(String username, String password) {
         this.username = username;
         this.password = password;
+        this.user_roles = new HashSet<>();
+    }
+
+    public ApplicationUser(String username, String password, Set<Roles> user_roles) {
+        this.username = username;
+        this.password = password;
+        this.user_roles = user_roles;
     }
 
     //<editor-fold desc="Getters and Setters">
@@ -44,6 +65,22 @@ public class ApplicationUser implements UserDetails {
 
     public void setUser_id(long userID) {
         this.user_id = userID;
+    }
+
+    public void setUser_id(Long user_id) {
+        this.user_id = user_id;
+    }
+
+    public Set<Roles> getUser_roles() {
+        return user_roles;
+    }
+
+    public void setUser_roles(Set<Roles> user_roles) {
+        this.user_roles = user_roles;
+    }
+
+    public void setUser_roles(Roles ... user_roles) {
+        this.user_roles.addAll(Arrays.asList(user_roles));
     }
 
     public String getUsername() {
@@ -59,7 +96,7 @@ public class ApplicationUser implements UserDetails {
      */
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     /**
@@ -70,7 +107,7 @@ public class ApplicationUser implements UserDetails {
      */
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     /**
@@ -82,7 +119,7 @@ public class ApplicationUser implements UserDetails {
      */
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     /**
@@ -93,7 +130,7 @@ public class ApplicationUser implements UserDetails {
      */
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 
     public void setUsername(String username) {
@@ -105,9 +142,45 @@ public class ApplicationUser implements UserDetails {
      *
      * @return the authorities, sorted by natural key (never <code>null</code>)
      */
+
+    /*
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        Collection<GrantedAuthority> authorities = new ArrayList<>();
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority("ROLE_USER");
+
+        authorities.add(authority);
+        return authorities;
+    }
+
+     */
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return getGrantedAuthorities(getPrivileges(user_roles));
+    }
+
+    private List<String> getPrivileges(Collection<Roles> roles) {
+
+        List<String> privileges = new ArrayList<>();
+        List<Permissions> collection = new ArrayList<>();
+        for (Roles role : roles) {
+            privileges.add(role.getRole_name());
+            collection.addAll(role.getRole_permissions());
+        }
+        for (Permissions item : collection) {
+            privileges.add(item.getPermission_name());
+        }
+        return privileges;
+    }
+
+    private List<GrantedAuthority> getGrantedAuthorities(List<String> privileges) {
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        for (String privilege : privileges) {
+            System.out.println(privilege);
+            authorities.add(new SimpleGrantedAuthority(privilege));
+        }
+        return authorities;
     }
 
     public String getPassword() {

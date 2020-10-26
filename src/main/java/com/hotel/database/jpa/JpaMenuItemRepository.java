@@ -12,7 +12,7 @@ import java.util.Collection;
 /**
  * CRUD (Create, Read, Update, Delete) repository for menu items
  */
-public interface JpaMenuItemRepository extends CrudRepository<MenuItem, Integer> {
+public interface JpaMenuItemRepository extends CrudRepository<MenuItem, Long> {
 
     @Query(value = "select i from MenuItem i")
     Collection<MenuItem> getAll(Sort sort);
@@ -24,7 +24,7 @@ public interface JpaMenuItemRepository extends CrudRepository<MenuItem, Integer>
             "(:desc is null or i.description = :desc) and " +
             "(:image is null or i.image = :image) and " +
             "(:allergen is null or :allergen in (i.allergens))")
-    Collection<MenuItem> getAll(@Param("id") Integer item_id,
+    Collection<MenuItem> getAll(@Param("id") Long item_id,
                                 @Param("name") String name,
                                 @Param("price") Double price,
                                 @Param("desc") String description,

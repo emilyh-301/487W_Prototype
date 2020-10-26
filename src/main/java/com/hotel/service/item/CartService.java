@@ -32,12 +32,12 @@ public class CartService implements CartServiceInterface {
     }
 
     @Override
-    public Cart find(int id) {
+    public Cart find(long id) {
         return database.find(id);
     }
 
     @Override
-    public void edit(@NotNull int id, boolean new_completed, int new_room, Set<Integer> new_item_ids) {
+    public void edit(@NotNull long id, boolean new_completed, int new_room, Set<Long> new_item_ids) {
         database.edit(id, new_completed, new_room, new_item_ids);
     }
 
@@ -47,12 +47,12 @@ public class CartService implements CartServiceInterface {
     }
 
     @Override
-    public void remove(int id) {
+    public void remove(long id) {
         database.remove(id);
     }
 
     @Override
-    public boolean exists(int id) {
+    public boolean exists(long id) {
         return database.contains(id);
     }
 }

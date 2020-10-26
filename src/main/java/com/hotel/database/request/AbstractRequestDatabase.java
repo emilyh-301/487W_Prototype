@@ -31,12 +31,12 @@ public abstract class AbstractRequestDatabase implements AbstractRequestDatabase
     }
 
     @Override
-    public void remove(int ID) {
+    public void remove(long ID) {
         repo.deleteById(ID);
     }
 
     @Override
-    public AbstractRequest find(int ID) {
+    public AbstractRequest find(long ID) {
         Optional<AbstractRequest> request = repo.findById(ID);
 
         return request.isPresent()? request.get() : null;
@@ -54,7 +54,7 @@ public abstract class AbstractRequestDatabase implements AbstractRequestDatabase
     }
 
     @Override
-    public boolean containsID(int ID) {
+    public boolean containsID(long ID) {
         return repo.existsById(ID);
     }
 }

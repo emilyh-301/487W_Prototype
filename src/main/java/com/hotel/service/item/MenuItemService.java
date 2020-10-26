@@ -31,7 +31,7 @@ public class MenuItemService implements MenuItemServiceInterface {
     }
 
     @Override
-    public MenuItem find(int id) {
+    public MenuItem find(long id) {
         return database.find(id);
     }
 
@@ -41,7 +41,7 @@ public class MenuItemService implements MenuItemServiceInterface {
     }
 
     @Override
-    public void edit(@NotNull int id, String new_name, Set<String> new_allergens, double new_price, String new_description) {
+    public void edit(@NotNull long id, String new_name, Set<String> new_allergens, double new_price, String new_description) {
         database.edit(id, new_name, new_allergens, new_price, new_description);
     }
 
@@ -51,12 +51,12 @@ public class MenuItemService implements MenuItemServiceInterface {
     }
 
     @Override
-    public void remove(int id) {
+    public void remove(long id) {
         database.remove(id);
     }
 
     @Override
-    public boolean exists(int id) {
+    public boolean exists(long id) {
         return database.containsId(id);
     }
 }

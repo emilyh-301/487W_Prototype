@@ -29,12 +29,12 @@ public class OrderService implements OrderServiceInterface {
     }
 
     @Override
-    public Order find(int id) {
+    public Order find(long id) {
         return database.find(id);
     }
 
     @Override
-    public void edit(@NotNull int id, int new_cart_id, String new_status, long new_time) throws Exception {
+    public void edit(@NotNull long id, long new_cart_id, String new_status, long new_time) throws Exception {
         database.edit(id, new_cart_id, new_status, new_time);
     }
 
@@ -44,12 +44,12 @@ public class OrderService implements OrderServiceInterface {
     }
 
     @Override
-    public void remove(int id) {
+    public void remove(long id) {
         database.remove(id);
     }
 
     @Override
-    public boolean exists(int id) {
+    public boolean exists(long id) {
         return database.contains(id);
     }
 }

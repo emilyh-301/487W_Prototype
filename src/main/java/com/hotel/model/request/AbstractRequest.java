@@ -14,7 +14,7 @@ public abstract class AbstractRequest {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "REQUEST_ID_SEQ")
     @SequenceGenerator(name = "REQUEST_ID_SEQ", sequenceName = "REQUEST_ID_SEQ", allocationSize = 100)
     @Column(name = "requestID")
-    protected int id;
+    protected Long id;
 
     /**
      * The room number that made the request
@@ -33,13 +33,13 @@ public abstract class AbstractRequest {
 
     }
 
-    public AbstractRequest(int id, int room, Date time) {
+    public AbstractRequest(long id, int room, Date time) {
         this.id = id;
         this.room = room;
         this.time = time;
     }
 
-    public AbstractRequest(int id, int room, long time) {
+    public AbstractRequest(long id, int room, long time) {
         this.id = id;
         this.room = room;
         this.time = new Date(time);
@@ -56,11 +56,11 @@ public abstract class AbstractRequest {
     }
 
     //<editor-fold desc="Getters and Setters">
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

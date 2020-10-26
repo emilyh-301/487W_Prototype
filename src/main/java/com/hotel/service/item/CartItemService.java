@@ -29,12 +29,12 @@ public class CartItemService implements CartItemServiceInterface {
     }
 
     @Override
-    public CartItem find(int id) {
+    public CartItem find(long id) {
         return database.find(id);
     }
 
     @Override
-    public void edit(@NotNull int id, int new_item_id, int new_quantity, String new_notes) throws Exception {
+    public void edit(@NotNull long id, long new_item_id, int new_quantity, String new_notes) throws Exception {
         database.edit(id, new_item_id, new_quantity, new_notes);
     }
 
@@ -44,12 +44,12 @@ public class CartItemService implements CartItemServiceInterface {
     }
 
     @Override
-    public void remove(int id) {
+    public void remove(long id) {
         database.remove(id);
     }
 
     @Override
-    public boolean exists(int id) {
+    public boolean exists(long id) {
         return database.contains(id);
     }
 }
