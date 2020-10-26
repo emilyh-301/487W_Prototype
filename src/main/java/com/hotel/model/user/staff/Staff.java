@@ -1,7 +1,6 @@
 package com.hotel.model.user.staff;
 
 import com.hotel.model.user.ApplicationUser;
-import com.hotel.model.user.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,16 +15,16 @@ public class Staff extends ApplicationUser implements UserDetails {
 
     }
 
-    public Staff(long id, String username, String password, Collection<Role> roles) {
-        super(id, username, password, roles);
+    public Staff(long id, String username, String password) {
+        super(id, username, password);
     }
 
-    public Staff(String username, String password, Collection<Role> roles) {
-        super(username, password, roles);
+    public Staff(String username, String password) {
+        super(username, password);
     }
 
     public Staff(@NotNull ApplicationUser user) {
-        super(user.getUsername(), user.getPassword(), user.getRoles());
+        super(user.getUsername(), user.getPassword());
     }
 
     /**
