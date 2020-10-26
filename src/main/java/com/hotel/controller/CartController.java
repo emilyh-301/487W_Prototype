@@ -25,7 +25,7 @@ public class CartController {
         if(cart != null)
             model.addAttribute("Cart", cart.getItems());
         else
-            model.addAttribute("Cart", new HashSet<Integer>().add(301));
+            model.addAttribute("Cart", new HashSet<Integer>());
         return "cart";
     }
 }
