@@ -19,9 +19,9 @@ public class CheckoutController {
 
     @GetMapping("/")
     public String viewCheckout(Model model) {
-        Cart cart = service.find(0);
+        //Cart cart = service.find(0);
 
-        model.addAttribute("cart", cart);
+        //model.addAttribute("cart", cart);
         return "checkout";
     }
 }
