@@ -79,6 +79,22 @@ public class MenuItem {
         this.image = image;
     }
 
+    public MenuItem(String name, Set<Allergen> allergens, BigDecimal price, String description, String image) {
+        this.name = name;
+        this.allergens = allergens;
+        this.price = price;
+        this.description = description;
+        this.image = image;
+    }
+
+    public MenuItem(String name, Set<Allergen> allergens, double price, String description, String image) {
+        this.name = name;
+        this.allergens = allergens;
+        this.price = new BigDecimal(price);
+        this.description = description;
+        this.image = image;
+    }
+
     public void addAllergen(Allergen a) {
         allergens.add(a);
     }

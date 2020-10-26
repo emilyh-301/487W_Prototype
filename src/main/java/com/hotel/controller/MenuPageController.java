@@ -23,10 +23,7 @@ public class MenuPageController {
 
     @GetMapping("")
     public String getMenu(Model model){
-
-
-        Collection<MenuItem> items  = service.getItems(new Sort(Sort.Direction.DESC, "item_id"));
-//        MenuItem items  = service.find(1);
+        Collection<MenuItem> items  = service.getItems(new Sort(Sort.Direction.DESC, "id"));
         model.addAttribute("items", items);
         return "menu";
     }

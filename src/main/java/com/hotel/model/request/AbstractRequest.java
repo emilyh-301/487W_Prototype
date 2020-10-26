@@ -45,6 +45,16 @@ public abstract class AbstractRequest {
         this.time = new Date(time);
     }
 
+    public AbstractRequest(int room, Date time) {
+        this.room = room;
+        this.time = time;
+    }
+
+    public AbstractRequest(int room, long time) {
+        this.room = room;
+        this.time = new Date(time);
+    }
+
     //<editor-fold desc="Getters and Setters">
     public int getId() {
         return id;

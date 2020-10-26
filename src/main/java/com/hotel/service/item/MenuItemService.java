@@ -22,7 +22,7 @@ public class MenuItemService implements MenuItemServiceInterface {
 
     @Override
     public Collection<MenuItem> getItems(Sort s) {
-        return database.getAll();
+        return database.getDatabase(s);
     }
 
     @Override

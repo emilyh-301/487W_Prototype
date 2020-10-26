@@ -3,14 +3,22 @@ package com.hotel.database.load;
 import com.hotel.database.MemberDatabase;
 import com.hotel.database.item.MenuItemDatabase;
 import com.hotel.database.request.*;
-import com.hotel.database.staff.StaffDatabase;
+import com.hotel.database.room.RoomDatabase;
+import com.hotel.database.user.PrivilegeRepository;
+import com.hotel.database.user.RoleRepository;
+import com.hotel.database.user.staff.UserDatabase;
 import com.hotel.model.item.MenuItem;
+import com.hotel.model.user.Privilege;
+import com.hotel.model.user.Role;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.awt.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 
 /**
  * Called when the application is initialized or refreshed.
@@ -18,9 +26,11 @@ import java.awt.*;
 @Component
 public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent> {
 
+    private boolean privileges_already_setup = false;
+
     private final MemberDatabase database;
 
-    private final StaffDatabase staffRepo;
+    private final UserDatabase staffRepo;
 
     @Qualifier("Request")
     private final RequestDatabase requestRepo;
@@ -36,9 +46,15 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
 
     private final MenuItemDatabase itemRepo;
 
-    public DatabaseLoader(MemberDatabase database, StaffDatabase staffRepo, RequestDatabase requestRepo,
+    private final RoomDatabase roomRepo;
+
+    private final PrivilegeRepository privRepo;
+
+    private final RoleRepository roleRepo;
+
+    public DatabaseLoader(MemberDatabase database, UserDatabase staffRepo, RequestDatabase requestRepo,
                           MaintenanceRequestDatabase maintenanceRepo, GeneralRequestDatabase generalRepo,
-                          WakeUpRequestDatabase wakeupRepo, MenuItemDatabase itemRepo) {
+                          WakeUpRequestDatabase wakeupRepo, MenuItemDatabase itemRepo, RoomDatabase roomRepo, PrivilegeRepository privRepo, RoleRepository roleRepo) {
         this.database = database;
         this.staffRepo = staffRepo;
         this.requestRepo = requestRepo;
@@ -46,10 +62,28 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
         this.generalRepo = generalRepo;
         this.wakeupRepo = wakeupRepo;
         this.itemRepo = itemRepo;
+        this.roomRepo = roomRepo;
+        this.privRepo = privRepo;
+        this.roleRepo = roleRepo;
     }
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
+
+        /*
+         * Set up privileges and roles
+         */
+        if(!privileges_already_setup) {
+            Privilege guestPriv = createPrivilegeIfNotFound("GUEST_PRIVILEGES");
+            Privilege staffPriv = createPrivilegeIfNotFound("STAFF_PRIVILEGES");
+
+            createRoleIfNotFound("ROLE_GUEST", Collections.singletonList(guestPriv));
+            createRoleIfNotFound("ROLE_STAFF", Arrays.asList(guestPriv, staffPriv));
+
+            privileges_already_setup = true;
+        }
+
+
         MenuItem n = new MenuItem();
         n.setId(1);
         n.setName("Good Food");
@@ -59,5 +93,29 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
         itemRepo.add(n);
         n.setId(2);
         itemRepo.add(n);
+    }
+
+    @Transactional
+    Privilege createPrivilegeIfNotFound(String name) {
+
+        Privilege privilege = privRepo.find(name);
+        if (privilege == null) {
+            privilege = new Privilege(name);
+            privRepo.add(privilege);
+        }
+        return privilege;
+    }
+
+    @Transactional
+    Role createRoleIfNotFound(
+            String name, Collection<Privilege> privileges) {
+
+        Role role = roleRepo.find(name);
+        if (role == null) {
+            role = new Role(name);
+            role.setPrivileges(privileges);
+            roleRepo.add(role);
+        }
+        return role;
     }
 }

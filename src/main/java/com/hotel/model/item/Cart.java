@@ -34,6 +34,12 @@ public class Cart {
         this.items = items;
     }
 
+    public Cart(boolean completed, int room, Set<CartItem> items) {
+        this.completed = completed;
+        this.room = room;
+        this.items = items;
+    }
+
     public void addItem(CartItem item) {
         items.add(item);
     }

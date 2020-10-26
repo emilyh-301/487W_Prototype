@@ -51,6 +51,18 @@ public class Order {
         this.time = new Date(time);
     }
 
+    public Order(Cart cart, Status status, Date time) {
+        this.cart = cart;
+        this.status = status;
+        this.time = time;
+    }
+
+    public Order(Cart cart, Status status, long time) {
+        this.cart = cart;
+        this.status = status;
+        this.time = new Date(time);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

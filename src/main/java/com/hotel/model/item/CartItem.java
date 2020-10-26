@@ -39,6 +39,13 @@ public class CartItem {
         this.cart = cart;
     }
 
+    public CartItem(MenuItem item, int quantity, String notes, Cart cart) {
+        this.item = item;
+        this.quantity = quantity;
+        this.notes = notes;
+        this.cart = cart;
+    }
+
     public void incrementQuantityBy(int i) {
         quantity += i;
     }
