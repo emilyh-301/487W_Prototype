@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Shopping Cart</title>
+    <title>Title</title>
 
     <!-- copied from home.html -->
     <!-- Bootstrap stuff -->
@@ -22,7 +22,7 @@
         <th scope="col">price</th>
         <th scope="col">notes</th>
         <th scope="col">description</th>
-        <th scope="col">image;</th>
+        <th scope="col">&nbsp;</th>
         <th scope="col">&nbsp;</th>
     </tr>
     </thead>
@@ -35,25 +35,15 @@
         <td th:text="${cart.getItem().getPrice()}"></td>
         <td th:text="${cart.getNotes()}"></td>
         <td th:text="${cart.getItem().getDescription()}"></td>
-        <td th:text="${cart.getItem().getImage()}"></td>
 
         <!-- A button to remove this item -->
         <td>
-            <a th:href="@{'/database/edit/' + ${Cart}}" class="btn btn-info btn-danger">
+            <a th:href="@{'/database/edit/' + ${Cart}}" class="btn btn-info btn-warning">
                 Remove Item
             </a>
         </td>
-    </tr>
 
-    <a href="home.html">
-        <button type="button" class="btn btn-primary">Checkout</button>
-    </a>
-    <a href="home.html">
-        <button type="button" class="btn btn-primary">Return to menu</button>
-    </a>
-    <a href="home.html">
-    <button type="button" class="btn btn-secondary">Cancel Order</button>
-    </a>
+    </tr>
 
     </tbody>
 </table>
