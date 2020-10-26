@@ -50,14 +50,14 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-//        MenuItem n = new MenuItem();
-//        n.setId(1);
-//        n.setName("Good Food");
-//        n.setDescription("We sell good food");
-//        n.setPrice(13.4);
-////        n.setImage("/images/food.jpg");
-//        itemRepo.add(n);
-//        n.setId(2);
-//        itemRepo.add(n);
+        MenuItem n = new MenuItem();
+        n.setId(1);
+        n.setName("Good Food");
+        n.setDescription("We sell good food");
+        n.setPrice(13.4);
+//        n.setImage("/images/food.jpg");
+        itemRepo.add(n);
+        n.setId(2);
+        itemRepo.add(n);
     }
 }
