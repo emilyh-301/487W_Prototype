@@ -11,6 +11,7 @@ import com.hotel.model.user.staff.Staff;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -63,6 +64,9 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
+
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        Staff staff = new Staff("test", encoder.encode("test"));
 
         MenuItem n = new MenuItem();
         n.setId(1);

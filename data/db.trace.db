@@ -995,3 +995,18 @@ insert into roles_privileges (role_id, priv_id) values (?, ?) [42122-193]
 	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
 	at java.lang.reflect.Method.invoke(Method.java:498)
 	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+2020-10-26 14:55:48 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Table "ROOM" not found; SQL statement:
+select * from room [42102-193]
+2020-10-26 15:06:04 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLException: Table "CARTS" not found; SQL statement:
+select * from carts [42102-193]
+2020-10-26 15:20:34 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "DELETE *[*] FROM APPLICATION_USER "; expected "identifier"; SQL statement:
+delete * from application_user [42001-193]
+2020-10-26 15:20:53 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "DELETE *[*] FROM APPLICATION_USER WHERE ID = 0 "; expected "identifier"; SQL statement:
+delete * from application_user where id = 0 [42001-193]
+2020-10-26 15:20:57 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "DROP *[*] FROM APPLICATION_USER WHERE ID = 0 "; expected "TABLE, INDEX, USER, SEQUENCE, CONSTANT, TRIGGER, VIEW, ROLE, ALIAS, SCHEMA, ALL, DOMAIN, TYPE, DATATYPE, AGGREGATE"; SQL statement:
+drop * from application_user where id = 0 [42001-193]

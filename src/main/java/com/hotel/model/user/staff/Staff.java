@@ -35,7 +35,7 @@ public class Staff extends ApplicationUser implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Collection<GrantedAuthority> authorities = new ArrayList<>();
-        SimpleGrantedAuthority authority = new SimpleGrantedAuthority("USER");
+        SimpleGrantedAuthority authority = new SimpleGrantedAuthority("STAFF");
 
         authorities.add(authority);
         return authorities;
@@ -48,7 +48,7 @@ public class Staff extends ApplicationUser implements UserDetails {
      */
     @Override
     public String getPassword() {
-        return null;
+        return password;
     }
 
     /**
@@ -58,7 +58,7 @@ public class Staff extends ApplicationUser implements UserDetails {
      */
     @Override
     public String getUsername() {
-        return null;
+        return username;
     }
 
     /**

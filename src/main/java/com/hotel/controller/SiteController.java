@@ -17,6 +17,21 @@ public class SiteController {
         this.service = service;
     }
 
+    @GetMapping("/login")
+    public String login(Model model) {
+
+        return "login";
+
+    }
+
+    @GetMapping("/login_failure")
+    public String loginFail(Model model) {
+
+        model.addAttribute("failure", "Incorrect credentials.");
+        return "login";
+
+    }
+
     /**
      *
      * @param model The model for the MVC design pattern.
@@ -24,12 +39,6 @@ public class SiteController {
      */
     @GetMapping("/")
     public String home(Model model) {
-
-        /*
-         * Add the members from the db to the model so we can pass it along to the view.
-         */
-//        ArrayList<GroupMember> members = service.getMembers();
-//        model.addAttribute("members", members);
         return "home";
     }
 

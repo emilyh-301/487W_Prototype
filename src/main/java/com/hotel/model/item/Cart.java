@@ -31,13 +31,13 @@ public class Cart {
         this.id = id;
         this.completed = completed;
         this.room = room;
-        this.items = items;
+        this.items = items == null? new HashSet<>() : items;
     }
 
     public Cart(boolean completed, int room, Set<CartItem> items) {
         this.completed = completed;
         this.room = room;
-        this.items = items;
+        this.items = items == null? new HashSet<>() : items;
     }
 
     public void addItem(CartItem item) {

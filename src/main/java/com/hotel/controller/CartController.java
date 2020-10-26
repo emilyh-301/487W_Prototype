@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.HashSet;
+
 @Controller
 @RequestMapping("/cart")
 public class CartController {
@@ -17,10 +19,10 @@ public class CartController {
         this.cart_service = cart_service;
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     public String viewCart(Model model) {
         Cart cart = cart_service.find(0);
-        model.addAttribute("Cart", cart.getItems());
+        model.addAttribute("Cart", cart == null? new HashSet<>() : cart.getItems());
         return "cart";
     }
 }
