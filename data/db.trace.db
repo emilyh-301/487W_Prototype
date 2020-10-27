@@ -1033,3 +1033,17 @@ delete from user_roles where true = true
 delete from permissions where true = true
 delete from roles where true = true
 delete from application_user where true = true [42000-193]
+2020-10-26 21:22:20 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "DELETE FROM APPLICATION_USER WHERE USER_ID = 15752
+SELECT[*] * FROM APPLICATION_USER "; SQL statement:
+delete from Application_User where user_id = 15752
+select * from APPLICATION_USER [42000-193]
+2020-10-26 22:09:59 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT * CART[*] "; SQL statement:
+select * CART [42000-193]
+2020-10-26 22:10:03 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT * CART[*] "; SQL statement:
+select * CART [42000-193]
+2020-10-26 22:10:04 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT * CART[*] "; SQL statement:
+select * CART [42000-193]
