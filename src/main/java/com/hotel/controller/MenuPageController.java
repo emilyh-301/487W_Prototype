@@ -6,6 +6,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
@@ -28,19 +29,12 @@ public class MenuPageController {
         return "menu";
     }
 
-    @GetMapping("/login_success")
-    public String loginSuccess(Model model) {
+    @GetMapping("/success")
+    public String successfulLogin(Model model) {
+        System.out.println("apple");
         Collection<MenuItem> items  = service.getItems(new Sort(Sort.Direction.DESC, "id"));
         model.addAttribute("items", items);
-        model.addAttribute("success", "You have been successfully logged in.");
         return "menu";
     }
 
-    @GetMapping("/logout_success")
-    public String logoutSuccess(Model model) {
-        Collection<MenuItem> items  = service.getItems(new Sort(Sort.Direction.DESC, "id"));
-        model.addAttribute("items", items);
-        model.addAttribute("success", "You have been successfully logged out.");
-        return "menu";
-    }
 }

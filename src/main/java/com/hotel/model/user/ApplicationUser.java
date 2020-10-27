@@ -1,6 +1,7 @@
 package com.hotel.model.user;
 
 import com.hotel.model.item.Cart;
+import com.hotel.model.room.Room;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -31,6 +32,10 @@ public class ApplicationUser implements UserDetails {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Cart> user_carts;
+
+    @OneToOne
+    @JoinColumn(name = "room")
+    private Room room;
 
     public ApplicationUser() {
         this.user_roles = new HashSet<>();
@@ -206,6 +211,14 @@ public class ApplicationUser implements UserDetails {
 
     public void setUser_carts(Set<Cart> user_carts) {
         this.user_carts = user_carts;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
     //</editor-fold>

@@ -1,5 +1,6 @@
 package com.hotel.database.jpa;
 
+import com.hotel.model.room.Room;
 import com.hotel.model.user.ApplicationUser;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Query;
@@ -16,7 +17,9 @@ public interface JpaUserRepository extends CrudRepository<ApplicationUser, Long>
     @Query(value = "select s from ApplicationUser s")
     Collection<ApplicationUser> getAll(Sort s);
 
-    @Query(value = "select s from ApplicationUser s where s.username = :username")
-    Collection<ApplicationUser> getAll(@Param("username") String username, Sort s);
+    @Query(value = "select s from ApplicationUser s where " +
+            "(:username is null or s.username = :username) and " +
+            "(:room is null or s.room = :room)")
+    Collection<ApplicationUser> getAll(@Param("username") String username, @Param("room") Room room, Sort s);
 
 }

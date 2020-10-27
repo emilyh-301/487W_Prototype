@@ -62,7 +62,9 @@ public class RoomDatabase {
 
     public void assignGuest(Room room, ApplicationUser g) {
         room.setGuest(g);
+        g.setRoom(room);
         repo.save(room);
+        userRepository.save(g);
     }
 
 }

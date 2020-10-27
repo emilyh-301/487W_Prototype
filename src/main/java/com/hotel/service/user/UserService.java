@@ -19,12 +19,9 @@ public class UserService {
 
     private CartDatabase cartDatabase;
 
-    private RoomDatabase roomDatabase;
-
-    public UserService(UserDatabase database, CartDatabase cartDatabase, RoomDatabase roomDatabase) {
+    public UserService(UserDatabase database, CartDatabase cartDatabase) {
         this.database = database;
         this.cartDatabase = cartDatabase;
-        this.roomDatabase = roomDatabase;
     }
 
     public void add(ApplicationUser user) {
@@ -51,10 +48,6 @@ public class UserService {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         return find(username);
-    }
-
-    public Room getRoom(ApplicationUser user) {
-        return roomDatabase.find(user);
     }
 
     public Cart getActiveCart(ApplicationUser user) {

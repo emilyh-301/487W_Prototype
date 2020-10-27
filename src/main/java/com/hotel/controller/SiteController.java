@@ -1,11 +1,15 @@
 package com.hotel.controller;
 
-import com.hotel.model.user.ApplicationUser;
+import com.hotel.model.item.MenuItem;
 import com.hotel.service.item.CartService;
+import com.hotel.service.item.MenuItemService;
 import com.hotel.service.user.UserService;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import java.util.Collection;
 
 @Controller
 public class SiteController {
@@ -14,9 +18,12 @@ public class SiteController {
 
     private final CartService cartService;
 
-    public SiteController(UserService userService, CartService cartService) {
+    private final MenuItemService service;
+
+    public SiteController(UserService userService, CartService cartService, MenuItemService service) {
         this.userService = userService;
         this.cartService = cartService;
+        this.service = service;
     }
 
     @GetMapping("/login")
@@ -27,12 +34,18 @@ public class SiteController {
 
     @GetMapping("/login_success")
     public String loginSuccess(Model model) {
-        ApplicationUser user = userService.getCurrentUser();
-        if(!user.hasActiveCart()) {
-            userService.createEmptyCart(user);
-        }
+        Collection<MenuItem> items  = service.getItems(new Sort(Sort.Direction.DESC, "id"));
+        model.addAttribute("items", items);
+        model.addAttribute("success", "You have been successfully logged in.");
+        return "menu";
+    }
 
-        return "redirect:/menu";
+    @GetMapping("/logout_success")
+    public String logoutSuccess(Model model) {
+        Collection<MenuItem> items  = service.getItems(new Sort(Sort.Direction.DESC, "id"));
+        model.addAttribute("items", items);
+        model.addAttribute("success", "You have been successfully logged out.");
+        return "menu";
     }
 
     @GetMapping("/login_failure")
