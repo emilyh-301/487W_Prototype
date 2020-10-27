@@ -23,7 +23,7 @@
     <header th:insert="navbar::header"></header>
 
 
-        <p scope="row" th:text="Total price &dollar; ${total}"></p>
+        <p scope="row" th:text="${'Total price &dollar;' + total}"></p>
 
 
     <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
