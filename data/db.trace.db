@@ -1050,3 +1050,6 @@ select * CART [42000-193]
 2020-10-27 18:48:41 jdbc[14]: exception
 org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO ITEM_ALLERGENS (1[*], 'Dairy'), (1, 'Gluten'), (2, 'Gluten'), (3, 'Gluten'), (3, 'Dairy') "; expected "identifier"; SQL statement:
 insert into item_allergens (1, 'Dairy'), (1, 'Gluten'), (2, 'Gluten'), (3, 'Gluten'), (3, 'Dairy') [42001-193]
+2020-10-27 18:56:05 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Table "MENU_ITEM" not found; SQL statement:
+select * from menu_item [42102-193]
