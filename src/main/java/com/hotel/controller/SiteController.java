@@ -5,6 +5,9 @@ import com.hotel.service.item.CartService;
 import com.hotel.service.item.MenuItemService;
 import com.hotel.service.user.UserService;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -30,10 +33,16 @@ public class SiteController {
         this.service = service;
     }
 
+    private boolean isAuthenticated() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if(auth == null || AnonymousAuthenticationToken.class.isAssignableFrom(auth.getClass())) return false;
+
+        return auth.isAuthenticated();
+    }
+
     @GetMapping("/login")
     public ModelAndView login(ModelMap model) {
-        return new ModelAndView("login", model);
-
+        return new ModelAndView(isAuthenticated()? "redirect:menu" : "login", model);
     }
 
     @GetMapping("/login_success")
