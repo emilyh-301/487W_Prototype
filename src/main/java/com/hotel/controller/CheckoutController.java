@@ -31,7 +31,7 @@ public class CheckoutController {
             }
         }
         model.addAttribute("cart", cart);
-        model.addAttribute("total", sum);
+        model.addAttribute("total", String.format("%.2f", sum));
         return "checkout";
     }
 }
