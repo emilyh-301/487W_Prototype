@@ -43,7 +43,7 @@ public class SiteController {
 
     @GetMapping("/logout_success")
     public RedirectView logoutSuccess(RedirectAttributes attributes) {
-        attributes.addFlashAttribute("success", "You have been successfully logged in.");
+        attributes.addFlashAttribute("success", "You have been successfully logged out.");
         return new RedirectView("login", true);
     }
 
