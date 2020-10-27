@@ -57,7 +57,7 @@ public class MenuPageController {
         CartItem cartItem = new CartItem(0, service.find(itemId), qty,itemNotes, cart);
         cartService.addToCart(cart, cartItem);
 
-        return "menu";
+        return "redirect:/menu";
     }
 
 }
