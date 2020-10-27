@@ -39,6 +39,27 @@ public class CartService {
         database.add(cart);
     }
 
+    public void removeFromCart(Cart cart, Long cartItem){
+
+        //cartItemDatabase.remove(cartItem);
+        cart.removeItem(cartItemDatabase.find(cartItem));
+        // update cart
+        database.add(cart);
+    }
+
+    public void removeFromCart(Cart cart, CartItem cartItem){
+
+        //cartItemDatabase.remove(cartItem);
+        cart.removeItem(cartItem);
+        // update cart
+        database.add(cart);
+    }
+
+    public void clearCart(Cart cart) {
+        cart.clear();
+        database.add(cart);
+    }
+
     public Cart find(long id) {
         return database.find(id);
     }

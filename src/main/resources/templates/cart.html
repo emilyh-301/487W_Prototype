@@ -43,7 +43,7 @@
         <th scope="col"> <a href="/menu">
             <button type="button" class="btn btn-primary">Return to menu</button>
         </a> </th>
-        <th scope="col"> <a href="/menu">
+        <th scope="col"> <a href="/cart/clear">
             <button type="button" class="btn btn-secondary">Cancel Order</button>
         </a> </th>
     </tr>
@@ -61,7 +61,7 @@
 
         <!-- A button to remove this item -->
         <td>
-            <a th:href="@{'/database/edit/' + ${Cart}}" class="btn btn-info btn-danger">
+            <a th:href="@{'/cart/remove/' + ${cart.getId()}}" class="btn btn-info btn-danger">
                 Remove Item
             </a>
         </td>

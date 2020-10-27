@@ -7,8 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.HashSet;
 
@@ -29,10 +33,23 @@ public class CartController {
     public ModelAndView viewCart(ModelMap model) {
         Cart cart = userService.getActiveCart(userService.getCurrentUser());
 
-        if(cart != null)
-            model.addAttribute("Cart", cart.getItems());
-        else
-            model.addAttribute("Cart", new HashSet<Integer>());
+        model.addAttribute("Cart", cart == null? new HashSet<>() : cart.getItems());
         return new ModelAndView("cart", model);
+    }
+
+    @GetMapping("/remove/{id}")
+    public RedirectView removeItem(RedirectAttributes attributes, @PathVariable("id") Long id) {
+        Cart cart = userService.getActiveCart(userService.getCurrentUser());
+        cart_service.removeFromCart(cart, id);
+
+        return new RedirectView("/cart");
+    }
+
+    @GetMapping("/clear")
+    public RedirectView clearCart(RedirectAttributes attributes) {
+        Cart cart = userService.getActiveCart(userService.getCurrentUser());
+        cart_service.clearCart(cart);
+
+        return new RedirectView("/menu");
     }
 }
