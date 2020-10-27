@@ -51,12 +51,15 @@ public class UserService {
     }
 
     public Cart getActiveCart(ApplicationUser user) {
+        if(!user.hasActiveCart()){
+            createEmptyCart(user);
+        }
         return user.getActiveCart();
     }
 
     public void createEmptyCart(ApplicationUser user) {
-        Cart c = new Cart(false, user, new HashSet<>());
-        cartDatabase.add(c);
+        Cart c = new Cart(0,false, user, new HashSet<>());
+
         user.getUser_carts().add(c);
         database.addUser(user);
     }

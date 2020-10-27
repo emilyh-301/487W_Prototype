@@ -26,6 +26,7 @@ public class CartController {
     @GetMapping("")
     public String viewCart(Model model) {
         Cart cart = userService.getActiveCart(userService.getCurrentUser());
+
         if(cart != null)
             model.addAttribute("Cart", cart.getItems());
         else

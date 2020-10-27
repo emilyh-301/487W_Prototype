@@ -49,6 +49,24 @@
                             <div class="modal-body">
                                 <img src="/images/food.jpg" class="img-fluid"/>
                                 <p class="modal-item-description" th:text="${item.getDescription()}"></p>
+
+                                <form action="/menu/addtocart" method="POST">
+                                    <div class="form-group">
+                                        <label for="item_qty">Quantity</label>
+                                        <input type="number" class="form-control" id="item_qty" name="item_qty" value="1" >
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="item_notes">Item Notes</label>
+                                        <input type="text" class="form-control" id="item_notes" name="item_notes" placeholder="Item Notes">
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="number" class="form-control" id="item_id" name="item_id" th:value="${item.getId()}">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+
+
+
                                 <div class="allergens" th:unless="${item.getAllergens() != null}">
                                     <p>Allergens</p>
                                     <ul class="allergens-list">
