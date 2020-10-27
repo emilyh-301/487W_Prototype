@@ -9,10 +9,12 @@ import com.hotel.service.user.UserService;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Collection;
 
@@ -31,22 +33,14 @@ public class MenuPageController {
     }
 
     @GetMapping("")
-    public String getMenu(Model model){
+    public ModelAndView getMenu(ModelMap model){
         Collection<MenuItem> items  = service.getItems(new Sort(Sort.Direction.DESC, "id"));
         model.addAttribute("items", items);
-        return "menu";
-    }
-
-    @GetMapping("/success")
-    public String successfulLogin(Model model) {
-        System.out.println("apple");
-        Collection<MenuItem> items  = service.getItems(new Sort(Sort.Direction.DESC, "id"));
-        model.addAttribute("items", items);
-        return "menu";
+        return new ModelAndView("menu", model);
     }
 
     @PostMapping("/addtocart")
-    public String addToCart(Model model, @RequestParam("item_id") long itemId, @RequestParam("item_qty") int qty,
+    public ModelAndView addToCart(ModelMap model, @RequestParam("item_id") long itemId, @RequestParam("item_qty") int qty,
                             @RequestParam("item_notes") String itemNotes){
 
         // get user cart
@@ -57,7 +51,7 @@ public class MenuPageController {
         CartItem cartItem = new CartItem(0, service.find(itemId), qty,itemNotes, cart);
         cartService.addToCart(cart, cartItem);
 
-        return "redirect:/menu";
+        return new ModelAndView("redirect:/menu", model);
     }
 
 }

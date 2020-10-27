@@ -8,6 +8,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.Collection;
 
@@ -33,27 +35,20 @@ public class SiteController {
     }
 
     @GetMapping("/login_success")
-    public String loginSuccess(Model model) {
-        Collection<MenuItem> items  = service.getItems(new Sort(Sort.Direction.DESC, "id"));
-        model.addAttribute("items", items);
-        model.addAttribute("success", "You have been successfully logged in.");
-        return "menu";
+    public RedirectView loginSuccess(RedirectAttributes attributes) {
+        return new RedirectView("/menu");
     }
 
     @GetMapping("/logout_success")
-    public String logoutSuccess(Model model) {
-        Collection<MenuItem> items  = service.getItems(new Sort(Sort.Direction.DESC, "id"));
-        model.addAttribute("items", items);
-        model.addAttribute("success", "You have been successfully logged out.");
-        return "menu";
+    public RedirectView logoutSuccess(RedirectAttributes attributes) {
+        attributes.addFlashAttribute("success", "You have been successfully logged in.");
+        return new RedirectView("login", true);
     }
 
     @GetMapping("/login_failure")
-    public String loginFail(Model model) {
-
-        model.addAttribute("failure", "Incorrect credentials.");
-        return "login";
-
+    public RedirectView loginFail(RedirectAttributes attributes) {
+        attributes.addFlashAttribute("failure", "Incorrect credentials.");
+        return new RedirectView("login", true);
     }
 
     /**

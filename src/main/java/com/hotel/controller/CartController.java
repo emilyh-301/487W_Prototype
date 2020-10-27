@@ -5,8 +5,10 @@ import com.hotel.service.item.CartService;
 import com.hotel.service.user.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashSet;
 
@@ -24,13 +26,13 @@ public class CartController {
     }
 
     @GetMapping("")
-    public String viewCart(Model model) {
+    public ModelAndView viewCart(ModelMap model) {
         Cart cart = userService.getActiveCart(userService.getCurrentUser());
 
         if(cart != null)
             model.addAttribute("Cart", cart.getItems());
         else
             model.addAttribute("Cart", new HashSet<Integer>());
-        return "cart";
+        return new ModelAndView("cart", model);
     }
 }

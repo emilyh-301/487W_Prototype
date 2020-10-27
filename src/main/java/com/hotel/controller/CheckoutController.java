@@ -6,8 +6,10 @@ import com.hotel.service.item.CartService;
 import com.hotel.service.user.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/checkout")
@@ -22,7 +24,7 @@ public class CheckoutController {
     }
 
     @GetMapping("/")
-    public String viewCheckout(Model model) {
+    public ModelAndView viewCheckout(ModelMap model) {
         Cart cart = userService.getActiveCart(userService.getCurrentUser());
         double sum = 0;
         if(cart != null) {
@@ -32,6 +34,6 @@ public class CheckoutController {
         }
         model.addAttribute("cart", cart);
         model.addAttribute("total", String.format("%.2f", sum));
-        return "checkout";
+        return new ModelAndView("checkout", model);
     }
 }
