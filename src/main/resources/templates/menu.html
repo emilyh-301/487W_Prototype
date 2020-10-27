@@ -27,7 +27,10 @@
     <div class="row menu-container">
         <div th:each="item : ${items}" class="col-4">
 
-                <img class="card-img-top img-fluid" src="/images/food.jpg" th:alt="${item.getName()}">
+                <!-- Make image function as a button. Display image associated with item, or a default image if it's null-->
+                <input type="image" class="card-img-top img-fluid" th:src="${item.getImage() == null} ? '/images/food.jpg' : ${item.getImage()}"
+                       data-toggle="modal" th:data-target="${'#mi' + item.getId()}" th:alt="${item.getName()}" />
+
                 <div class="card-body">
                     <h5 class="card-title" th:text="${item.getName()}"></h5>
                     <p class="card-text" th:text="${item.getDescription()}"></p>
