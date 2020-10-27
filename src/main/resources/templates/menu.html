@@ -20,6 +20,8 @@
 <header th:insert="navbar::header"></header>
 
 <div class="container">
+
+    <!-- Add padding? -->
     <div class="row justify-content-md-center">
         <h1>Today's Menu</h1>
     </div>
@@ -27,11 +29,12 @@
     <div class="row menu-container">
         <div th:each="item : ${items}" class="col-4">
 
-                <!-- Make image function as a button. Display image associated with item, or a default image if it's null-->
-                <input type="image" class="card-img-top img-fluid" th:src="${item.getImage() == null} ? '/images/food.jpg' : ${item.getImage()}"
+                <input type="image" class="card-img-top img-fluid" th:src="${item.getImage() == null} ? '/images/food.jpg' : ${'/images/' + item.getImage()}"
                        data-toggle="modal" th:data-target="${'#mi' + item.getId()}" th:alt="${item.getName()}" />
 
                 <div class="card-body">
+
+                    <!-- get rid of indent so that it's aligned with the image? -->
                     <h5 class="card-title" th:text="${item.getName()}"></h5>
                     <p class="card-text" th:text="${item.getDescription()}"></p>
                     <button type="button" class="btn btn-primary" data-toggle="modal" th:data-target="${'#mi' + item.getId()}">
@@ -50,7 +53,7 @@
                                 </button>
                             </div>
                             <div class="modal-body">
-                                <img src="/images/food.jpg" class="img-fluid"/>
+                                <img th:src="${item.getImage() == null} ? '/images/food.jpg' : ${'/images/' + item.getImage()}" class="img-fluid"/>
                                 <p class="modal-item-description" th:text="${item.getDescription()}"></p>
 
                                 <form action="/menu/addtocart" method="POST">
@@ -77,12 +80,15 @@
                                     </ul>
                                 </div>
                             </div>
+
+                            <!--
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button th:id="${'addToCart_' + item.getId()}" type="button" class="addToCart btn btn-primary">
                                     <i class="fas fa-shopping-cart"></i>
                                     Add To Cart</button>
                             </div>
+                            -->
                         </div>
                     </div>
                 </div>
