@@ -1,7 +1,9 @@
 package com.hotel.service.item;
 
+import com.hotel.database.item.CartItemDatabase;
 import com.hotel.model.item.Cart;
 import com.hotel.database.item.CartDatabase;
+import com.hotel.model.item.CartItem;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +15,11 @@ import java.util.Set;
 public class CartService {
 
     private final CartDatabase database;
+    private final CartItemDatabase cartItemDatabase;
 
-    public CartService(CartDatabase database) {
+    public CartService(CartDatabase database, CartItemDatabase cartItemDatabase) {
         this.database = database;
+        this.cartItemDatabase = cartItemDatabase;
     }
 
     public Collection<Cart> getCarts(Sort s) {
@@ -23,6 +27,15 @@ public class CartService {
     }
 
     public void add(Cart cart) {
+        database.add(cart);
+    }
+
+    public void addToCart(Cart cart, CartItem cartItem){
+
+        cartItem.setCart(cart);
+
+        cart.addItem(cartItem);
+        // update cart
         database.add(cart);
     }
 

@@ -8,9 +8,13 @@ import com.hotel.database.user.PermissionsDatabase;
 import com.hotel.database.user.RolesDatabase;
 import com.hotel.database.user.UserDatabase;
 import com.hotel.model.item.MenuItem;
+import com.hotel.model.user.ApplicationUser;
+import com.hotel.model.user.Permissions;
+import com.hotel.model.user.Roles;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 /**
@@ -65,13 +69,13 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
 
-        /* Users already generated, don't uncomment
-        if(!privileges_already_setup) {
+//        /* Users already generated, don't uncomment
+/*        if(!privileges_already_setup) {
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
 
-            rolesRepo.add(new Roles("ROLE_STAFF", new Permissions("STAFF_PERMISSION")));
-            rolesRepo.add(new Roles("ROLE_USER", new Permissions("USER_PERMISSION")));
+//            rolesRepo.add(new Roles("ROLE_STAFF", new Permissions("STAFF_PERMISSION")));
+//            rolesRepo.add(new Roles("ROLE_USER", new Permissions("USER_PERMISSION")));
 
             Roles staff = rolesRepo.find("ROLE_STAFF");
             Roles user = rolesRepo.find("ROLE_USER");
@@ -93,9 +97,9 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
 
             privileges_already_setup = true;
 
-        }
+        }*/
 
-         */
+//         */
 
         MenuItem n = new MenuItem();
         n.setId(1);
