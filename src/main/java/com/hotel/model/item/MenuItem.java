@@ -165,7 +165,7 @@ public class MenuItem {
         return description;
     }
 
-    public String getDescriptionExcerpt() { return description.substring(0, 40);}
+    public String getDescriptionExcerpt() { return description.substring(0, description.length() < 40 ? description.length() : 40);}
 
     public void setDescription(String description) {
         this.description = description;
