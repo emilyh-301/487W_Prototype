@@ -23,17 +23,38 @@
 
 <header th:insert="navbar::header"></header>
 
+<div class="top-title-panel text-center p-5 mb-3">
+    <div class="container">
+        <h1>   Hotel California Inc.</h1>
+        <h1> Room Service Re-imagined  </h1>
+        <span>
+            <span class="fa fa-tag text-muted ml-2"></span> <a href="/menu" class="text-muted">Menu Page</a>
+            <span class="fa fa-tag text-muted ml-2"></span> <a href="#" class="text-muted">Request Assistance</a>
+            <span class="fa fa-tag text-muted ml-2"></span> <a href="/cart" class="text-muted">Cart</a>
+            <span class="fa fa-tag text-muted ml-2"></span> <a href="/login" class="text-muted">Login</a>
+        </span>
+    </div>
+</div>
+
 <div class="container">
-    
-        <h1>Room Service Re-imagined</h1>
+
         <p>
             Experience the modern age with our sleek new interface for room services.
             The ability to order room service or request assistance from one of our dedicated
             staff members is at now your fingertips. So what are you waiting for?.
         </p>
     </div>
-<!--    <div th:replace="fragments/footer :: footer">&copy; 2020 Hotel California Inc.</div>-->
+<!--    <div th:replace="fragments/footer :: footer">&copy; 2020 Hotel California Inc.
+   We love the major but hate the technology</div>-->
 </div>
+
+<footer class="footer">
+    <div class="container">
+
+         <b>&copy; 2020 Hotel California Inc. </b>
+
+    </div>
+</footer>
 
 
 </body>
