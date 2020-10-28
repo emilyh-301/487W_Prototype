@@ -20,9 +20,9 @@
 
 </head>
 <body>
-<div th:replace="fragments/header :: header">
-    ...
-</div>
+
+<header th:insert="navbar::header"></header>
+
 <div class="container">
     
         <h1>Room Service Re-imagined</h1>
@@ -32,10 +32,8 @@
             staff members is at now your fingertips. So what are you waiting for?.
         </p>
     </div>
-    <div th:replace="fragments/footer :: footer">&copy; 2020 Hotel California Inc.</div>
+<!--    <div th:replace="fragments/footer :: footer">&copy; 2020 Hotel California Inc.</div>-->
 </div>
-
-<header th:insert="navbar::header"></header>
 
 
 </body>

@@ -68,7 +68,7 @@ public class SiteController {
 
     @GetMapping("/login_success")
     public RedirectView loginSuccess(RedirectAttributes attributes) {
-        return new RedirectView("/home");
+        return new RedirectView("");
     }
 
     @GetMapping("/logout_success")
