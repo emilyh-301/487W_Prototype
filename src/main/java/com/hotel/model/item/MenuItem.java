@@ -185,7 +185,9 @@ public class MenuItem {
         for(Allergen a : allergens) {
             s.append(a.toString()).append(", ");
         }
-        s.deleteCharAt(s.length() - 1).deleteCharAt(s.length() - 1);
+
+        //Delete the last comma and space
+        if(s.length() > 2) s.deleteCharAt(s.length() - 1).deleteCharAt(s.length() - 1);
 
         return s.toString();
     }
