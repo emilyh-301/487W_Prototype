@@ -13,22 +13,74 @@
             integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
             crossorigin="anonymous"></script>
     <script rel="script" src="/js/bootstrap.bundle.js"></script>
-
-
 </head>
-<body>
-    <header th:insert="navbar::header"></header>
-<div class="container">
-        <p scope="row" th:text="${'Total price &dollar;' + total}"></p>
 
-    <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+<div>
+    <header th:insert="navbar::header"></header>
+</div>
+
+<div class="container">
+    <div class="row justify-content-md-center">
+        <h1>Checkout</h1>
+    </div>
+
+    <table class="table table-hover table-borderless table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">name</th>
+            <th scope="col">quantity</th>
+            <th scope="col">price</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="Cart : ${cart.getItems()}">
+            <td th:text="${Cart.getItem().getName()}"></td>
+            <td th:text="${Cart.getQuantity()}"></td>
+            <td th:text="${Cart.getItem().getPrice()}"></td>
+        </tr>
+
+        </tbody>
+
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col">Total Cost</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        <tr>
+            <td></td>
+            <td></td>
+            <td th:text="${total}"></td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+
+<div class="container">
+    <div class="btn-toolbar justify-content-between" style="float: right"  role="toolbar" aria-label="Toolbar with button groups">
         <div class="btn-group" role="group" aria-label="First group">
-            <button type="button" class="btn btn-primary">Pay with card</button>
-            <button type="button" class="btn btn-primary">Charge to room</button>
-            <button type="button" class="btn btn-secondary">Cancel order</button>
+
+            <button type="button" class="btn btn-primary" >Pay with card</button>
+
+            <button type="button" class="btn btn-primary" >Charge to room</button>
+
+        </div>
+    </div>
+
+    <div class="btn-toolbar justify-content-between" style="float: right"  role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group" role="group" aria-label="First group">
+
+            <button type="button" class="btn btn-secondary" >Edit Cart</button>
+
+            <button type="button" class="btn btn-secondary" >Cancel order</button>
+
         </div>
     </div>
 </div>
 
-</body>
 </html>
