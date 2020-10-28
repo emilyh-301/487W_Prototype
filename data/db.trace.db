@@ -1141,3 +1141,11 @@ insert into item_allergens values (1, 'gluten'), (1, 'dairy'), (2, 'gluten) [420
 2020-10-27 19:16:32 jdbc[13]: exception
 org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "insert into item_allergens values (1, 'gluten'), (1, 'dairy'), (2, [*]'gluten"")"; SQL statement:
 insert into item_allergens values (1, 'gluten'), (1, 'dairy'), (2, 'gluten") [42000-193]
+2020-10-27 20:45:27 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT * FROM MENU_ITEMS
+SELECT[*] * FROM ALLERGENS "; SQL statement:
+select * from menu_items
+select * from allergens [42000-193]
+2020-10-27 20:54:26 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO MENU_ITEMS VALUES(8, 'Fried pickles with your choice of sauce on the side', 'fried-pickles.jpg' 'Fried Pickles'[*], 4.00) "; expected "[, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
+insert into menu_items values(8, 'Fried pickles with your choice of sauce on the side', 'fried-pickles.jpg' 'Fried Pickles', 4.00) [42001-193]
