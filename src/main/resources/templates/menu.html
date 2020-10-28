@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/bootstrap.css"/>
     <link rel="stylesheet" href="/css/styles.css"/>
     <link rel="stylesheet" href="css/font-awesome/all.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script rel="script" src="/js/bootstrap.bundle.js"></script>
 
@@ -21,7 +22,6 @@
 
 <div class="container">
 
-    <!-- Add padding? -->
     <div class="row justify-content-md-center">
         <h1>Today's Menu</h1>
     </div>
@@ -35,10 +35,13 @@
 
                 <div class="card-body">
 
-                    <!-- Fix alignment? -->
                     <h5 class="card-title" th:text="${item.getName()}"></h5>
-                    <p class="card-text" th:text="${item.getDescriptionExcerpt() + '...'}"></p>
-                    <div class="text-center">
+                    <p class="card-text truncated" th:text="${item.getDescription()}"></p>
+
+                    <div class="text-right">
+                        <button th:if="${item.getAllergens() != null}" type="button" class="alert alert-warning" data-toggle="tooltip" data-placement="top" th:title="${item.listAllergens()}">
+                            Allergens
+                        </button>
                         <button type="button" class="btn btn-primary" data-toggle="modal" th:data-target="${'#mi' + item.getId()}">
                             View Item
                         </button>
@@ -83,7 +86,7 @@
                                 <div class="allergens" th:unless="${item.getAllergens() == null}">
                                     <p>Allergens</p>
                                     <ul class="allergens-list">
-                                        <li class="allergen" th:each="allergen : ${item.getAllergens()}" th:text="${allergen.getAllergen()}"></li>
+                                        <li class="allergen" th:each="allergen : ${item.getAllergens()}" th:text="${allergen.toString()}"></li>
                                     </ul>
                                 </div>
                             </div>

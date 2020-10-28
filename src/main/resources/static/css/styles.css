@@ -22,8 +22,38 @@
     transition: 0.3s all;
 }
 
-.menu-item-container:hover .btn-primary{
-    background-color: #0051a8;
+.menu-item-container:hover .item-image {
+    -webkit-filter: brightness(90%);
+    transition: all .3s ease;
+}
+
+.menu-item-container:hover .btn-primary {
+    -webkit-filter: brightness(80%);
+    transition: all .3s ease;
+}
+
+.alert-warning:hover {
+    -webkit-filter: brightness(90%);
+    transition: all .3s ease;
+}
+
+.menu-item-container .btn-primary{
+    margin-left: 6.25rem;
+}
+
+.flex-parent {
+    display:flex;
+    align-items: flex-start;
+    padding: 10px;
+    margin: 30px;
+}
+
+.card-text .truncated {
+    flex: 1;
+    min-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /*this is for the home page*/
