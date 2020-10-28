@@ -108,4 +108,8 @@ public class Cart {
 
     //</editor-fold>
 
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+
 }

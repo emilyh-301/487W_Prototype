@@ -36,10 +36,13 @@
                 <div class="card-body">
 
                     <h5 class="card-title" th:text="${item.getName()}"></h5>
-                    <p class="card-text truncated" th:text="${item.getDescription()}"></p>
+
+                    <div class="flex-parent">
+                        <p class="card-text truncated" th:text="${#strings.abbreviate(item.getDescription(), 40)}"></p>
+                    </div>
 
                     <div class="text-right">
-                        <button th:if="${item.getAllergens() != null}" type="button" class="alert alert-warning" data-toggle="tooltip" data-placement="top" th:title="${item.listAllergens()}">
+                        <button th:if="${!item.getAllergens().isEmpty()}" type="button" class="alert alert-warning" data-toggle="tooltip" data-placement="top" th:title="${item.listAllergens()}">
                             Allergens
                         </button>
                         <button type="button" class="btn btn-primary" data-toggle="modal" th:data-target="${'#mi' + item.getId()}">
@@ -83,7 +86,7 @@
 
 
 
-                                <div class="allergens" th:unless="${item.getAllergens() == null}">
+                                <div class="allergens" th:unless="${item.getAllergens().isEmpty()}">
                                     <p>Allergens</p>
                                     <ul class="allergens-list">
                                         <li class="allergen" th:each="allergen : ${item.getAllergens()}" th:text="${allergen.toString()}"></li>

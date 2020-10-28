@@ -62,17 +62,31 @@
         </td>
     </tr>
 
-    <a href="/checkout/">
-        <button type="button" class="btn btn-primary">Checkout</button>
-    </a>
+    </tbody>
+
     <a href="/menu">
         <button type="button" class="btn btn-primary">Return to menu</button>
     </a>
-    <a href="/cart/clear">
-        <button type="button" class="btn btn-secondary">Cancel Order</button>
-    </a>
 
-    </tbody>
+    <tfoot th:unless="${Cart.isEmpty()}" class="thead-dark">
+    <tr>
+        <th scope="col">
+            <a href="/cart/clear">
+                <button type="button" class="btn btn-secondary">Empty Cart</button>
+            </a>
+        </th>
+        <th scope="col">&nbsp;</th>
+        <th scope="col">&nbsp;</th>
+        <th scope="col">&nbsp;</th>
+        <th scope="col">&nbsp;</th>
+        <th scope="col">
+            <a href="/checkout/">
+                <button type="button" class="btn btn-primary">Checkout</button>
+            </a>
+        </th>
+
+    </tr>
+    </tfoot>
 </table>
 </div>
 
