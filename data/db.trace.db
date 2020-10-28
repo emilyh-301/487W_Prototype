@@ -1141,3 +1141,6 @@ insert into item_allergens values (1, 'gluten'), (1, 'dairy'), (2, 'gluten) [420
 2020-10-27 19:16:32 jdbc[13]: exception
 org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "insert into item_allergens values (1, 'gluten'), (1, 'dairy'), (2, [*]'gluten"")"; SQL statement:
 insert into item_allergens values (1, 'gluten'), (1, 'dairy'), (2, 'gluten") [42000-193]
+2020-10-27 21:01:13 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "UPDATE MENU_ITEMS WHERE[*] NAME = 'name' SET NAME = 'Chicken Noodle Soup' "; expected "., AS, SET"; SQL statement:
+update menu_items where name = 'name' set name = 'Chicken Noodle Soup' [42001-193]
