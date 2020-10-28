@@ -29,7 +29,8 @@
     <div class="row menu-container">
         <div th:each="item : ${items}" class="col-4">
 
-                <input type="image" class="card-img-top img-fluid" th:src="${item.getImage() == null} ? '/images/food.jpg' : ${'/images/' + item.getImage()}"
+            <div class="menu-item-container" data-toggle="modal" th:data-target="${'#mi' + item.getId()}" th:alt="${item.getName()}">
+                <input type="image" class="card-img-top img-fluid item-image" th:src="${item.getImage() == null} ? '/images/food.jpg' : ${'/images/' + item.getImage()}"
                        data-toggle="modal" th:data-target="${'#mi' + item.getId()}" th:alt="${item.getName()}" />
 
                 <div class="card-body">
@@ -41,6 +42,7 @@
                         View Item
                     </button>
                 </div>
+            </div>
 
                 <!-- Modal -->
                 <div class="modal fade" th:id="${'mi' + item.getId()}" tabindex="-1" role="dialog" th:aria-labelledby="${item.getId()}" aria-hidden="true">
@@ -63,12 +65,15 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="item_notes">Item Notes</label>
-                                        <input type="text" class="form-control" id="item_notes" name="item_notes" placeholder="Item Notes">
+                                        <textarea type="text" class="form-control" id="item_notes" name="item_notes" placeholder="Item Notes">
+                                        </textarea>
                                     </div>
                                     <div class="form-group">
-                                        <input type="number" class="form-control" id="item_id" name="item_id" th:value="${item.getId()}">
+                                        <input type="number" class="form-control" style="display: none;" id="item_id" name="item_id" th:value="${item.getId()}">
                                     </div>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary" style="width:100%"><i class="fas fa-shopping-cart"></i> Add To Cart</button>
+                                    </div>
                                 </form>
 
 

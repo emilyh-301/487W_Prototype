@@ -1,6 +1,18 @@
+header {
+    margin-bottom: 20px;
+}
+
 .navbar{
     background-color: #121D57;
 }
 .navbar.navbar-dark .nav-link{
     color: #fff;
+}
+
+.menu-container {
+    margin-top: 20px;
+}
+
+.menu-container .item-image{
+    max-height: 210px;
 }
