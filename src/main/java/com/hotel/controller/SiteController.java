@@ -42,12 +42,12 @@ public class SiteController {
 
     @GetMapping("/login")
     public ModelAndView login(ModelMap model) {
-        return new ModelAndView(isAuthenticated()? "redirect:menu" : "login", model);
+        return new ModelAndView(isAuthenticated()? "redirect:home" : "login", model);
     }
 
     @GetMapping("/login_success")
     public RedirectView loginSuccess(RedirectAttributes attributes) {
-        return new RedirectView("/menu");
+        return new RedirectView("/home");
     }
 
     @GetMapping("/logout_success")
@@ -67,7 +67,7 @@ public class SiteController {
      * @param model The model for the MVC design pattern.
      * @return The name of the html document to display
      */
-    @GetMapping("/")
+    @GetMapping("")
     public String home(Model model) {
         return "home";
     }
