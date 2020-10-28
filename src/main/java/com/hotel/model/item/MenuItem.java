@@ -179,4 +179,14 @@ public class MenuItem {
         this.image = image;
     }
     //</editor-fold>
+
+    public String listAllergens() {
+        StringBuilder s = new StringBuilder();
+        for(Allergen a : allergens) {
+            s.append(a.toString()).append(", ");
+        }
+        s.deleteCharAt(s.length() - 1).deleteCharAt(s.length() - 1);
+
+        return s.toString();
+    }
 }

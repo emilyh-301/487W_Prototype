@@ -45,4 +45,15 @@ public class Allergen {
     }
 
     //</editor-fold>
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < allergen.length(); i++) {
+            sb.append(i == 0? Character.toUpperCase(allergen.charAt(i)) : Character.toLowerCase(allergen.charAt(i)));
+        }
+
+        return sb.toString();
+    }
 }
