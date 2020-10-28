@@ -35,7 +35,7 @@
         <th scope="col">name</th>
         <th scope="col">price</th>
         <th scope="col">notes</th>
-        <th scope="col">description</th>
+        <!-- <th scope="col">description</th> -->
         <th scope="col">quantity</th>
         <th scope="col"> </th>
 
@@ -46,12 +46,12 @@
     <tr th:each="cart : ${Cart}">
 
         <th scope="row">
-            <img th:src="${cart.getItem().getImage() == null} ? '/images/food.jpg' : ${'/images/' + cart.getItem().getImage()}" class="img-fluid"/>
+            <img th:src="${cart.getItem().getImage() == null} ? '/images/food.jpg' : ${'/images/' + cart.getItem().getImage()}" width="300px" class="img-fluid"/>
         </th>
         <td th:text="${cart.getItem().getName()}"></td>
         <td th:text="${cart.getItem().getPrice()}"></td>
         <td th:text="${cart.getNotes()}"></td>
-        <td th:text="${cart.getItem().getDescription()}"></td>
+        <!--<td th:text="${cart.getItem().getDescription()}"></td> -->
         <td th:text="${cart.getQuantity()}"></td>
 
         <!-- A button to remove this item -->

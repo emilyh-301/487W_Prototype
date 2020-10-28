@@ -80,10 +80,10 @@
 
 
 
-                                <div class="allergens" th:unless="${item.getAllergens() != null}">
+                                <div class="allergens" th:unless="${item.getAllergens() == null}">
                                     <p>Allergens</p>
                                     <ul class="allergens-list">
-                                        <li class="allergen" th:each="allergen : ${item.getAllergens()}" th:text="${allergen}"></li>
+                                        <li class="allergen" th:each="allergen : ${item.getAllergens()}" th:text="${allergen.getAllergen()}"></li>
                                     </ul>
                                 </div>
                             </div>
