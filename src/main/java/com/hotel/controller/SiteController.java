@@ -47,7 +47,7 @@ public class SiteController {
 
     @GetMapping("/login")
     public ModelAndView login(ModelMap model) {
-        return new ModelAndView(isAuthenticated()? "redirect:home" : "login", model);
+        return new ModelAndView(isAuthenticated()? "redirect:/" : "login", model);
     }
 
     @GetMapping("/add")
