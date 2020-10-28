@@ -10,6 +10,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 @RequestMapping("/checkout")
@@ -35,5 +37,14 @@ public class CheckoutController {
         model.addAttribute("cart", cart);
         model.addAttribute("total", String.format("%.2f", sum));
         return new ModelAndView("checkout", model);
+    }
+
+    @GetMapping("/clear")
+    public RedirectView checkout(RedirectAttributes attributes) {
+        Cart cart = userService.getActiveCart(userService.getCurrentUser());
+        attributes.addFlashAttribute("success", "You have successfully submitted your order.");
+        service.clearCart(cart);
+
+        return new RedirectView("/menu");
     }
 }

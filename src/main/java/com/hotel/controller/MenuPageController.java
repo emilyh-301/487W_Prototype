@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.Collection;
 
@@ -40,8 +42,8 @@ public class MenuPageController {
     }
 
     @PostMapping("/addtocart")
-    public ModelAndView addToCart(ModelMap model, @RequestParam("item_id") long itemId, @RequestParam("item_qty") int qty,
-                            @RequestParam("item_notes") String itemNotes){
+    public RedirectView addToCart(RedirectAttributes attributes, @RequestParam("item_id") long itemId, @RequestParam("item_qty") int qty,
+                                  @RequestParam("item_notes") String itemNotes){
 
         // get user cart
         Cart cart = userService.getActiveCart(userService.getCurrentUser());
@@ -51,7 +53,10 @@ public class MenuPageController {
         CartItem cartItem = new CartItem(0, service.find(itemId), qty,itemNotes, cart);
         cartService.addToCart(cart, cartItem);
 
-        return new ModelAndView("redirect:/menu", model);
+        attributes.addFlashAttribute("success", "Item successfully added to cart.");
+
+        return new RedirectView("/menu");
+        //return new ModelAndView("redirect:/menu", model);
     }
 
 }

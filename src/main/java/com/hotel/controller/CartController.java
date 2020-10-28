@@ -48,8 +48,10 @@ public class CartController {
     @GetMapping("/clear")
     public RedirectView clearCart(RedirectAttributes attributes) {
         Cart cart = userService.getActiveCart(userService.getCurrentUser());
+        attributes.addFlashAttribute("success", "You have successfully emptied the cart.");
         cart_service.clearCart(cart);
 
         return new RedirectView("/menu");
     }
+
 }
