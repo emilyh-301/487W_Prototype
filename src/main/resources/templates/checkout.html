@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -15,6 +15,7 @@
     <script rel="script" src="/js/bootstrap.bundle.js"></script>
 </head>
 
+<body>
 <div>
     <header th:insert="navbar::header"></header>
 </div>
@@ -62,25 +63,30 @@
 </div>
 
 <div class="container">
-    <div class="btn-toolbar justify-content-between" style="float: right"  role="toolbar" aria-label="Toolbar with button groups">
-        <div class="btn-group" role="group" aria-label="First group">
+    <div class ="row">
+        <div class="btn-toolbar justify-content-between float-right" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group" role="group" aria-label="First group">
 
-            <button type="button" class="btn btn-primary" >Pay with card</button>
+                <button type="button" class="btn btn-primary" >Pay with card</button>
 
-            <button type="button" class="btn btn-primary" >Charge to room</button>
+                <button type="button" class="btn btn-primary" >Charge to room</button>
 
+            </div>
         </div>
     </div>
 
-    <div class="btn-toolbar justify-content-between" style="float: right"  role="toolbar" aria-label="Toolbar with button groups">
-        <div class="btn-group" role="group" aria-label="First group">
+    <div class ="row">
+        <div class="btn-toolbar justify-content-between float-right" role="toolbar" aria-label="Toolbar with button groups">
+            <div class="btn-group" role="group" aria-label="First group">
 
-            <button type="button" class="btn btn-secondary" >Edit Cart</button>
+                <button type="button" class="btn btn-secondary" >Edit Cart</button>
 
-            <button type="button" class="btn btn-secondary" >Cancel order</button>
+                <button type="button" class="btn btn-secondary" >Cancel order</button>
 
+            </div>
         </div>
     </div>
 </div>
 
+</body>
 </html>
