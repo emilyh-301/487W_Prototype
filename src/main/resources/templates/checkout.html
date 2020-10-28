@@ -9,16 +9,13 @@
     <link rel="stylesheet" href="/css/bootstrap.css"/>
     <link rel="stylesheet" href="/css/styles.css"/>
     <link rel="stylesheet" href="css/font-awesome/all.css"/>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-            crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script rel="script" src="/js/bootstrap.bundle.js"></script>
 </head>
 
 <body>
-<div>
-    <header th:insert="navbar::header"></header>
-</div>
+
+<header th:insert="navbar::header"></header>
 
 <div class="container">
     <div class="row justify-content-md-center">
@@ -44,11 +41,11 @@
         </tbody>
 
         <thead class="thead-dark">
-            <tr>
-                <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col">Total Cost</th>
-            </tr>
+        <tr>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col">Total Cost</th>
+        </tr>
         </thead>
 
         <tbody>
@@ -63,28 +60,16 @@
 </div>
 
 <div class="container">
-    <div class ="row">
-        <div class="btn-toolbar justify-content-between float-right" role="toolbar" aria-label="Toolbar with button groups">
-            <div class="btn-group" role="group" aria-label="First group">
+    <div class="text-right">
+        <button type="button" class="btn col-3 btn-primary " >Pay with card</button>
 
-                <button type="button" class="btn btn-primary" >Pay with card</button>
-
-                <button type="button" class="btn btn-primary" >Charge to room</button>
-
-            </div>
-        </div>
+        <button type="button" class="btn col-3 btn-primary " >Charge to room</button>
     </div>
 
-    <div class ="row">
-        <div class="btn-toolbar justify-content-between float-right" role="toolbar" aria-label="Toolbar with button groups">
-            <div class="btn-group" role="group" aria-label="First group">
+    <div class="text-right" style="margin-top: 10px;">
+        <button type="button" class="btn col-3 btn-secondary " >Edit Cart</button>
 
-                <button type="button" class="btn btn-secondary" >Edit Cart</button>
-
-                <button type="button" class="btn btn-secondary" >Cancel order</button>
-
-            </div>
-        </div>
+        <button type="button" class="btn col-3 btn-secondary " >Cancel order</button>
     </div>
 </div>
 
