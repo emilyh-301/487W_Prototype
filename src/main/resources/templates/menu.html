@@ -30,14 +30,14 @@
         <div th:each="item : ${items}" class="col-4">
 
             <div class="menu-item-container" data-toggle="modal" th:data-target="${'#mi' + item.getId()}" th:alt="${item.getName()}">
-                <input type="image" class="card-img-top img-fluid item-image" th:src="${item.getImage() == null} ? '/images/food.jpg' : ${'/images/' + item.getImage()}"
+                <img type="image" class="card-img-top img-fluid item-image" th:src="${item.getImage() == null} ? '/images/food.jpg' : ${'/images/' + item.getImage()}"
                        data-toggle="modal" th:data-target="${'#mi' + item.getId()}" th:alt="${item.getName()}" />
 
                 <div class="card-body">
 
                     <!-- Fix alignment? -->
                     <h5 class="card-title" th:text="${item.getName()}"></h5>
-                    <p class="card-text" th:text="${item.getDescription()}"></p>
+                    <p class="card-text" th:text="${item.getDescriptionExcerpt() + '...'}"></p>
                     <button type="button" class="btn btn-primary" data-toggle="modal" th:data-target="${'#mi' + item.getId()}">
                         View Item
                     </button>
@@ -65,8 +65,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="item_notes">Item Notes</label>
-                                        <textarea type="text" class="form-control" id="item_notes" name="item_notes" placeholder="Item Notes">
-                                        </textarea>
+                                        <textarea type="text" class="form-control" id="item_notes"
+                                                  name="item_notes" placeholder="Item Notes"></textarea>
                                     </div>
                                     <div class="form-group">
                                         <input type="number" class="form-control" style="display: none;" id="item_id" name="item_id" th:value="${item.getId()}">

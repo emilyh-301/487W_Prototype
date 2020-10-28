@@ -16,3 +16,9 @@ header {
 .menu-container .item-image{
     max-height: 210px;
 }
+
+.menu-item-container{
+    background: #f4f4f4;
+    padding: 0px;
+    border-radius: 4px;
+}
