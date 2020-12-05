@@ -27,33 +27,39 @@
         <h1>General Requests From</h1>
     </div>
 
-    <div class="dropdown">
-        <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Request Category
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Bathroom</a>
-            <a class="dropdown-item" href="#">Bedroom</a>
-            <a class="dropdown-item" href="#">Amenities</a>
-            <a class="dropdown-item" href="#">Other</a>
+
+
+    <form action="" type="post">
+
+        <div class="dropdown">
+            <button class="btn btn-success dropdown-toggle" type="button" id="category" name="category" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Request Category
+            </button>
+            <div class="dropdown-menu" aria-labelledby="category">
+                <a class="dropdown-item" href="#">Bathroom</a>
+                <a class="dropdown-item" href="#">Bedroom</a>
+                <a class="dropdown-item" href="#">Amenities</a>
+                <a class="dropdown-item" href="#">Other</a>
+            </div>
         </div>
-    </div>
 
-    <div class="input-group-text">
+        <div class="input-group-text">
 
-        <div class="input-group-prepend">
-            <span class="input-group-text" id="inputGroup-sizing-default">Room Number</span>
+            <div class="form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Room Number</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" id="roomno" name="roomno">
+            </div>
+
+            <div class="form-group">
+                <label for="request">Add request details here</label>
+                <textarea class="input-group-text" id="request" name='request' rows="3"></textarea>
+            </div>
         </div>
-        <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
 
-
-        <label>Add request details here</label>
-        <textarea class="input-group-text" id="general request details" rows="3"></textarea>
-    </div>
-
-    <a href="/requests">
-    <button type="button" class="btn btn-success">Submit</button>
-    </a>
+        <button type="button" class="btn btn-success">Submit</button>
+    </form>
 
 </div>
 

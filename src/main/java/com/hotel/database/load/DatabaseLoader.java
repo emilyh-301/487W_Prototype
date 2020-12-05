@@ -74,8 +74,9 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
 
-//            rolesRepo.add(new Roles("ROLE_STAFF", new Permissions("STAFF_PERMISSION")));
-//            rolesRepo.add(new Roles("ROLE_USER", new Permissions("USER_PERMISSION")));
+           rolesRepo.add(new Roles("ROLE_STAFF", new Permissions("STAFF_PERMISSION")));
+           rolesRepo.add(new Roles("ROLE_USER", new Permissions("USER_PERMISSION")));
+
 
             Roles staff = rolesRepo.find("ROLE_STAFF");
             Roles user = rolesRepo.find("ROLE_USER");
@@ -86,6 +87,7 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
             s.setPassword(encoder.encode("password"));
             s.setUser_roles(staff);
             userRepo.addUser(s);
+
 
             ApplicationUser g = new ApplicationUser();
             g.setUser_id(1);

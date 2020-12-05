@@ -18,7 +18,6 @@ public class MenuItemDatabase {
      */
     private final JpaMenuItemRepository repo;
 
-
     public MenuItemDatabase(JpaMenuItemRepository repo) {
         this.repo = repo;
     }

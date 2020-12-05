@@ -16,11 +16,6 @@ public class Order {
     @Column(name = "order_id")
     private Long id;
 
-    /*
-    @Column(name = "cart_id")
-    private int cart_id;
-     */
-
     @OneToOne
     @JoinColumn(name = "cart_id")
     private Cart cart;
