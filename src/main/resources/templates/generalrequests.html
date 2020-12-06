@@ -18,7 +18,6 @@
     <script rel="script" src="/js/bootstrap.bundle.js"></script>
 
 </head>
-<body lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <header th:insert="navbar::header"></header>
 
@@ -27,9 +26,19 @@
         <h1>General Requests From</h1>
     </div>
 
-    <form action="" type="post">
+    <form action="/request/general" type="post">
 
-        <div class="dropdown">
+        <div class="form-group col-md-4">
+            <label for="category">Request Category</label>
+            <select id="category" name="category" class="form-control">
+                <option>Bathroom</option>
+                <option>Bedroom</option>
+                <option>Amenities</option>
+                <option>Other</option>
+            </select>
+        </div>
+
+        <!--        <div class="dropdown">
             <button class="btn btn-success dropdown-toggle" type="button" id="category" name="category" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Request Category
             </button>
@@ -38,8 +47,7 @@
                 <a class="dropdown-item" href="#">Bedroom</a>
                 <a class="dropdown-item" href="#">Amenities</a>
                 <a class="dropdown-item" href="#">Other</a>
-            </div>
-        </div>
+        </div>-->
 
         <div class="input-group-text">
 
@@ -47,7 +55,7 @@
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-default">Room Number</span>
                 </div>
-                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" id="roomno" name="roomno">
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" id="roomnumber" name="roomnumber">
             </div>
 
             <div class="form-group">
@@ -56,7 +64,8 @@
             </div>
         </div>
 
-        <button type="button" class="btn btn-success">Submit</button>
+        <button type="submit" formmethod="post" class="btn btn-success">Submit</button>
+
     </form>
 
 </div>

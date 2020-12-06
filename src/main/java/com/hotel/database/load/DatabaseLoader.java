@@ -1,6 +1,5 @@
 package com.hotel.database.load;
 
-import com.hotel.database.MemberDatabase;
 import com.hotel.database.item.MenuItemDatabase;
 import com.hotel.database.request.*;
 import com.hotel.database.room.RoomDatabase;
@@ -25,21 +24,10 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
 
     private boolean privileges_already_setup = false;
 
-    private final MemberDatabase database;
 
     private final UserDatabase userRepo;
 
-    @Qualifier("Request")
     private final RequestDatabase requestRepo;
-
-    @Qualifier("Maintenance")
-    private final MaintenanceRequestDatabase maintenanceRepo;
-
-    @Qualifier("General")
-    private final GeneralRequestDatabase generalRepo;
-
-    @Qualifier("Wakeup")
-    private final WakeUpRequestDatabase wakeupRepo;
 
     private final MenuItemDatabase itemRepo;
 
@@ -50,15 +38,10 @@ public class DatabaseLoader implements ApplicationListener<ContextRefreshedEvent
     private final RolesDatabase rolesRepo;
 
 
-    public DatabaseLoader(MemberDatabase database, UserDatabase userRepo, RequestDatabase requestRepo,
-                          MaintenanceRequestDatabase maintenanceRepo, GeneralRequestDatabase generalRepo,
-                          WakeUpRequestDatabase wakeupRepo, MenuItemDatabase itemRepo, RoomDatabase roomRepo, PermissionsDatabase permRepo, RolesDatabase rolesRepo) {
-        this.database = database;
+    public DatabaseLoader(UserDatabase userRepo, RequestDatabase requestRepo,
+                          MenuItemDatabase itemRepo, RoomDatabase roomRepo, PermissionsDatabase permRepo, RolesDatabase rolesRepo) {
         this.userRepo = userRepo;
         this.requestRepo = requestRepo;
-        this.maintenanceRepo = maintenanceRepo;
-        this.generalRepo = generalRepo;
-        this.wakeupRepo = wakeupRepo;
         this.itemRepo = itemRepo;
         this.roomRepo = roomRepo;
 

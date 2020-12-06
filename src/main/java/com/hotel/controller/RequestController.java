@@ -1,12 +1,10 @@
 package com.hotel.controller;
 
-import com.hotel.model.request.GeneralRequest;
-import com.hotel.model.request.MaintenanceRequest;
+import com.hotel.database.user.RolesDatabase;
 import com.hotel.model.request.Request;
 import com.hotel.model.user.ApplicationUser;
 import com.hotel.model.user.Roles;
-import com.hotel.service.request.GeneralRequestService;
-import com.hotel.service.request.MaintenanceRequestService;
+import com.hotel.service.request.RequestService;
 import com.hotel.service.user.UserService;
 import net.bytebuddy.asm.Advice;
 import org.springframework.stereotype.Controller;
@@ -27,12 +25,13 @@ import java.util.Set;
 public class RequestController {
 
     private UserService userService;
-    private GeneralRequestService generalRequestService;
-    private MaintenanceRequestService maintenanceRequestService;
+    private RequestService requestService;
+    private RolesDatabase rolesDatabase;
 
-    public RequestController(UserService u, GeneralRequestService g) {
+    public RequestController(UserService u, RequestService r, RolesDatabase rolesDatabase) {
         userService = u;
-        generalRequestService = g;
+        requestService = r;
+        this.rolesDatabase = rolesDatabase;
     }
 
     @GetMapping("")
@@ -46,28 +45,33 @@ public class RequestController {
     }
 
     @PostMapping("/general")
-    public RedirectView makeGeneralRequestPost(ModelMap m, @RequestParam("category") String category, @RequestParam("roomno") int roomno,
+    public RedirectView makeGeneralRequestPost(ModelMap m, @RequestParam("category") String category, @RequestParam("roomnumber") int roomnumber,
                                                @RequestParam("request") String request) {
         boolean valid = false;
         Set<Roles> roles = userService.getCurrentUser().getUser_roles();
-        if(roles.contains("ROLE_USER") && userService.getCurrentUser().getRoom().getRoom() == roomno){
+        if(roles.contains(rolesDatabase.find("ROLE_USER")) && userService.getCurrentUser().getRoom().getRoom() == roomnumber){
             valid = true;
         }
-        else if(roles.contains("ROLE_STAFF")){
+        else if(roles.contains(rolesDatabase.find("ROLE_STAFF"))){
             valid = true;
         }
 
         if(valid){
-            int id = 0; // need a way to increment this
+            long id = 0; // need a way to increment this
             Date d = new Date();
             d.setTime(System.currentTimeMillis());
+            Request gr = Request.createGeneralRequest(id, roomnumber, d, request, category);
+            requestService.add(gr);
+            /*
             GeneralRequest gr = new GeneralRequest(id, roomno, d, request, category);
             generalRequestService.add(gr);
+
+             */
         }
         else{
             // idk some error maybe
         }
-        return new RedirectView("/requests");
+        return new RedirectView("/request");
     }
 
     @GetMapping("/maintenance")
@@ -76,8 +80,8 @@ public class RequestController {
     }
 
     @PostMapping("/maintenance")
-    public RedirectView makeMaintenacneRequestPost(ModelMap m, @RequestParam("category") String category, @RequestParam("roomno") int roomno,
-                                               @RequestParam("request") String request) {
+    public RedirectView makeMaintenanceRequestPost(ModelMap m, @RequestParam("category") String category, @RequestParam("roomno") int roomno,
+                                                   @RequestParam("request") String request) {
         boolean valid = false;
         Set<Roles> roles = userService.getCurrentUser().getUser_roles();
         if(roles.contains("ROLE_USER") && userService.getCurrentUser().getRoom().getRoom() == roomno){
@@ -88,11 +92,18 @@ public class RequestController {
         }
 
         if(valid){
-            int id = 0; // need a way to increment this
+            long id = 0; // need a way to increment this
             Date d = new Date();
             d.setTime(System.currentTimeMillis());
+
+            Request mr = Request.createMaintenanceRequest(id, roomno, d, request, category);
+            requestService.add(mr);
+
+            /*
             MaintenanceRequest mr = new MaintenanceRequest(id, roomno, d, request, category);
             maintenanceRequestService.add(mr);
+
+             */
         }
         else{
             // idk some error maybe

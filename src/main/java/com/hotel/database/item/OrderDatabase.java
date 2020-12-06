@@ -4,7 +4,7 @@ import com.hotel.database.jpa.JpaCartRepository;
 import com.hotel.database.jpa.JpaOrderRepository;
 import com.hotel.model.item.Cart;
 import com.hotel.model.item.Order;
-import com.hotel.model.request.AbstractRequest;
+import com.hotel.model.request.Request;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
@@ -49,7 +49,7 @@ public class OrderDatabase {
             order.setStatus(Order.Status.RECIEVED);
         }
 
-        if(new_time < AbstractRequest.MINIMUM_TIME) order.setTime(AbstractRequest.MINIMUM_TIME);
+        if(new_time < Request.MINIMUM_TIME) order.setTime(Request.MINIMUM_TIME);
         else order.setTime(new_time);
 
         repo.save(order);
