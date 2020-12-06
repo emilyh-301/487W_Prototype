@@ -1,5 +1,6 @@
 package com.hotel.model.item;
 
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.engine.internal.Cascade;
 
 import javax.persistence.*;
@@ -25,6 +26,7 @@ public class Order {
     private Status status;
 
     @Column(name = "timeOfRequest")
+    @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     protected Date time;
 
