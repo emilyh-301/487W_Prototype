@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 @Controller
@@ -27,6 +28,7 @@ public class MenuPageController {
 
     private final UserService userService;
     private final CartService cartService;
+    private final int COLUMNS = 3;
 
     public MenuPageController(MenuItemService s, UserService u, CartService cartService){
         this.service = s;
@@ -36,8 +38,28 @@ public class MenuPageController {
 
     @GetMapping("")
     public ModelAndView getMenu(ModelMap model){
-        Collection<MenuItem> items  = service.getItems(new Sort(Sort.Direction.DESC, "id"));
-        model.addAttribute("items", items);
+        Collection<MenuItem> items = service.getItems(new Sort(Sort.Direction.DESC, "id"));
+
+        //Add an item with id -1 to indicate the location of the "add new item" button
+        items.add(new MenuItem(-1L, null, null, 0D, null, null));
+
+        ArrayList<MenuItem[]> items_split = new ArrayList<>();
+
+        int c = 0;
+        int r = 0;
+        for(MenuItem i : items) {
+            if(c == 0) items_split.add(new MenuItem[COLUMNS]);
+
+            items_split.get(r)[c] = i;
+
+            c++;
+            if(c == COLUMNS) {
+                c = 0;
+                r++;
+            }
+        }
+
+        model.addAttribute("items", items_split);
         return new ModelAndView("menu", model);
     }
 

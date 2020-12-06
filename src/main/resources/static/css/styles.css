@@ -5,6 +5,11 @@
     color: #fff;
 }
 
+h1:not(#home_page_header) {
+    margin-top:1rem; margin-bottom:1rem;
+    font-family: Georgia, serif;
+}
+
 .menu-container {
     margin-top: 20px;
 }

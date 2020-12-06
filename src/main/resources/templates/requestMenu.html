@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Request Menu</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/styles.css"/>
+    <link rel="stylesheet" href="css/font-awesome/all.css"/>
+    <script rel="script" src="/js/bootstrap.bundle.js"></script>
+
+</head>
+<body>
+
+<header th:insert="navbar::header"></header>
+
+<section id="content" class="container">
+
+    <h1 class="text-center">Request Menu</h1>
+
+    <div class="container-fluid" style="display:flex; justify-content:center">
+        <div class="list-group">
+            <a href="/request/maintenance" class="list-group-item list-group-item-action" style="z-index: 2; margin-top: 1rem">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">Maintenance Request</h5>
+                </div>
+                <p class="mb-1">Click here if you would like to request assistance with a maintenance issue.</p>
+            </a>
+            <a href="/request/wakeupcall" class="list-group-item list-group-item-action" style="z-index: 1">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">Wake-Up Call Request</h5>
+                </div>
+                <p class="mb-1">Click here if you would like to request a wake-up call.</p>
+            </a>
+            <a href="/request/general" class="list-group-item list-group-item-action" style="z-index: 0">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">General Request</h5>
+                </div>
+                <p class="mb-1">Click here if you would like to request assistance with a miscellaneous issue.</p>
+            </a>
+        </div>
+    </div>
+
+</section>
+
+</body>
+</html>
