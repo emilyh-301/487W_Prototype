@@ -45,11 +45,11 @@ public class RequestController {
     }
 
     @PostMapping("/general")
-    public RedirectView makeGeneralRequestPost(ModelMap m, @RequestParam("category") String category, @RequestParam("roomnumber") int roomnumber,
+    public RedirectView makeGeneralRequestPost(ModelMap m, @RequestParam("category") String category, @RequestParam("roomno") int roomno,
                                                @RequestParam("request") String request) {
         boolean valid = false;
         Set<Roles> roles = userService.getCurrentUser().getUser_roles();
-        if(roles.contains(rolesDatabase.find("ROLE_USER")) && userService.getCurrentUser().getRoom().getRoom() == roomnumber){
+        if(roles.contains(rolesDatabase.find("ROLE_USER")) && userService.getCurrentUser().getRoom().getRoom() == roomno){
             valid = true;
         }
         else if(roles.contains(rolesDatabase.find("ROLE_STAFF"))){
@@ -60,7 +60,7 @@ public class RequestController {
             long id = 0; // need a way to increment this
             Date d = new Date();
             d.setTime(System.currentTimeMillis());
-            Request gr = Request.createGeneralRequest(id, roomnumber, d, request, category);
+            Request gr = Request.createGeneralRequest(id, roomno, d, request, category);
             requestService.add(gr);
             /*
             GeneralRequest gr = new GeneralRequest(id, roomno, d, request, category);
