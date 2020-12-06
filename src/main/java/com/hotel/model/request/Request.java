@@ -3,6 +3,8 @@ package com.hotel.model.request;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.text.DateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 @Entity
@@ -113,6 +115,10 @@ public class Request {
         return time;
     }
 
+    public String getFormattedTime() {
+        return DateFormat.getDateTimeInstance().format(time);
+    }
+
     public void setTime(Date time) {
         this.time = time;
     }
@@ -149,6 +155,10 @@ public class Request {
         return wakeup_time;
     }
 
+    public String getFormattedWakeUpTime() {
+        return DateFormat.getDateTimeInstance().format(wakeup_time);
+    }
+
     public void setWakeup_time(Date wakeup_time) {
         this.wakeup_time = wakeup_time;
     }
@@ -167,7 +177,22 @@ public class Request {
     //</editor-fold>
 
     public enum Type {
-        maintenance, general, wakeup,
+        maintenance("Maintenance"), general("General"), wakeup("Wakeup");
+
+        private String name;
+
+        Type(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        @Override
+        public String toString() {
+            return name;
+        }
     }
 
 }

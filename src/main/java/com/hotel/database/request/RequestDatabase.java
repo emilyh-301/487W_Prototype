@@ -35,6 +35,10 @@ public class RequestDatabase {
         return repo.getAll(null, null, null, null, null, null, null, Request.Type.wakeup, sort);
     }
 
+    public Collection<Request> findByCompletion(Sort sort, boolean completed) {
+        return repo.getAll(null, null, null, completed, null, null, null, null, sort);
+    }
+
     public void add(Request request) {
         if(request != null) repo.save(request);
     }

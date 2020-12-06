@@ -7,6 +7,7 @@ import com.hotel.model.user.Roles;
 import com.hotel.service.request.RequestService;
 import com.hotel.service.user.UserService;
 import net.bytebuddy.asm.Advice;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
 
@@ -111,6 +113,16 @@ public class RequestController {
         return new RedirectView("/requests");
     }
 
+    @GetMapping("/log")
+    public ModelAndView viewLog(ModelMap m) {
 
+        /*
+         * Get a list of all inactive requests
+         */
+        Collection<Request> requests = requestService.findByCompletion(new Sort(Sort.Direction.ASC, "time"), true);
+        m.addAttribute("requests", requests);
+
+        return new ModelAndView("log", m);
+    }
 
 }

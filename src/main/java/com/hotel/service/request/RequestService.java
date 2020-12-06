@@ -34,6 +34,10 @@ public class RequestService {
         return database.getWakeupDatabase(sort);
     }
 
+    public Collection<Request> findByCompletion(Sort sort, boolean completed) {
+        return database.findByCompletion(sort, completed);
+    }
+
     public void add(Request request) {
         database.add(request);
     }
