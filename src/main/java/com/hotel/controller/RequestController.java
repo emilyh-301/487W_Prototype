@@ -1,10 +1,12 @@
 package com.hotel.controller;
 
 import com.hotel.model.request.GeneralRequest;
+import com.hotel.model.request.MaintenanceRequest;
 import com.hotel.model.request.Request;
 import com.hotel.model.user.ApplicationUser;
 import com.hotel.model.user.Roles;
 import com.hotel.service.request.GeneralRequestService;
+import com.hotel.service.request.MaintenanceRequestService;
 import com.hotel.service.user.UserService;
 import net.bytebuddy.asm.Advice;
 import org.springframework.stereotype.Controller;
@@ -26,6 +28,7 @@ public class RequestController {
 
     private UserService userService;
     private GeneralRequestService generalRequestService;
+    private MaintenanceRequestService maintenanceRequestService;
 
     public RequestController(UserService u, GeneralRequestService g) {
         userService = u;
@@ -56,8 +59,42 @@ public class RequestController {
             GeneralRequest gr = new GeneralRequest(id, roomno, d, request, category);
             generalRequestService.add(gr);
         }
-
+        else{
+            // idk some error maybe
+        }
         return new RedirectView("/requests");
     }
+
+    @GetMapping("/maintenance")
+    public ModelAndView makeMaintenanceRequest(ModelMap m) {
+        return new ModelAndView("maintenancerequests", m);
+    }
+
+    @PostMapping("/maintenance")
+    public RedirectView makeMaintenacneRequestPost(ModelMap m, @RequestParam("category") String category, @RequestParam("roomno") int roomno,
+                                               @RequestParam("request") String request) {
+        boolean valid = false;
+        Set<Roles> roles = userService.getCurrentUser().getUser_roles();
+        if(roles.contains("ROLE_USER") && userService.getCurrentUser().getRoom().getRoom() == roomno){
+            valid = true;
+        }
+        else if(roles.contains("ROLE_STAFF")){
+            valid = true;
+        }
+
+        if(valid){
+            int id = 0; // need a way to increment this
+            Date d = new Date();
+            d.setTime(System.currentTimeMillis());
+            MaintenanceRequest mr = new MaintenanceRequest(id, roomno, d, request, category);
+            maintenanceRequestService.add(mr);
+        }
+        else{
+            // idk some error maybe
+        }
+        return new RedirectView("/requests");
+    }
+
+
 
 }
