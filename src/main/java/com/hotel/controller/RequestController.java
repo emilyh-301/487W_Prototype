@@ -27,6 +27,11 @@ public class RequestController {
         generalRequestService = g;
     }
 
+    @GetMapping("")
+    public ModelAndView requestMenu(ModelMap m) {
+        return new ModelAndView("requestMenu", m);
+    }
+
     @GetMapping("/general")
     public ModelAndView makeGeneralRequest(ModelMap m) {
         return new ModelAndView("generalrequests", m);

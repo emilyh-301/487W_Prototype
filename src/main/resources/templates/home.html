@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
 
@@ -24,7 +24,7 @@
 <header th:insert="navbar::header"></header>
 
 <div class="top-title-panel text-center p-5 mb-3">
-    <div class="container">
+    <div class="container" id="home_page_header">
         <h1><b>   Hotel California Inc.</b></h1>
         <h1><b> Room Service Re-imagined  </b></h1>
         <span>
