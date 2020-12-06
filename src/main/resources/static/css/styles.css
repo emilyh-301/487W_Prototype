@@ -27,15 +27,16 @@ h1:not(#home_page_header) {
     transition: 0.3s all;
 }
 
-.menu-item-container:hover .item-image {
+.menu-item-container:hover .card-body {
+    background: #e2e2e2;
+    transition: all .3s ease;
+}
+
+.menu-item-container:hover {
     -webkit-filter: brightness(90%);
     transition: all .3s ease;
 }
 
-.menu-item-container:hover .btn-primary {
-    -webkit-filter: brightness(80%);
-    transition: all .3s ease;
-}
 
 .alert-warning:hover {
     -webkit-filter: brightness(90%);
@@ -52,12 +53,24 @@ h1:not(#home_page_header) {
     margin: 5px 5px 10px;
 }
 
-.card-text .truncated {
+.truncated{
     flex: 1;
     min-width: 0;
-    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+
+    white-space: initial;
+    display: -webkit-box;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    hyphens: auto;
+    /*noinspection CssUnknownProperty*/
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-all;
+
 }
 
 /*this is for the home page*/
