@@ -31,7 +31,13 @@
             <span class="fa fa-tag text-muted ml-2"></span> <a href="/menu" class="text-muted">Menu Page</a>
             <span class="fa fa-tag text-muted ml-2"></span> <a href="#" class="text-muted">Request Assistance</a>
             <span class="fa fa-tag text-muted ml-2"></span> <a href="/cart" class="text-muted">Cart</a>
-            <span class="fa fa-tag text-muted ml-2"></span> <a href="/login" class="text-muted">Login</a>
+
+            <span th:if="${#httpServletRequest.remoteUser}" class="cond">
+                <span class="fa fa-tag text-muted ml-2"></span> <a href="/logout" class="text-muted">Logout</a>
+            </span>
+            <span th:unless="${#httpServletRequest.remoteUser}" class="cond">
+                <span class="fa fa-tag text-muted ml-2"></span> <a href="/login" class="text-muted">Login</a>
+            </span>
         </span>
     </div>
 </div>
