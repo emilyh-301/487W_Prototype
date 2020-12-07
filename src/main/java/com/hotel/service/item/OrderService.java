@@ -29,8 +29,8 @@ public class OrderService {
         return database.find(id);
     }
 
-    public void edit(@NotNull long id, long new_cart_id, String new_status, long new_time) throws Exception {
-        database.edit(id, new_cart_id, new_status, new_time);
+    public void edit(@NotNull long id, long new_cart_id, String new_status, long new_time, String notes) throws Exception {
+        database.edit(id, new_cart_id, new_status, new_time, notes);
     }
 
     public void remove(Order order) {

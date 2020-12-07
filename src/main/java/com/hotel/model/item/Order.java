@@ -30,34 +30,41 @@ public class Order {
     @Temporal(TemporalType.TIMESTAMP)
     protected Date time;
 
+    @JoinColumn(name = "notes")
+    private String notes;
+
     public Order() {
 
     }
 
-    public Order(long id, Cart cart, Status status, Date time) {
+    public Order(long id, Cart cart, Status status, Date time, String notes) {
         this.id = id;
         this.cart = cart;
         this.status = status;
         this.time = time;
+        this.notes = notes;
     }
 
-    public Order(long id, Cart cart, Status status, long time) {
+    public Order(long id, Cart cart, Status status, long time, String notes) {
         this.id = id;
         this.cart = cart;
         this.status = status;
         this.time = new Date(time);
+        this.notes = notes;
     }
 
-    public Order(Cart cart, Status status, Date time) {
+    public Order(Cart cart, Status status, Date time, String notes) {
         this.cart = cart;
         this.status = status;
         this.time = time;
+        this.notes = notes;
     }
 
-    public Order(Cart cart, Status status, long time) {
+    public Order(Cart cart, Status status, long time, String notes) {
         this.cart = cart;
         this.status = status;
         this.time = new Date(time);
+        this.notes = notes;
     }
 
     @Override
@@ -109,6 +116,10 @@ public class Order {
     public void setTime(long time) {
         this.time = new Date(time);
     }
+
+    public String getNotes() {return notes;}
+
+    public void setNotes(String notes) {this.notes = notes;}
 
     //</editor-fold>
 

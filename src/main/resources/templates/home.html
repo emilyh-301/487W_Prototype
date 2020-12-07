@@ -31,6 +31,17 @@
             <span class="fa fa-tag text-muted ml-2"></span> <a href="/menu" class="text-muted">Menu Page</a>
             <span class="fa fa-tag text-muted ml-2"></span> <a href="#" class="text-muted">Request Assistance</a>
             <span class="fa fa-tag text-muted ml-2"></span> <a href="/cart" class="text-muted">Cart</a>
+<!--            <span th:if="${#httpServletRequest.remoteUser.hasRole('ROLE_STAFF')}" class="cond">-->
+<!--                <span sec:authorize="hasRole('ROLE_STAFF')"-->
+<!--                  class="fa fa-tag text-muted ml-2">-->
+<!--                </span> <a href="/orders" class="text-muted">Orders</a>-->
+<!--                <span sec:authorize="hasRole('ROLE_STAFF')"-->
+<!--                  class="fa fa-tag text-muted ml-2">-->
+<!--                </span> <a href="/request" class="text-muted">Requests</a>-->
+<!--                <span sec:authorize="hasRole('ROLE_STAFF')"-->
+<!--                  class="fa fa-tag text-muted ml-2">-->
+<!--                </span> <a href="/logs" class="text-muted">Log</a>-->
+<!--        </span>-->
 
             <span th:if="${#httpServletRequest.remoteUser}" class="cond">
                 <span class="fa fa-tag text-muted ml-2"></span> <a href="/logout" class="text-muted">Logout</a>
