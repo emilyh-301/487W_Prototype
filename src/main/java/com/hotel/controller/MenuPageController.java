@@ -8,16 +8,17 @@ import com.hotel.service.item.MenuItemService;
 import com.hotel.service.user.UserService;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -79,6 +80,33 @@ public class MenuPageController {
 
         return new RedirectView("/menu");
         //return new ModelAndView("redirect:/menu", model);
+    }
+
+    @PostMapping("/addMenuItem")
+    public RedirectView addMenuItem(RedirectAttributes attributes, @RequestParam("ItemName") String itemName,
+                                    @RequestParam("ItemDescription") String itemDesc,
+                                    @RequestParam("ItemPrice") float itemPrice,
+//                                    @RequestParam("ItemAllergens") String allergens,
+                                    @RequestParam("imageFile") MultipartFile file) throws IOException {
+
+        String imgName = file.getOriginalFilename();
+
+        MenuItem i = new MenuItem();
+        i.setName(itemName);
+        i.setDescription(itemDesc);
+        i.setPrice(itemPrice);
+        i.setId(0);
+        i.setImage(imgName);
+
+        // only uploading to build static folder
+        FileUploadUtil.saveFile("build/resources/main/static/images" , imgName, file);
+
+
+        service.add(i);
+
+        attributes.addFlashAttribute("success", "Item successfully added to the menu.");
+
+        return new RedirectView("/menu");
     }
 
 }
