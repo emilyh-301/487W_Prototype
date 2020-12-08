@@ -10,10 +10,7 @@ import com.hotel.service.user.UserService;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -84,6 +81,18 @@ public class MenuPageController {
         //return new ModelAndView("redirect:/menu", model);
     }
 
+    @GetMapping ("/deleteItem/{itemID}")
+    public RedirectView deleteItem(@PathVariable(value="itemID") long itemId) {
+
+        // removing item from all active carts
+        cartService.removeItemFromAllCarts(itemId);
+
+        // delete item
+        service.remove(itemId);
+
+        return new RedirectView("/menu");
+    }
+
     @PostMapping("/addMenuItem")
     public RedirectView addMenuItem(RedirectAttributes attributes, @RequestParam("ItemName") String itemName,
                                     @RequestParam("ItemDescription") String itemDesc,
@@ -101,8 +110,11 @@ public class MenuPageController {
         i.setImage(imgName);
 
         HashSet<Allergen> allergenSet = new HashSet<>();
-        String[] allergen_array = allergens.split(",");
-        for(String s : allergen_array) allergenSet.add(new Allergen(s));
+        String[] allergen_array = allergens.trim().split(",");
+        for(String s : allergen_array) {
+            if(s.length() > 0)
+                allergenSet.add(new Allergen(s));
+        }
         i.setAllergens(allergenSet);
 
         // only uploading to build static folder

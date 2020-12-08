@@ -75,6 +75,12 @@ public class CartDatabase {
         return a.isPresent()? a.get() : null;
     }
 
+    public Collection<Cart> getCartsThatContainItem(Long id){
+        Collection<Long> cartIds = cart_item_repo.selectCartIdsFromCartItems(id);
+
+        return (Collection<Cart>) repo.findAllById(cartIds);
+    }
+
     public boolean contains(long id) {
         return repo.existsById(id);
     }
