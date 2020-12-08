@@ -60,11 +60,23 @@
         <tbody>
         <tr th:each="orders : ${orders}">
             <th scope="row"  th:text="${orders.getId()}"><p>#</p></th>
-            <td th:text="${orders.getRoom()}"></td>
-            <td th:text="${orders.getCart().getItems()}"></td>
-            <td th:text="${orders.getNotes()}"></td>
+            <td th:text="${orders.getCart().getUser().getRoom().getRoom()}"></td>
+            <td>
+                <ul >
+                    <li th:each="item : ${orders.getCart().getItems()}" >
+                        <p th:text="${item.getItem().getName()}"></p>
+                    </li>
+                </ul>
+            </td>
+            <td>
+                <ul >
+                    <li th:each="item : ${orders.getCart().getItems()}" >
+                        <p th:text="${item.getNotes()}"></p>
+                    </li>
+                </ul>
+            </td>
             <td th:text="${orders.getFormattedTime()}"></td>
-            <td th:text="${orders.getStatus()}"></td>
+            <td th:text="${orders.getStatus().toString()}"></td>
             <td>
                 <a th:href="@{'/orders/remove/' + ${orders.getId()}}" class="btn btn-info btn-outline-success:hover">
                     Complete

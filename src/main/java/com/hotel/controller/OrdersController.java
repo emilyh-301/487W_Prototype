@@ -43,7 +43,7 @@ public class OrdersController {
             /*
              * Get a list of all active orders
              */
-            Collection<Order> orders = orderService.findByTime(new Sort(Sort.Direction.ASC), new Date());
+            Collection<Order> orders = orderService.getOrders(new Sort(Sort.Direction.ASC,"time"));
 
         model.addAttribute("orders",orders);
 

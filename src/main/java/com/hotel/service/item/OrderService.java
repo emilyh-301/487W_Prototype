@@ -34,8 +34,8 @@ public class OrderService {
         return database.find(id);
     }
 
-    public void edit(@NotNull long id, long new_cart_id, String new_status, long new_time, String notes) throws Exception {
-        database.edit(id, new_cart_id, new_status, new_time, notes);
+    public void edit(@NotNull long id, long new_cart_id, String new_status, long new_time) throws Exception {
+        database.edit(id, new_cart_id, new_status, new_time);
     }
 
     public void remove(Order order) {
@@ -48,10 +48,6 @@ public class OrderService {
 
     public boolean exists(long id) {
         return database.contains(id);
-    }
-
-    public Collection<Order> findByTime(Sort sort, Date time) {
-        return database.findByTime(sort, time);
     }
 
     public Collection<Order> getDatabase(Sort sort) {

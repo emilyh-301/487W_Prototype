@@ -18,10 +18,8 @@ public interface JpaOrderRepository extends CrudRepository<Order, Long> {
             "(:id is null or o.id = :id) and " +
             "(:cart_id is null or o.cart.id = :cart_id) and " +
             "(:status is null or o.status = :status) and " +
-            "(:time is null or o.time = :time) and" +
-            "(:notes is null or o.notes = :notes) and " +
-            "(:room is null or o.room = :room)")
-    Collection<Order> getAll(@Param("id") Long id,@Param("cart_id") Long cart_id, @Param("status") Order.Status status, @Param("time") Date date,@Param("notes") String notes,@Param("room") Integer room, Sort s);
+            "(:time is null or o.time = :time)")
+    Collection<Order> getAll(@Param("id") Long id,@Param("cart_id") Long cart_id, @Param("status") Order.Status status, @Param("time") Date date, Sort s);
 
     @Query("select o from Order o where o.time < :time")
     Collection<Order> getAllBeforeTime(@Param("time") Date date, Sort s);

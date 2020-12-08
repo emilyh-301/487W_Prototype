@@ -133,21 +133,21 @@ public class Order {
         this.time = new Date(time);
     }
 
-    public String getNotes() {return notes;}
 
-    public void setNotes(String notes) {this.notes = notes;}
-
-    public int getRoom() {
-        return room;
-    }
-
-    public void setRoom(int room) {
-        this.room = room;
-    }
 
     //</editor-fold>
 
     public enum Status {
-        RECIEVED, IN_PROGRESS, COMPLETED;
+        RECEIVED, IN_PROGRESS, COMPLETED;
     }
+
+//        public  boolean Status {
+//        RECIEVED, IN_PROGRESS, COMPLETED;
+//    }
+
+//    public String getStatusString()
+//    {
+//        if(status) return "IN_PROGRESS";
+//        return "COMPLETED";
+//    }
 }
