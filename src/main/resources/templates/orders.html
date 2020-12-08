@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <title>General Requests</title>
+    <title>Orders Page</title>
 
     <!-- Bootstrap stuff -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -17,11 +17,68 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script rel="script" src="/js/bootstrap.bundle.js"></script>
 
+    <style>
+        .sort-arrow {
+            color: white;
+        }
+    </style>
 </head>
-<body lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <header th:insert="navbar::header"></header>
 
+<div class="container">
+    <div class="row justify-content-md-center">
+        <h1>Orders</h1>
+    </div>
+
+    <table class="table table-striped table-hover" style="width: 75rem">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">
+                Order Number
+            </th>
+            <th scope="col">
+                Room
+            </th>
+            <th scope="col">
+                Order
+            </th>
+            <th scope="col">
+                Notes
+            </th>
+            <th scope="col">
+                Time
+            </th>
+            <th scope="col">
+                Status
+            </th>
+            <th scope="col">
+                Complete/Delete
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="orders : ${orders}">
+            <th scope="row"  th:text="${orders.getId()}"><p>#</p></th>
+            <td th:text="${orders.getRoom()}"></td>
+            <td th:text="${orders.getCart().getItems()}"></td>
+            <td th:text="${orders.getNotes()}"></td>
+            <td th:text="${orders.getFormattedTime()}"></td>
+            <td th:text="${orders.getStatus()}"></td>
+            <td>
+                <a th:href="@{'/orders/remove/' + ${orders.getId()}}" class="btn btn-info btn-outline-success:hover">
+                    Complete
+                </a>
+                <a th:href="@{'/orders/remove/' + ${orders.getId()}}" class="btn btn-info btn-danger">
+                    Delete
+                </a>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
+
+</div>
 
 </body>
 </html>

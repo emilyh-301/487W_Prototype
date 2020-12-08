@@ -2,11 +2,16 @@ package com.hotel.service.item;
 
 import com.hotel.model.item.Order;
 import com.hotel.database.item.OrderDatabase;
+import com.hotel.model.request.Request;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
+import javax.persistence.*;
+import java.text.DateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 @Service
 public class OrderService {
@@ -43,5 +48,13 @@ public class OrderService {
 
     public boolean exists(long id) {
         return database.contains(id);
+    }
+
+    public Collection<Order> findByTime(Sort sort, Date time) {
+        return database.findByTime(sort, time);
+    }
+
+    public Collection<Order> getDatabase(Sort sort) {
+        return database.getDatabase(sort);
     }
 }

@@ -12,6 +12,11 @@ import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.Optional;
 
+import javax.persistence.*;
+import java.text.DateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
 @Repository
 public class OrderDatabase {
 
@@ -74,5 +79,9 @@ public class OrderDatabase {
 
     public boolean contains(long id) {
         return repo.existsById(id);
+    }
+
+    public Collection<Order> findByTime(Sort sort, Date time) {
+        return repo.getAll(null, null, null, time, null, null, sort);
     }
 }

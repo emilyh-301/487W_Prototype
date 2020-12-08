@@ -4,8 +4,10 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.engine.internal.Cascade;
 
 import javax.persistence.*;
+import java.text.DateFormat;
 import java.util.Date;
 import java.util.Objects;
+
 
 @Entity
 @Table(name = "orders")
@@ -33,38 +35,48 @@ public class Order {
     @JoinColumn(name = "notes")
     private String notes;
 
+    /**
+     * The room number that made the request
+     */
+    @Column(name = "roomNumber")
+    protected int room;
+
     public Order() {
 
     }
 
-    public Order(long id, Cart cart, Status status, Date time, String notes) {
+    public Order(long id, Cart cart, Status status, Date time, String notes, int room) {
         this.id = id;
         this.cart = cart;
         this.status = status;
         this.time = time;
         this.notes = notes;
+        this.room = room;
     }
 
-    public Order(long id, Cart cart, Status status, long time, String notes) {
+    public Order(long id, Cart cart, Status status, long time, String notes, int room) {
         this.id = id;
         this.cart = cart;
         this.status = status;
         this.time = new Date(time);
         this.notes = notes;
+        this.room = room;
     }
 
-    public Order(Cart cart, Status status, Date time, String notes) {
+    public Order(Cart cart, Status status, Date time, String notes, int room) {
         this.cart = cart;
         this.status = status;
         this.time = time;
         this.notes = notes;
+        this.room = room;
     }
 
-    public Order(Cart cart, Status status, long time, String notes) {
+    public Order(Cart cart, Status status, long time, String notes, int room) {
         this.cart = cart;
         this.status = status;
         this.time = new Date(time);
         this.notes = notes;
+        this.room = room;
     }
 
     @Override
@@ -109,6 +121,10 @@ public class Order {
         return time;
     }
 
+    public String getFormattedTime() {
+        return DateFormat.getDateTimeInstance().format(time);
+    }
+
     public void setTime(Date time) {
         this.time = time;
     }
@@ -120,6 +136,14 @@ public class Order {
     public String getNotes() {return notes;}
 
     public void setNotes(String notes) {this.notes = notes;}
+
+    public int getRoom() {
+        return room;
+    }
+
+    public void setRoom(int room) {
+        this.room = room;
+    }
 
     //</editor-fold>
 
