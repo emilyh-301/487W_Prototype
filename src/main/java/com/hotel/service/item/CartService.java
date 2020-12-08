@@ -7,9 +7,11 @@ import com.hotel.model.item.CartItem;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.Set;
+import java.util.stream.Stream;
 
 @Service
 public class CartService {
@@ -37,6 +39,18 @@ public class CartService {
         cart.addItem(cartItem);
         // update cart
         database.add(cart);
+    }
+
+    public void removeItemFromAllCarts(Long cartItem){
+
+        Collection<Cart> cart = database.getCartsThatContainItem(cartItem);
+
+        cart.stream().forEach(c -> {
+            Object[] tmp = c.getItems().stream().filter(i-> i.getItem().getId() == cartItem).toArray();
+            for(Object i : tmp){
+                c.removeItem((CartItem) i);
+            }
+        });
     }
 
     public void removeFromCart(Cart cart, Long cartItem){

@@ -2,6 +2,7 @@ package com.hotel.database.jpa;
 
 import com.hotel.model.item.CartItem;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -32,5 +33,11 @@ public interface JpaCartItemRepository extends CrudRepository<CartItem, Long> {
 
     @Query(value = "select c from CartItem c where c.quantity > :quantity_min and c.quantity < :quantity_max")
     Collection<CartItem> getAllBetweenQuantities(@Param("quantity_min") int quantity_min, @Param("quantity_max") int quantity_max, Sort s);
+
+    @Query(value = "select c from CartItem c where c.item.id = :ItemID")
+    Collection<CartItem> selectMenuItemsFromCart(@Param("ItemID") long itemId);
+
+    @Query(value = "select c.cart.id from CartItem c where c.item.id = :ItemID")
+    Collection<Long> selectCartIdsFromCartItems(@Param("ItemID") long itemId);
 
 }
