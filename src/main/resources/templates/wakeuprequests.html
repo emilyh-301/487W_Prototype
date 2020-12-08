@@ -38,53 +38,39 @@
                 <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" id="roomno" name="roomno">
             </div>
 
-            <div class="dropdown">
-                <button class="btn btn-success dropdown-toggle" type="button" id="hour" name="hour" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Hour
-                </button>
-                <div class="dropdown-menu" aria-labelledby="hour">
-                    <a class="dropdown-item" href="#">1</a>
-                    <a class="dropdown-item" href="#">2</a>
-                    <a class="dropdown-item" href="#">3</a>
-                    <a class="dropdown-item" href="#">4</a>
-                    <a class="dropdown-item" href="#">5</a>
-                    <a class="dropdown-item" href="#">6</a>
-                    <a class="dropdown-item" href="#">7</a>
-                    <a class="dropdown-item" href="#">8</a>
-                    <a class="dropdown-item" href="#">9</a>
-                    <a class="dropdown-item" href="#">10</a>
-                    <a class="dropdown-item" href="#">11</a>
-                    <a class="dropdown-item" href="#">12</a>
-                    <a class="dropdown-item" href="#">13</a>
-                    <a class="dropdown-item" href="#">15</a>
-                    <a class="dropdown-item" href="#">16</a>
-                    <a class="dropdown-item" href="#">17</a>
-                    <a class="dropdown-item" href="#">18</a>
-                    <a class="dropdown-item" href="#">19</a>
-                    <a class="dropdown-item" href="#">20</a>
-                    <a class="dropdown-item" href="#">21</a>
-                    <a class="dropdown-item" href="#">22</a>
-                    <a class="dropdown-item" href="#">23</a>
-                    <a class="dropdown-item" href="#">24</a>
-                </div>
-            </div>
-
-
-            <select class="form-control form-control-lg">
-                <option>Large select</option>
+            <select class="form-control form-control-lg" id="hour" name="hour" type="text" th:placeholder="Hour">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+                <option>11</option>
+                <option>12</option>
+                <option>13</option>
+                <option>14</option>
+                <option>15</option>
+                <option>16</option>
+                <option>17</option>
+                <option>18</option>
+                <option>19</option>
+                <option>20</option>
+                <option>21</option>
+                <option>22</option>
+                <option>23</option>
+                <option>24</option>
             </select>
 
-            <div class="dropdown">
-                <button class="btn btn-success dropdown-toggle" type="button" id="minute" name="minute" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Minute
-                </button>
-                <div class="dropdown-menu" aria-labelledby="minute">
-                    <a class="dropdown-item" href="#">00</a>
-                    <a class="dropdown-item" href="#">15</a>
-                    <a class="dropdown-item" href="#">30</a>
-                    <a class="dropdown-item" href="#">45</a>
-                </div>
-            </div>
+            <select class="form-control form-control-lg" id="minute" name="minute" type="test" th:placeholder="Minute">
+                <option>00</option>
+                <option>15</option>
+                <option>30</option>
+                <option>45</option>
+            </select>
 
         </div>
 
