@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -46,7 +47,9 @@ public class SiteController {
     }
 
     @GetMapping("/login")
-    public ModelAndView login(ModelMap model) {
+    public ModelAndView login(HttpServletRequest request, ModelMap model) {
+        String referer = request.getHeader("Referer");
+        request.getSession().setAttribute("url_prior_login", referer);
         return new ModelAndView(isAuthenticated()? "redirect:/" : "login", model);
     }
 
