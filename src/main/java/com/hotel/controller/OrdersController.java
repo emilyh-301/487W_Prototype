@@ -51,9 +51,16 @@ public class OrdersController {
     }
 
     @GetMapping("/complete/{id}")
-    public RedirectView removeItem(RedirectAttributes attributes, @PathVariable("id") Long id) {
+    public RedirectView completeItem(RedirectAttributes attributes, @PathVariable("id") Long id) {
+        attributes.addFlashAttribute("success", "You have successfully completed order: " + id);
         orderService.remove(id);
-        attributes.addFlashAttribute("success", "You have successfully completed your order.");
+        return new RedirectView("/orders");
+    }
+
+    @GetMapping("/delete/{id}")
+    public RedirectView deleteItem(RedirectAttributes attributes, @PathVariable("id") Long id) {
+        attributes.addFlashAttribute("success", "You have successfully deleted the order: " + id);
+        orderService.remove(id);
         return new RedirectView("/orders");
     }
 }

@@ -59,7 +59,7 @@
         </thead>
         <tbody>
         <tr th:each="orders : ${orders}">
-            <th scope="row"  th:text="${orders.getId()}"><p>#</p></th>
+            <th scope="row"  th:text="${orders.getId()}"></th>
             <td th:text="${orders.getCart().getUser().getRoom().getRoom()}"></td>
             <td>
                 <ul >
@@ -78,14 +78,13 @@
             <td th:text="${orders.getFormattedTime()}"></td>
             <td th:text="${orders.getStatus().toString()}"></td>
             <td>
-                <a th:href="@{'/orders/remove/' + ${orders.getId()}}" class="btn btn-info btn-outline-success:hover">
-                    Complete
+                <a th:href="@{'/orders/complete/' + ${orders.getId()}}" >
+                   <button type="button " class="btn btn-info btn-outline-success:hover">Complete</button>
                 </a>
-                <a th:href="@{'/orders/remove/' + ${orders.getId()}}" class="btn btn-info btn-danger">
-                    Delete
+                <a th:href="@{'/orders/delete/' + ${orders.getId()}}">
+                    <button type="button" class="btn btn-info btn-danger">Delete</button>
                 </a>
             </td>
-
         </tr>
         </tbody>
     </table>
