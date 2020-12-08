@@ -125,7 +125,6 @@ public class RequestController {
 
         long id = 69;
         Date time = new Date();
-        Date wakeuptime = new Date();
 
         time.setTime(System.currentTimeMillis());
         Calendar calendar = Calendar.getInstance();
@@ -133,16 +132,14 @@ public class RequestController {
         calendar.setTimeInMillis(System.currentTimeMillis());
         calendar.add(Calendar.DATE, 1);
 
-        calendar.set(Calendar.HOUR, hour);
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
         calendar.set(Calendar.MINUTE, minute);
 
-        time.setTime(calendar.getTimeInMillis());
+        Request wr = Request.createWakeUpRequest(id, roomno, time, calendar.getTime());
 
-        Request mr = Request.createWakeUpRequest(id, roomno, time, wakeuptime);
+        requestService.add(wr);
 
-        requestService.add(mr);
-
-        return new RedirectView("/requests");
+        return new RedirectView("/request");
     }
 
     @GetMapping("/log")

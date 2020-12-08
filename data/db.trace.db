@@ -1192,3 +1192,6 @@ select * from request;"; SQL statement:
 insert into request values (2, 122, CURRENT_TIMESTAMP, 'general', 'other', TRUE, 'Hi please don't wake my neighbor up thanks love you', null);
 
 select * from request; [42000-193]
+2020-12-08 18:25:18 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Table "REQUESTS" not found; SQL statement:
+select * from requests [42102-193]
