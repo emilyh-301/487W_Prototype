@@ -1,5 +1,7 @@
 package com.hotel.service.item;
 
+import com.hotel.database.item.AllergenDatabase;
+import com.hotel.model.item.Allergen;
 import com.hotel.model.item.MenuItem;
 import com.hotel.database.item.MenuItemDatabase;
 
@@ -16,8 +18,11 @@ public class MenuItemService {
 
     private final MenuItemDatabase database;
 
-    public MenuItemService(MenuItemDatabase database) {
+    private final AllergenDatabase allergenDatabase;
+
+    public MenuItemService(MenuItemDatabase database, AllergenDatabase allergenDatabase) {
         this.database = database;
+        this.allergenDatabase = allergenDatabase;
     }
 
     public Collection<MenuItem> getItems(Sort s) {
@@ -25,6 +30,10 @@ public class MenuItemService {
     }
 
     public void add(MenuItem item) {
+
+        for(Allergen a : item.getAllergens())
+            if(a != null && !allergenDatabase.contains(a.getAllergen())) allergenDatabase.add(a);
+
         database.add(item);
     }
 

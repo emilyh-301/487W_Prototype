@@ -14,7 +14,11 @@ public class AllergenDatabase {
     /**
      * CRUD repository of allergens
      */
-    private JpaAllergenRepository repo;
+    private final JpaAllergenRepository repo;
+
+    public AllergenDatabase(JpaAllergenRepository repo) {
+        this.repo = repo;
+    }
 
     public Collection<Allergen> getDatabase(Sort sort) {
         return repo.getAll(sort);

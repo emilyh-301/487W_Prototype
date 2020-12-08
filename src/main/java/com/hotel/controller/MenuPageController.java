@@ -1,5 +1,6 @@
 package com.hotel.controller;
 
+import com.hotel.model.item.Allergen;
 import com.hotel.model.item.Cart;
 import com.hotel.model.item.CartItem;
 import com.hotel.model.item.MenuItem;
@@ -21,6 +22,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 
 @Controller
 @RequestMapping("/menu")
@@ -86,8 +88,8 @@ public class MenuPageController {
     public RedirectView addMenuItem(RedirectAttributes attributes, @RequestParam("ItemName") String itemName,
                                     @RequestParam("ItemDescription") String itemDesc,
                                     @RequestParam("ItemPrice") float itemPrice,
-//                                    @RequestParam("ItemAllergens") String allergens,
-                                    @RequestParam("imageFile") MultipartFile file) throws IOException {
+                                    @RequestParam("ItemAllergens") String allergens,
+                                    @RequestParam("imageFile") MultipartFile file)throws IOException {
 
         String imgName = file.getOriginalFilename();
 
@@ -97,6 +99,11 @@ public class MenuPageController {
         i.setPrice(itemPrice);
         i.setId(0);
         i.setImage(imgName);
+
+        HashSet<Allergen> allergenSet = new HashSet<>();
+        String[] allergen_array = allergens.split(",");
+        for(String s : allergen_array) allergenSet.add(new Allergen(s));
+        i.setAllergens(allergenSet);
 
         // only uploading to build static folder
         FileUploadUtil.saveFile("build/resources/main/static/images" , imgName, file);
