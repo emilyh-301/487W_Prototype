@@ -18,9 +18,11 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
+import  java.util.Calendar;
 
 @Controller
 @RequestMapping("/request")
@@ -110,6 +112,36 @@ public class RequestController {
         else{
             // idk some error maybe
         }
+        return new RedirectView("/requests");
+    }
+
+    @GetMapping("/wakeuprequests")
+    public ModelAndView makeWakeUpRequest(ModelMap m) {
+        return new ModelAndView("wakeuprequests", m);
+    }
+
+    @PostMapping("/wakeuprequests")
+    public RedirectView makeWakeUpRequestPost(@RequestParam("roomno") int roomno, @RequestParam("hour") int hour, @RequestParam("minute") int minute){
+
+        long id = 69;
+        Date time = new Date();
+        Date wakeuptime = new Date();
+
+        time.setTime(System.currentTimeMillis());
+        Calendar calendar = Calendar.getInstance();
+
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.add(Calendar.DATE, 1);
+
+        calendar.set(Calendar.HOUR, hour);
+        calendar.set(Calendar.MINUTE, minute);
+
+        time.setTime(calendar.getTimeInMillis());
+
+        Request mr = Request.createWakeUpRequest(id, roomno, time, wakeuptime);
+
+        requestService.add(mr);
+
         return new RedirectView("/requests");
     }
 

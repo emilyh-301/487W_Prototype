@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Wake-Up Requests</title>
+
+    <!-- Bootstrap stuff -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/css/styles.css"/>
+    <link rel="stylesheet" href="css/font-awesome/all.css"/>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script rel="script" src="/js/bootstrap.bundle.js"></script>
+
+</head>
+<body lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<header th:insert="navbar::header"></header>
+
+<div class="container">
+    <div class="row justify-content-md-center">
+        <h1>Wake-Up Requests Form</h1>
+    </div>
+
+    <form action="/request/wakeuprequests" method="POST">
+
+        <div class="input-group-text">
+
+            <div class="form-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="inputGroup-sizing-default">Room Number</span>
+                </div>
+                <input type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" id="roomno" name="roomno">
+            </div>
+
+            <div class="dropdown">
+                <button class="btn btn-success dropdown-toggle" type="button" id="hour" name="hour" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Hour
+                </button>
+                <div class="dropdown-menu" aria-labelledby="hour">
+                    <a class="dropdown-item" href="#">1</a>
+                    <a class="dropdown-item" href="#">2</a>
+                    <a class="dropdown-item" href="#">3</a>
+                    <a class="dropdown-item" href="#">4</a>
+                    <a class="dropdown-item" href="#">5</a>
+                    <a class="dropdown-item" href="#">6</a>
+                    <a class="dropdown-item" href="#">7</a>
+                    <a class="dropdown-item" href="#">8</a>
+                    <a class="dropdown-item" href="#">9</a>
+                    <a class="dropdown-item" href="#">10</a>
+                    <a class="dropdown-item" href="#">11</a>
+                    <a class="dropdown-item" href="#">12</a>
+                    <a class="dropdown-item" href="#">13</a>
+                    <a class="dropdown-item" href="#">15</a>
+                    <a class="dropdown-item" href="#">16</a>
+                    <a class="dropdown-item" href="#">17</a>
+                    <a class="dropdown-item" href="#">18</a>
+                    <a class="dropdown-item" href="#">19</a>
+                    <a class="dropdown-item" href="#">20</a>
+                    <a class="dropdown-item" href="#">21</a>
+                    <a class="dropdown-item" href="#">22</a>
+                    <a class="dropdown-item" href="#">23</a>
+                    <a class="dropdown-item" href="#">24</a>
+                </div>
+            </div>
+
+
+            <select class="form-control form-control-lg">
+                <option>Large select</option>
+            </select>
+
+            <div class="dropdown">
+                <button class="btn btn-success dropdown-toggle" type="button" id="minute" name="minute" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Minute
+                </button>
+                <div class="dropdown-menu" aria-labelledby="minute">
+                    <a class="dropdown-item" href="#">00</a>
+                    <a class="dropdown-item" href="#">15</a>
+                    <a class="dropdown-item" href="#">30</a>
+                    <a class="dropdown-item" href="#">45</a>
+                </div>
+            </div>
+
+        </div>
+
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+
+</div>
+
+</body>
+</html>
