@@ -153,6 +153,10 @@ public class MenuItem {
         return price;
     }
 
+    public String getPriceString() {
+        return String.format("$%.2f", price.doubleValue());
+    }
+
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
