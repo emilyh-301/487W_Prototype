@@ -114,12 +114,15 @@ public class RequestController {
     }
 
     @GetMapping("/log")
-    public ModelAndView viewLog(ModelMap m) {
+    public ModelAndView viewLog(ModelMap m, @RequestParam(value = "direction", required = false, defaultValue = "asc") String direction, @RequestParam(value = "sort",
+            required = false, defaultValue = "time") String sort) {
+
 
         /*
          * Get a list of all inactive requests
          */
-        Collection<Request> requests = requestService.findByCompletion(new Sort(Sort.Direction.ASC, "time"), true);
+        Collection<Request> requests = requestService.findByCompletion(new Sort(direction.equals("asc")? Sort.Direction.ASC : Sort.Direction.DESC,
+                sort), true);
         m.addAttribute("requests", requests);
 
         return new ModelAndView("log", m);

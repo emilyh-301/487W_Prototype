@@ -1149,3 +1149,46 @@ select * from allergens [42000-193]
 2020-10-27 20:54:26 jdbc[13]: exception
 org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "INSERT INTO MENU_ITEMS VALUES(8, 'Fried pickles with your choice of sauce on the side', 'fried-pickles.jpg' 'Fried Pickles'[*], 4.00) "; expected "[, ::, *, /, %, +, -, ||, ~, !~, NOT, LIKE, REGEXP, IS, IN, BETWEEN, AND, OR, ,, )"; SQL statement:
 insert into menu_items values(8, 'Fried pickles with your choice of sauce on the side', 'fried-pickles.jpg' 'Fried Pickles', 4.00) [42001-193]
+2020-12-07 21:07:25 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "insert into request values (4, 015, CURRENT_TIMESTAMP, 'general', 'Bedroom', TRUE, 'God i'm so lonely[*]', null);
+
+
+select * from request;"; SQL statement:
+insert into request values (4, 015, CURRENT_TIMESTAMP, 'general', 'Bedroom', TRUE, 'God i'm so lonely', null);
+
+
+select * from request; [42000-193]
+2020-12-07 21:07:31 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "insert into request values (5, 015, CURRENT_TIMESTAMP, 'general', 'Bedroom', TRUE, 'God i'm so lonely[*]', null);
+
+
+select * from request;"; SQL statement:
+insert into request values (5, 015, CURRENT_TIMESTAMP, 'general', 'Bedroom', TRUE, 'God i'm so lonely', null);
+
+
+select * from request; [42000-193]
+2020-12-07 21:10:15 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "                                                                                                                                              
+DELETE FROM REQUEST WHERE REQUESTID = 1
+
+SELECT[*] * FROM REQUEST "; SQL statement:
+--insert into request values (8, 016, CURRENT_TIMESTAMP, 'general', 'other', TRUE, 'please help the guy next door is driving me crazy', null);
+delete from request where requestid = 1
+
+select * from request [42000-193]
+2020-12-07 21:10:36 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "                                                                                                                                              
+DELETE FROM REQUEST WHERE REQUESTID= 1
+
+SELECT[*] * FROM REQUEST "; SQL statement:
+--insert into request values (8, 016, CURRENT_TIMESTAMP, 'general', 'other', TRUE, 'please help the guy next door is driving me crazy', null);
+delete from request where REQUESTID= 1
+
+select * from request [42000-193]
+2020-12-07 21:12:23 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "insert into request values (2, 122, CURRENT_TIMESTAMP, 'general', 'other', TRUE, 'Hi please don't wake my neighbor up thanks love you[*]', null);
+
+select * from request;"; SQL statement:
+insert into request values (2, 122, CURRENT_TIMESTAMP, 'general', 'other', TRUE, 'Hi please don't wake my neighbor up thanks love you', null);
+
+select * from request; [42000-193]
