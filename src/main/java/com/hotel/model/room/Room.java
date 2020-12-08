@@ -41,6 +41,21 @@ public class Room {
         return room;
     }
 
+    public String getRoomString(int digits) {
+        StringBuilder sb = new StringBuilder();
+
+        for(int i = 1; i <= digits; i++) {
+            if(room < Math.pow(10, i)) {
+                sb.append("0");
+            }
+        }
+
+        sb.append(room);
+
+        return sb.toString();
+
+    }
+
     public void setRoom(Integer room) {
         this.room = room;
     }

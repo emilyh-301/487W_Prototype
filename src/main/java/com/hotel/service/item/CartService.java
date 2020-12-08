@@ -68,6 +68,10 @@ public class CartService {
         database.edit(id, new_completed, new_item_ids);
     }
 
+    public void setCompleted(@NotNull long id, boolean completed) {
+        database.setComplete(id, completed);
+    }
+
     public void remove(Cart cart) {
         database.remove(cart);
     }

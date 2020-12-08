@@ -52,6 +52,15 @@ public class CartDatabase {
         repo.save(cart);
     }
 
+    public void setComplete(@NotNull long id, boolean completed) {
+        Cart cart = find(id);
+
+        if(cart == null) return;
+
+        cart.setCompleted(completed);
+        repo.save(cart);
+    }
+
     public void remove(Cart cart) {
         repo.delete(cart);
     }
