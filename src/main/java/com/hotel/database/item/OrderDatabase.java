@@ -32,7 +32,7 @@ public class OrderDatabase {
         if(order != null) repo.save(order);
     }
 
-    public void edit(@NotNull long id, long new_cart_id, String new_status, long new_time, String notes) throws Exception {
+    public void edit(@NotNull long id, long new_cart_id, String new_status, long new_time) throws Exception {
         
         Order order = find(id);
 
@@ -46,13 +46,11 @@ public class OrderDatabase {
         try {
             order.setStatus(Order.Status.valueOf(new_status));
         } catch (IllegalArgumentException e) {
-            order.setStatus(Order.Status.RECIEVED);
+            order.setStatus(Order.Status.RECEIVED);
         }
 
         if(new_time < Request.MINIMUM_TIME) order.setTime(Request.MINIMUM_TIME);
         else order.setTime(new_time);
-
-        order.setNotes(notes);
 
         repo.save(order);
 
@@ -75,4 +73,8 @@ public class OrderDatabase {
     public boolean contains(long id) {
         return repo.existsById(id);
     }
+
+//    public Collection<Order> findByTime(Sort sort, Date time) {
+//        return repo.getAll(null, null, null, time, null, null, sort);
+//    }
 }

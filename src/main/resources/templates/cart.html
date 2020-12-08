@@ -26,6 +26,8 @@
 <div class="container">
 <div class="row justify-content-md-center">
     <h1 class="header">Shopping Cart</h1>
+    <div th:if="${failure}" class="alert alert-danger" role="alert" th:text="${failure}"> </div>
+    <div th:if="${success}" class="alert alert-success" role="alert" th:text="${success}"> </div>
 </div>
 
 <table class="table table-hover table-borderless table-striped">

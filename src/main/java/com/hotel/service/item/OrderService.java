@@ -2,11 +2,16 @@ package com.hotel.service.item;
 
 import com.hotel.model.item.Order;
 import com.hotel.database.item.OrderDatabase;
+import com.hotel.model.request.Request;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
+import javax.persistence.*;
+import java.text.DateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 @Service
 public class OrderService {
@@ -29,8 +34,8 @@ public class OrderService {
         return database.find(id);
     }
 
-    public void edit(@NotNull long id, long new_cart_id, String new_status, long new_time, String notes) throws Exception {
-        database.edit(id, new_cart_id, new_status, new_time, notes);
+    public void edit(@NotNull long id, long new_cart_id, String new_status, long new_time) throws Exception {
+        database.edit(id, new_cart_id, new_status, new_time);
     }
 
     public void remove(Order order) {
@@ -43,5 +48,9 @@ public class OrderService {
 
     public boolean exists(long id) {
         return database.contains(id);
+    }
+
+    public Collection<Order> getDatabase(Sort sort) {
+        return database.getDatabase(sort);
     }
 }

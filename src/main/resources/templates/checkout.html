@@ -20,102 +20,92 @@
         <h1>Checkout</h1>
     </div>
 
-    <table class="table table-hover table-borderless table-striped">
+    <table class="table table-hover table-borderless table-striped" style="margin-bottom: 0">
         <thead class="thead-dark">
-        <tr>
-            <th scope="col">name</th>
-            <th scope="col">quantity</th>
-            <th scope="col">price</th>
-        </tr>
+            <tr>
+                <th scope="col">name</th>
+                <th scope="col">quantity</th>
+                <th scope="col">price</th>
+            </tr>
         </thead>
         <tbody>
 
-        <tr th:each="Cart : ${cart.getItems()}">
-            <td th:text="${Cart.getItem().getName()}"></td>
-            <td th:text="${Cart.getQuantity()}"></td>
-            <td th:text="${Cart.getItem().getPrice()}"></td>
-        </tr>
+            <tr th:each="Cart : ${cart.getItems()}">
+                <td th:text="${Cart.getItem().getName()}"></td>
+                <td th:text="${Cart.getQuantity()}"></td>
+                <td th:text="${Cart.getItem().getPrice()}"></td>
+            </tr>
 
         </tbody>
 
         <thead class="thead-dark">
-        <tr>
-            <th scope="col"></th>
-            <th scope="col"></th>
-            <th scope="col">Total Cost</th>
-        </tr>
+            <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col">Total Cost</th>
+            </tr>
         </thead>
 
         <tbody>
-        <tr>
-            <td></td>
-            <td></td>
-            <td th:text="${total}"></td>
-        </tr>
-
+            <tr>
+                <td></td>
+                <td></td>
+                <td th:text="${total}"></td>
+            </tr>
         </tbody>
+
     </table>
+
+    <nav class="navbar navbar-dark" style="background-color: #343a40; border-color: #454d55; margin-top: 0">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#payWithCard">Pay with card</button>
+        <a href="/cart/">
+            <button type="button" class="btn btn-secondary">Edit Cart</button>
+        </a>
+        <form action="/checkout/" method="post">
+            <button type="submit" class="btn btn-primary">Charge to room</button>
+        </form>
+        <a href="/cart/clear">
+            <button type="button" class="btn btn-secondary">Cancel order</button>
+        </a>
+    </nav>
+
 </div>
 
-<div class="container">
-    <div class="text-right">
-        <button type="button" class="btn col-3 btn-primary " data-toggle="modal" data-target="#payWithCard">Pay with card</button>
-
-        <div class="modal fade" id="payWithCard" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="staticBackdropLabel">Pay with your card here.</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="CardNumber">Card Number</label>
-                            <input type="text" class="form-control" id="CardNumber" name="CardNumber" placeholder="1234 5678 9123 4567">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="CardDate">Card Expiration Date</label>
-                            <input type="text" class="form-control" id="CardDate" name="CardNumber" placeholder="01/20">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="CVC">CVC</label>
-                            <input type="text" class="form-control" id="CVC" name="CardNumber" placeholder="123">
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
-                        <!-- <a href="/cart/clear"> -->
-                        <a href="/checkout/clear">
-                        <button type="button" class="btn btn-primary">Pay</button>
-                        </a>
-                    </div>
+<div class="modal fade" id="payWithCard" data-keyboard="false" role="dialog" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Pay with your card here.</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="CardNumber">Card Number</label>
+                    <input type="text" class="form-control" id="CardNumber" name="CardNumber" placeholder="1234 5678 9123 4567">
                 </div>
+
+                <div class="form-group">
+                    <label for="CardDate">Card Expiration Date</label>
+                    <input type="text" class="form-control" id="CardDate" name="CardNumber" placeholder="01/20">
+                </div>
+
+                <div class="form-group">
+                    <label for="CVC">CVC</label>
+                    <input type="text" class="form-control" id="CVC" name="CardNumber" placeholder="123">
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                <form action="/checkout/" method="post">
+                    <button type="submit" class="btn btn-primary">Charge to room</button>
+                </form>
             </div>
         </div>
-
-        <!-- <a href="/cart/clear"> -->
-        <a href="/checkout/clear">
-        <button type="button" class="btn col-3 btn-primary " >Charge to room</button>
-        </a>
-
     </div>
-
-    <div class="text-right" style="margin-top: 10px;">
-        <a href="/cart/">
-        <button type="button" class="btn col-3 btn-secondary " >Edit Cart</button>
-        </a>
-
-        <a href="/cart/clear">
-        <button type="button" class="btn col-3 btn-secondary " >Cancel order</button>
-        </a>
-    </div>
-
 </div>
 
 </body>
