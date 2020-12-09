@@ -2,10 +2,16 @@ package com.hotel.model.item;
 
 import com.hotel.model.room.Room;
 import com.hotel.model.user.ApplicationUser;
+import com.hotel.service.user.UserService;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import javax.persistence.*;
+import javax.servlet.http.HttpUtils;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -115,10 +121,15 @@ public class Cart {
         return items.isEmpty();
     }
 
-    @ModelAttribute("cartSize")
-    public int getCartSize(){
-        if(items == null) return 0;
-        return items.size();
-    }
+//    @ModelAttribute("cartSize")
+//    public int getCartSize(){
+//        Authentication userDetails = (Authentication) SecurityContextHolder.getContext().getAuthentication();
+//        if(userDetails != null) {
+//            UserDetails u = (UserDetails) userDetails.getPrincipal();
+//
+//            if (items == null) return 0;
+//        }
+//        return 0;
+//    }
 
 }

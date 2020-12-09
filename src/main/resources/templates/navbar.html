@@ -71,9 +71,15 @@
         </ul>
 
         <ul class=" navbar-nav" >
-            <li class="nav-item">
+            <li class="nav-item" sec:authorize="hasRole('ROLE_USER')"
+                th:if="${#httpServletRequest.getAttribute('Cart') != null}">
                 <a href="/cart" class="nav-link lead">
-                    <i class="fas fa-shopping-cart fa-stack has-badge" th:data-count="${cartSize}"></i>Cart
+                    <i class="fas fa-shopping-cart fa-stack has-badge" th:data-count="${#httpServletRequest.getAttribute('Cart').size()}"></i>Cart
+                </a>
+            </li>
+            <li class="nav-item" th:unless="${#httpServletRequest.remoteUser}">
+                <a href="/cart" class="nav-link lead disabled">
+                    <i class="fas fa-shopping-cart fa-stack"></i>Cart
                 </a>
             </li>
             <li th:if="${#httpServletRequest.remoteUser}" class="nav-item">

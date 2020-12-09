@@ -59,6 +59,8 @@ public class MenuPageController {
             }
         }
 
+        model.addAttribute("Cart", userService.getActiveCart(userService.getCurrentUser()).getItems());
+
         model.addAttribute("items", items_split);
         return new ModelAndView("menu", model);
     }
