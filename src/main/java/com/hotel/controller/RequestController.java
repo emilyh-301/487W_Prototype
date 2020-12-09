@@ -82,10 +82,10 @@ public class RequestController {
                                                    @RequestParam("request") String request) {
         boolean valid = false;
         Set<Roles> roles = userService.getCurrentUser().getUser_roles();
-        if(roles.contains("ROLE_USER") && userService.getCurrentUser().getRoom().getRoom() == roomno){
+        if(roles.contains(rolesDatabase.find("ROLE_USER")) && userService.getCurrentUser().getRoom().getRoom() == roomno){
             valid = true;
         }
-        else if(roles.contains("ROLE_STAFF")){
+        else if(roles.contains(rolesDatabase.find("ROLE_STAFF"))){
             valid = true;
         }
 
