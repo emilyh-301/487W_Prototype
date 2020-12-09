@@ -27,22 +27,18 @@
         <h1>General Request Form</h1>
     </div>
 
-    <form action="" type="post">
+    <form action="/request/general" type="post">
 
         <div class="dropdown">
-            <button class="btn btn-success dropdown-toggle" type="button" id="category" name="category" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Request Category
-            </button>
-            <div class="dropdown-menu" aria-labelledby="category">
-                <a class="dropdown-item" href="#">Bathroom</a>
-                <a class="dropdown-item" href="#">Bedroom</a>
-                <a class="dropdown-item" href="#">Amenities</a>
-                <a class="dropdown-item" href="#">Other</a>
-            </div>
+            <select id="category" class="form-control form-control-lg">
+                <option>Bathroom</option>
+                <option>Bedroom</option>
+                <option>Amenities</option>
+                <option>Other</option>
+            </select>
         </div>
 
         <div class="form-group">
-
             <div class="form-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="inputGroup-sizing-default">Room Number</span>
@@ -56,9 +52,8 @@
             </div>
         </div>
 
-        <a href="/request/">
-        <button type="button" class="btn btn-success">Submit</button>
-        </a>
+        <button type="submit" class="btn btn-success">Submit</button>
+
     </form>
 
 </div>
