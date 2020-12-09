@@ -78,10 +78,9 @@ public class MenuPageController {
         attributes.addFlashAttribute("success", "Item successfully added to cart.");
 
         return new RedirectView("/menu");
-        //return new ModelAndView("redirect:/menu", model);
     }
 
-    @GetMapping ("/deleteItem/{itemID}")
+    @PostMapping ("/deleteItem/{itemID}")
     public RedirectView deleteItem(@PathVariable(value="itemID") long itemId) {
 
         // removing item from all active carts
@@ -119,6 +118,9 @@ public class MenuPageController {
 
         // only uploading to build static folder
         FileUploadUtil.saveFile("build/resources/main/static/images" , imgName, file);
+
+        // uploading to src folder
+        FileUploadUtil.saveFile("src/main/resources/main/static/images" , imgName, file);
 
 
         service.add(i);
