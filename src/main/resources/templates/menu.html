@@ -111,13 +111,16 @@
                                             </button>
                                         </div>
 
-                                        <div  class="text-center mt-5" sec:authorize="hasRole('ROLE_STAFF')" th:if="${item != null && item.getId() > 0}" >
-                                            <a class="btn btn-danger" style="width:100%; margin-left: 0; padding-left: 0; font-weight: 200">
+                                    </form>
+                                    <div  class="text-center mt-5" sec:authorize="hasRole('ROLE_STAFF')" th:if="${item != null && item.getId() > 0}" >
+                                        <form th:action="${'/menu/deleteItem/' + item.getId()}" method="POST" style="font-size: 1rem" class="lead">
+
+                                            <button type="submit" class="btn btn-danger" style="width:100%; margin-left: 0; padding-left: 0; font-weight: 200">
                                                 <i class="fas fa-trash" style="margin-right: 0.5rem"></i>
                                                 Delete Item
-                                            </a>
-                                        </div>
-                                    </form>
+                                            </button>
+                                        </form>
+                                    </div>
 
                                     <div class="allergens" th:unless="${item.getAllergens().isEmpty()}">
                                         <p style="margin-top: 1.25rem; padding-bottom: 0; margin-bottom: 0.5rem;" class="lead">Allergens</p>
