@@ -5,12 +5,15 @@ import com.hotel.model.room.Room;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import javax.persistence.*;
 import java.util.*;
 
 @Entity
 @Table(name = "application_user")
+//@ControllerAdvice
 public class ApplicationUser implements UserDetails {
 
     @Id
@@ -238,4 +241,14 @@ public class ApplicationUser implements UserDetails {
 
         return null;
     }
+
+//    @ModelAttribute("cartSize")
+//    public int getCartSize(){
+//        for(Cart c: user_carts)
+//        {
+//            if(c != null && !c.isCompleted()) return c.getItems().size();
+//        }
+//
+//        return 0;
+//    }
 }
