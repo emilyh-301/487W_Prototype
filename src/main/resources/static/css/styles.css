@@ -321,3 +321,8 @@ button {
     min-width: 1em;
     font-weight:bold;
 }
+
+.download-excel-btn{
+    color: white !important;
+    margin-bottom: 10px;
+}
