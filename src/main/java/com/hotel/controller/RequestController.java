@@ -60,16 +60,11 @@ public class RequestController {
         }
 
         if(valid){
-            long id = 0; // need a way to increment this
+            long id = 0;
             Date d = new Date();
             d.setTime(System.currentTimeMillis());
             Request gr = Request.createGeneralRequest(id, roomno, d, request, category);
             requestService.add(gr);
-            /*
-            GeneralRequest gr = new GeneralRequest(id, roomno, d, request, category);
-            generalRequestService.add(gr);
-
-             */
         }
         else{
             // idk some error maybe
@@ -87,26 +82,19 @@ public class RequestController {
                                                    @RequestParam("request") String request) {
         boolean valid = false;
         Set<Roles> roles = userService.getCurrentUser().getUser_roles();
-        if(roles.contains("ROLE_USER") && userService.getCurrentUser().getRoom().getRoom() == roomno){
+        if(roles.contains(rolesDatabase.find("ROLE_USER")) && userService.getCurrentUser().getRoom().getRoom() == roomno){
             valid = true;
         }
-        else if(roles.contains("ROLE_STAFF")){
+        else if(roles.contains(rolesDatabase.find("ROLE_STAFF"))){
             valid = true;
         }
 
         if(valid){
-            long id = 0; // need a way to increment this
+            long id = 0;
             Date d = new Date();
             d.setTime(System.currentTimeMillis());
-
             Request mr = Request.createMaintenanceRequest(id, roomno, d, request, category);
             requestService.add(mr);
-
-            /*
-            MaintenanceRequest mr = new MaintenanceRequest(id, roomno, d, request, category);
-            maintenanceRequestService.add(mr);
-
-             */
         }
         else{
             // idk some error maybe

@@ -113,6 +113,60 @@
 
                                     </form>
                                     <div  class="text-center mt-5" sec:authorize="hasRole('ROLE_STAFF')" th:if="${item != null && item.getId() > 0}" >
+
+                                        <!-- Edit Item-->
+                                        <div id="accordion">
+                                            <div class="card">
+                                                <div class="card-header" id="headingOne">
+                                                    <h5 class="mb-0">
+                                                        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                            <i class="fa fa-edit"></i> Edit Item
+                                                        </button>
+                                                    </h5>
+                                                </div>
+
+                                                <div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordion">
+                                                    <div class="card-body">
+                                                        <form th:action="${'/menu/editItem/' + item.getId()}" method="POST" enctype="multipart/form-data"
+                                                              style="font-size: 1rem" class="lead">
+                                                            <div class="form-group">
+                                                                <label for="imageFileEdit">Image</label>
+                                                                <input type="file" id="imageFileEdit" name="imageFile" accept="image/png, image/jpeg"/>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="ItemNameEdit">Item Name</label>
+                                                                <input type="text" class="form-control" id="ItemNameEdit" name="ItemName" placeholder="Item Name" th:value="${item.getName()}"/>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="ItemDescriptionEdit">Item Description</label>
+                                                                <textarea type="text" class="form-control" id="ItemDescriptionEdit"
+                                                                          name="ItemDescription" rows="5" th:text="${item.getDescription()}"></textarea>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="ItemPriceEdit">Item Price $</label>
+                                                                <input type="text" class="form-control" id="ItemPriceEdit" name="ItemPrice" th:value="${item.getPrice()}"/>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="ItemAllergensEdit">Item Allergens</label>
+                                                                <input type="text" class="form-control" id="ItemAllergensEdit" name="ItemAllergens" th:value="${item.listAllergens()}"/>
+                                                                <small id="allergenHelpEdit" class="form-text text-muted">Separate allergens with commas.</small>
+                                                            </div>
+                                                            <div class="text-center">
+                                                                <button type="submit" class="btn btn-primary" style="width:100%; margin-left: 0; padding-left: 0; font-weight: 200">
+                                                                    <i class="fas fa-edit" style="margin-right: 0.5rem"></i>
+                                                                    Update Item
+                                                                </button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+
+
                                         <form th:action="${'/menu/deleteItem/' + item.getId()}" method="POST" style="font-size: 1rem" class="lead">
 
                                             <button type="submit" class="btn btn-danger" style="width:100%; margin-left: 0; padding-left: 0; font-weight: 200">
@@ -120,6 +174,7 @@
                                                 Delete Item
                                             </button>
                                         </form>
+
                                     </div>
 
                                     <div class="allergens" th:unless="${item.getAllergens().isEmpty()}">

@@ -92,6 +92,47 @@ public class MenuPageController {
         return new RedirectView("/menu");
     }
 
+    @PostMapping("/editItem/{itemID}")
+    public RedirectView editItem(RedirectAttributes attributes, @PathVariable(value="itemID") long itemId,
+                                @RequestParam("ItemName") String itemName,
+                                 @RequestParam("ItemDescription") String itemDesc,
+                                 @RequestParam("ItemPrice") float itemPrice,
+                                 @RequestParam("ItemAllergens") String allergens,
+                                 @RequestParam("imageFile") MultipartFile file) throws IOException {
+
+        MenuItem i = service.find(itemId);
+
+        String imgName = "";
+        if(!file.isEmpty()){
+            imgName = file.isEmpty() ? "" : file.getOriginalFilename();
+            i.setImage(imgName);
+
+            // only uploading to build static folder
+            FileUploadUtil.saveFile("build/resources/main/static/images", imgName, file);
+
+            // uploading to src folder
+            FileUploadUtil.saveFile("src/main/resources/main/static/images", imgName, file);
+        }
+
+        i.setName(itemName);
+        i.setDescription(itemDesc);
+        i.setPrice(itemPrice);
+
+        HashSet<String> allergenSet = new HashSet<>();
+        String[] allergen_array = allergens.trim().split(",");
+        for(String s : allergen_array) {
+            if(s.length() > 0)
+                allergenSet.add(s);
+        }
+
+
+        service.edit(itemId,itemName,allergenSet,itemPrice,itemDesc, imgName);
+
+        attributes.addFlashAttribute("success", "Updated Item Successfully.");
+
+        return new RedirectView("/menu");
+    }
+
     @PostMapping("/addMenuItem")
     public RedirectView addMenuItem(RedirectAttributes attributes, @RequestParam("ItemName") String itemName,
                                     @RequestParam("ItemDescription") String itemDesc,
@@ -99,7 +140,7 @@ public class MenuPageController {
                                     @RequestParam("ItemAllergens") String allergens,
                                     @RequestParam("imageFile") MultipartFile file)throws IOException {
 
-        String imgName = file.getOriginalFilename();
+        String imgName = file.isEmpty() ? "" : file.getOriginalFilename();
 
         MenuItem i = new MenuItem();
         i.setName(itemName);
@@ -116,12 +157,13 @@ public class MenuPageController {
         }
         i.setAllergens(allergenSet);
 
-        // only uploading to build static folder
-        FileUploadUtil.saveFile("build/resources/main/static/images" , imgName, file);
+        if(!file.isEmpty()) {
+            // only uploading to build static folder
+            FileUploadUtil.saveFile("build/resources/main/static/images", imgName, file);
 
-        // uploading to src folder
-        FileUploadUtil.saveFile("src/main/resources/main/static/images" , imgName, file);
-
+            // uploading to src folder
+            FileUploadUtil.saveFile("src/main/resources/main/static/images", imgName, file);
+        }
 
         service.add(i);
 
