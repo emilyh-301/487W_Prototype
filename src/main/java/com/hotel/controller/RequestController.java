@@ -22,7 +22,6 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
-import  java.util.Calendar;
 
 @Controller
 @RequestMapping("/request")
@@ -125,7 +124,6 @@ public class RequestController {
 
         long id = 69;
         Date time = new Date();
-        Date wakeuptime = new Date();
 
         time.setTime(System.currentTimeMillis());
         Calendar calendar = Calendar.getInstance();
@@ -133,16 +131,28 @@ public class RequestController {
         calendar.setTimeInMillis(System.currentTimeMillis());
         calendar.add(Calendar.DATE, 1);
 
-        calendar.set(Calendar.HOUR, hour);
+        calendar.set(Calendar.HOUR_OF_DAY, hour);
         calendar.set(Calendar.MINUTE, minute);
 
-        time.setTime(calendar.getTimeInMillis());
+        Request wr = Request.createWakeUpRequest(id, roomno, time, calendar.getTime());
 
-        Request mr = Request.createWakeUpRequest(id, roomno, time, wakeuptime);
+        requestService.add(wr);
 
-        requestService.add(mr);
+        return new RedirectView("/request");
+    }
 
-        return new RedirectView("/requests");
+    @GetMapping("/requestsactive")
+    public ModelAndView viewRequestsActive(ModelMap m, @RequestParam(value = "direction", required = false, defaultValue = "asc") String direction, @RequestParam(value = "sort",
+            required = false, defaultValue = "time") String sort) {
+
+        /*
+         * Get a list of all active requests
+         */
+        Collection<Request> requests = requestService.findByCompletion(new Sort(direction.equals("asc")? Sort.Direction.ASC : Sort.Direction.DESC,
+                sort), false);
+        m.addAttribute("requests", requests);
+
+        return new ModelAndView("requests", m);
     }
 
     @GetMapping("/log")
