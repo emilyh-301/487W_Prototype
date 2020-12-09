@@ -94,16 +94,7 @@
 
             <td>
                 <form action="/request/completed" method="POST">
-
-<!--                 <div  id="rid" th:value="${request.getId()}" style="visibility: hidden">-->
-<!--                 </div>-->
-
-<!--                    <button id="rid" th:value="${request.getId()}" type="SUBMIT" class="btn btn-sm btn-success"> Completed </button>-->
-
-                    <input style="display:none;" type="text" th:value="*{request.getId()}" id="rid" name="rid"/>
-                    <input type="submit" value="Completed"/>
-
-
+                    <button id="rid" name="rid" th:value="${request.getId()}" type="SUBMIT" class="btn btn-sm btn-success"> Completed </button>
                 </form>
             </td>
         </tr>
