@@ -91,7 +91,7 @@
                                 <div style="margin: 1rem;">
                                     <p class="modal-item-description lead" th:text="${item.getDescription()}"></p>
 
-                                    <form action="/menu/addtocart" method="POST" style="font-size: 1rem" class="lead">
+                                    <form sec:authorize="hasRole('ROLE_USER')" action="/menu/addtocart" method="POST" style="font-size: 1rem" class="lead">
                                         <div class="form-group">
                                             <label for="item_qty">Quantity</label>
                                             <input type="number" class="form-control" id="item_qty" name="item_qty" value="1"/>
