@@ -27,10 +27,11 @@
         <h1>General Request Form</h1>
     </div>
 
-    <form action="/request/general" type="post">
+    <form action="/request/general" method="post">
 
-        <div class="dropdown">
-            <select id="category" class="form-control form-control-lg">
+        <div class="form-group">
+            <label for="category">Category</label>
+            <select id="category" name="category" class="form-control form-control-lg">
                 <option>Bathroom</option>
                 <option>Bedroom</option>
                 <option>Amenities</option>
