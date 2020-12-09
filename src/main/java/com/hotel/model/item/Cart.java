@@ -2,6 +2,8 @@ package com.hotel.model.item;
 
 import com.hotel.model.room.Room;
 import com.hotel.model.user.ApplicationUser;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import javax.persistence.*;
 import java.util.*;
@@ -9,6 +11,7 @@ import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "cart")
+@ControllerAdvice
 public class Cart {
 
     @Id
@@ -110,6 +113,12 @@ public class Cart {
 
     public boolean isEmpty() {
         return items.isEmpty();
+    }
+
+    @ModelAttribute("cartSize")
+    public int getCartSize(){
+        if(items == null) return 0;
+        return items.size();
     }
 
 }

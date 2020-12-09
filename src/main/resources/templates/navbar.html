@@ -6,14 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Layout</title>
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="/css/bootstrap.css"/>
-    <script rel="script" src="/js/bootstrap.bundle.js"/>
     <link rel="stylesheet" href="/css/styles.css"/>
-    <link rel="stylesheet" href="/css/font-awesome/all.css"/>
+    <link rel="stylesheet" href="css/font-awesome/all.css"/>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script rel="script" src="/js/bootstrap.bundle.js"></script>
+
+    <script rel="script" src="/js/bootstrap.bundle.js"/>
 
 </head>
 <body>
-<th:block th:fragment="header">
+<th:block th:fragment="header" >
 <nav class="navbar navbar-expand-lg navbar-dark">
     <a class="navbar-brand lead" href="/" style="margin-right: 0rem">
         <img src="/images/logo.svg"/>
@@ -60,10 +69,11 @@
             </li>
 
         </ul>
-        <ul class=" navbar-nav">
+
+        <ul class=" navbar-nav" >
             <li class="nav-item">
                 <a href="/cart" class="nav-link lead">
-                    <i class="fas fa-shopping-cart fa-stack has-badge" data-count="3"></i>Cart
+                    <i class="fas fa-shopping-cart fa-stack has-badge" th:data-count="${cartSize}"></i>Cart
                 </a>
             </li>
             <li th:if="${#httpServletRequest.remoteUser}" class="nav-item">
