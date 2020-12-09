@@ -93,11 +93,17 @@
             <td th:text="${request.getRequestType()}"></td>
 
             <td>
-                <form action="/request/requestsactive" method="POST">
-                    <div id="rid" th:text="${request.getId()}" style="visibility: hidden">
-                    </div>
+                <form action="/request/completed" method="POST">
 
-                    <button type="SUBMIT" class="btn btn-sm btn-success"> Completed </button>
+<!--                 <div  id="rid" th:value="${request.getId()}" style="visibility: hidden">-->
+<!--                 </div>-->
+
+<!--                    <button id="rid" th:value="${request.getId()}" type="SUBMIT" class="btn btn-sm btn-success"> Completed </button>-->
+
+                    <input style="display:none;" type="text" th:value="*{request.getId()}" id="rid" name="rid"/>
+                    <input type="submit" value="Completed"/>
+
+
                 </form>
             </td>
         </tr>

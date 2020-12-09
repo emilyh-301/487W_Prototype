@@ -111,7 +111,7 @@ public class RequestController {
         else{
             // idk some error maybe
         }
-        return new RedirectView("/requests");
+        return new RedirectView("/request");
     }
 
     @GetMapping("/wakeuprequests")
@@ -155,10 +155,24 @@ public class RequestController {
         return new ModelAndView("requests", m);
     }
 
+    @PostMapping("/completed")
+    public RedirectView markCompleted (@RequestParam(value = "rid") long rid){
+
+        Request requests = requestService.find(rid);
+
+        requests.setCompleted(true);
+
+        requestService.remove(rid);
+        requestService.add(requests);
+
+        return new RedirectView("/request/requestsactive");
+    }
+
+
+
     @GetMapping("/log")
     public ModelAndView viewLog(ModelMap m, @RequestParam(value = "direction", required = false, defaultValue = "asc") String direction, @RequestParam(value = "sort",
             required = false, defaultValue = "time") String sort) {
-
 
         /*
          * Get a list of all inactive requests
@@ -169,5 +183,4 @@ public class RequestController {
 
         return new ModelAndView("log", m);
     }
-
 }
