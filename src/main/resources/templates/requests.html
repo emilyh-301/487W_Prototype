@@ -24,6 +24,8 @@
     </style>
 </head>
 
+<body>
+
 <header th:insert="navbar::header"></header>
 
 <div class="container">
@@ -36,54 +38,48 @@
         <tr>
             <th scope="col">
                 ID
-                <a class="sort-arrow" href="/request/log/?sort=id&direction=asc">&uarr;</a>
-                <a class="sort-arrow" href="/request/log/?sort=id&direction=desc">&darr;</a>
+                <a class="sort-arrow" href="/request/requestsactive/?sort=id&direction=asc">&uarr;</a>
+                <a class="sort-arrow" href="/request/requestsactive/?sort=id&direction=desc">&darr;</a>
             </th>
             <th scope="col">
                 Room
-                <a class="sort-arrow" href="/request/log/?sort=room&direction=asc">&uarr;</a>
-                <a class="sort-arrow" href="/request/log/?sort=room&direction=desc">&darr;</a>
+                <a class="sort-arrow" href="/request/requestsactive/?sort=room&direction=asc">&uarr;</a>
+                <a class="sort-arrow" href="/request/requestsactive/?sort=room&direction=desc">&darr;</a>
             </th>
             <th scope="col">
                 Time
-                <a class="sort-arrow" href="/request/log/?sort=time&direction=asc">&uarr;</a>
-                <a class="sort-arrow" href="/request/log/?sort=time&direction=desc">&darr;</a>
+                <a class="sort-arrow" href="/request/requestsactive/?sort=time&direction=asc">&uarr;</a>
+                <a class="sort-arrow" href="/request/requestsactive/?sort=time&direction=desc">&darr;</a>
             </th>
             <th scope="col">
                 Category
-                <a class="sort-arrow" href="/request/log/?sort=commonRequestType&direction=asc">&uarr;</a>
-                <a class="sort-arrow" href="/request/log/?sort=commonRequestType&direction=desc">&darr;</a>
+                <a class="sort-arrow" href="/request/requestsactive/?sort=commonRequestType&direction=asc">&uarr;</a>
+                <a class="sort-arrow" href="/request/requestsactive/?sort=commonRequestType&direction=desc">&darr;</a>
             </th>
             <th scope="col">
                 Notes
-                <a class="sort-arrow" href="/request/log/?sort=notes&direction=asc">&uarr;</a>
-                <a class="sort-arrow" href="/request/log/?sort=notes&direction=desc">&darr;</a>
+                <a class="sort-arrow" href="/request/requestsactive/?sort=notes&direction=asc">&uarr;</a>
+                <a class="sort-arrow" href="/request/requestsactive/?sort=notes&direction=desc">&darr;</a>
             </th>
             <th scope="col">
                 Wake Time
-                <a class="sort-arrow" href="/request/log/?sort=wakeup_time&direction=asc">&uarr;</a>
-                <a class="sort-arrow" href="/request/log/?sort=wakeup_time&direction=desc">&darr;</a>
+                <a class="sort-arrow" href="/request/requestsactive/?sort=wakeup_time&direction=asc">&uarr;</a>
+                <a class="sort-arrow" href="/request/requestsactive/?sort=wakeup_time&direction=desc">&darr;</a>
             </th>
             <th scope="col">
                 Type
-                <a class="sort-arrow" href="/request/log/?sort=requestType&direction=asc">&uarr;</a>
-                <a class="sort-arrow" href="/request/log/?sort=requestType&direction=desc">&darr;</a>
+                <a class="sort-arrow" href="/request/requestsactive/?sort=requestType&direction=asc">&uarr;</a>
+                <a class="sort-arrow" href="/request/requestsactive/?sort=requestType&direction=desc">&darr;</a>
             </th>
+            <th>&nbsp;</th>
         </tr>
         </thead>
+
         <tbody>
         <tr th:each="request : ${requests}">
             <th scope="row" th:text="${request.getId()}"></th>
             <td th:text="${request.getRoom()}"></td>
-            <td th:text="${request.getFormattedTime()}"></td>
-            <td>
-                <form action="/request/view" method="POST">
-                    <div id="rid" th:text="${request.getId()}" style="visibility: hidden">
-                    </div>
-
-                    <button type="SUBMIT" class="btn btn-sm btn-success"> Completed </button>
-                </form>
-            </td>
+            <td th:text="${request.getFormattedTime()}"></td>-
 
             <td th:if="${!request.getRequestType().equals(request.getRequestType().wakeup)}" th:text="${request.getCommonRequestType()}"></td>
             <td th:unless="${!request.getRequestType().equals(request.getRequestType().wakeup)}">&nbsp;</td>
@@ -95,6 +91,15 @@
             <td th:unless="${request.getRequestType().equals(request.getRequestType().wakeup)}">&nbsp;</td>
 
             <td th:text="${request.getRequestType()}"></td>
+
+            <td>
+                <form action="/request/requestsactive" method="POST">
+                    <div id="rid" th:text="${request.getId()}" style="visibility: hidden">
+                    </div>
+
+                    <button type="SUBMIT" class="btn btn-sm btn-success"> Completed </button>
+                </form>
+            </td>
         </tr>
         </tbody>
     </table>

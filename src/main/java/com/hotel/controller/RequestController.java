@@ -22,7 +22,6 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
-import  java.util.Calendar;
 
 @Controller
 @RequestMapping("/request")
@@ -140,6 +139,20 @@ public class RequestController {
         requestService.add(wr);
 
         return new RedirectView("/request");
+    }
+
+    @GetMapping("/requestsactive")
+    public ModelAndView viewRequestsActive(ModelMap m, @RequestParam(value = "direction", required = false, defaultValue = "asc") String direction, @RequestParam(value = "sort",
+            required = false, defaultValue = "time") String sort) {
+
+        /*
+         * Get a list of all active requests
+         */
+        Collection<Request> requests = requestService.findByCompletion(new Sort(direction.equals("asc")? Sort.Direction.ASC : Sort.Direction.DESC,
+                sort), false);
+        m.addAttribute("requests", requests);
+
+        return new ModelAndView("requests", m);
     }
 
     @GetMapping("/log")
