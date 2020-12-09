@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 @Service
@@ -46,6 +47,14 @@ public class MenuItemService {
     }
 
     public void edit(@NotNull long id, String new_name, Set<String> new_allergens, double new_price, String new_description) {
+        database.edit(id, new_name, new_allergens, new_price, new_description);
+    }
+
+    public void edit(@NotNull long id, String new_name, Set<String> new_allergens, double new_price, String new_description, String imageName) {
+        database.edit(id, new_name, new_allergens, new_price, new_description, imageName);
+    }
+
+    public void edit(@NotNull long id, String new_name, HashSet<String> new_allergens, double new_price, String new_description) {
         database.edit(id, new_name, new_allergens, new_price, new_description);
     }
 

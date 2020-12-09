@@ -79,6 +79,28 @@ public class MenuItemDatabase {
 
     }
 
+    public void edit(@NotNull long id, String new_name, Set<String> new_allergens, double new_price, String new_description, String imgName) {
+
+        MenuItem item = find(id);
+
+        if(item == null) return;
+
+        item.setName((new_name == null || new_name.isEmpty())? MenuItem.DEFAULT_NAME : new_name);
+
+        item.setAllergens(new HashSet<>());
+        for(String s : new_allergens) item.getAllergens().add(new Allergen(s));
+
+        item.setPrice(new_price < MenuItem.MINIMUM_PRICE? new BigDecimal(MenuItem.MINIMUM_PRICE) : new BigDecimal(new_price));
+        item.setDescription((new_description == null || new_description.isEmpty())? MenuItem.DEFAULT_DESCRIPTION : new_description);
+
+        if(imgName != null && imgName.length() > 0){
+            item.setImage(imgName);
+        }
+
+        repo.save(item);
+
+    }
+
     /**
      * @param id The id of the item to retrieve
      * @return the item with the given id, or null if no such item exists
